@@ -16,9 +16,18 @@ class HomeUserController extends Controller
         return view('frontend.home.about');
     }
 
-    public function services()
+    public function services(Request $request)
     {
-        return view('frontend.home.services');
+        $type = $request->query('type');
+
+        if (!$type) {
+            return view('frontend.home.services');
+        } else {
+            return view('frontend.home.service-detail', compact('type'));
+        
+        }
+
+        return view('frontend.home.service-detail');
     }
 
     public function projects()

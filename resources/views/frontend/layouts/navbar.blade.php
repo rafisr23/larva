@@ -16,11 +16,11 @@
                     <li class="dropdown">
                         <a href="{{ route('user-services') }}">Layanan</a>
                         <ul>
-                            <li><a href="mobile-application.html">Mechandise & Gift</a></li>
-                            <li><a href="digital-marketing.html">Konveksi Sablon</a></li>
-                            <li><a href="graphic-designing.html">Design Studio</a></li>
-                            <li><a href="website-development.html">Screen Printing</a></li>
-                            <li><a href="social-marketing.html">Clothing Supplier</a></li>
+                            <li><a href="{{ route('user-services', ['type' => 'merch']) }}">Mechandise & Gift</a></li>
+                            <li><a href="{{ route('user-services', ['type' => 'konveksi']) }}">Konveksi Sablon</a></li>
+                            <li><a href="{{ route('user-services', ['type' => 'design']) }}">Design Studio</a></li>
+                            <li><a href="{{ route('user-services', ['type' => 'website']) }}">Screen Printing</a></li>
+                            <li><a href="{{ route('user-services', ['type' => 'clothing']) }}">Clothing Supplier</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
