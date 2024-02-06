@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('service_name');
-            $table->string('slug');
-            $table->string('tagline');
-            $table->text('description');
-            $table->integer('min_price');
-            $table->integer('max_price');
-            $table->text('notes');
-            $table->boolean('is_active')->default(true);
+            $table->string('service_name')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('tagline')->nullable();
+            $table->text('description')->nullable();
+            $table->integer('min_price')->nullable();
+            $table->integer('max_price')->nullable();
+            $table->text('notes')->nullable();
+            $table->boolean('is_active')->default(true)->nullable();
             $table->timestamps();
         });
     }

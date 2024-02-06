@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('service_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->constrained()->cascadeOnDelete();
-            $table->string('file_name');
-            $table->string('file_path');
-            $table->boolean('is_active')->default(true);
+            $table->foreignId('service_id')->constrained()->cascadeOnDelete()->nullable();
+            $table->string('file_name')->nullable();
+            $table->string('file_path')->nullable();
+            $table->boolean('is_active')->default(true)->nullable();
             $table->timestamps();
         });
     }
