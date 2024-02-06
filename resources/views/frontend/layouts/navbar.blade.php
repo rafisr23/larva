@@ -34,17 +34,17 @@
             </div>
             <div class="main-menu-wrapper__right">
                 <div class="main-menu-wrapper__call">
-                    <div class="main-menu-wrapper__call-icon">
+                    {{-- <div class="main-menu-wrapper__call-icon">
                         <img src="{{ asset('images/icon/phone-icon.png') }}" alt="">
-                    </div>
+                    </div> --}}
                     <div class="main-menu-wrapper__call-number">
-                        <p>Hubungi Kami</p>
-                        <h5><a href="tel:+6281234501305">6281234501305</a></h5>
+                        {{-- <p>Hubungi Kami</p> --}}
+                        <h5><a href="/login">Login</a></h5>
                     </div>
                 </div>
-                <div class="main-menu-wrapper__search-box">
+                {{-- <div class="main-menu-wrapper__search-box">
                     <a href="#" class="main-menu-wrapper__search search-toggler icon-magnifying-glass"></a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </nav>
