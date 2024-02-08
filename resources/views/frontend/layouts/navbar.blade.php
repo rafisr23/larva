@@ -39,7 +39,20 @@
                     </div> --}}
                     <div class="main-menu-wrapper__call-number">
                         {{-- <p>Hubungi Kami</p> --}}
-                        <h5><a href="/login">Login</a></h5>
+                        {{-- <h5><a href="/login">Login</a></h5> --}}
+                        {{-- check first is user logged in --}}
+                        @if (Auth::check())
+                            @role('admin')
+                                <h5><a href="{{ route('dashboard') }}">Dashboard</a></h5>
+                            @endrole
+                            {{-- logout with a submit a form --}}
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit" class="btn">Logout</button>
+                            </form>
+                        @else
+                            <h5><a href="{{ route('login') }}">Login</a></h5>
+                        @endif
                     </div>
                 </div>
                 {{-- <div class="main-menu-wrapper__search-box">
