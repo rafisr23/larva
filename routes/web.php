@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\HomeUserController;
 
 /*
@@ -31,7 +32,22 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    Route::view('/dashboard', 'admin.index')->name('dashboard');
+});
+
+Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], function () {
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+        Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+        
+        Route::controller(ServiceController::class)->prefix('service')->name('service')->group(function () {
+            Route::get('/', 'index')->name('.index');
+            Route::get('/create', 'create')->name('.create');
+            Route::post('/store', 'store')->name('.store');
+            Route::get('/{service}/edit', 'edit')->name('.edit');
+            Route::patch('/{service}', 'update')->name('.update');
+            Route::delete('/{service}', 'destroy')->name('.destroy');
+        });
+    });
+
 });
 
 

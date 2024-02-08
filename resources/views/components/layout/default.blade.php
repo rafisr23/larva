@@ -91,7 +91,7 @@
         });
     </script>
 
-    <x-common.theme-customiser />
+    {{-- <x-common.theme-customiser /> --}}
 
     <div class="main-container text-black dark:text-white-dark min-h-screen" :class="[$store.app.navbar]">
 
@@ -101,13 +101,13 @@
             <x-common.header />
 
             <div class="p-6 animate__animated" :class="[$store.app.animation]">
-                <h1>ased</h1>
                 {{ $slot }}
             </div>
 
             <x-common.footer />
         </div>
     </div>
+
     <script src="/js/alpine-collaspe.min.js"></script>
     <script src="/js/alpine-persist.min.js"></script>
     <script defer src="/js/alpine-ui.min.js"></script>
@@ -130,6 +130,10 @@
     <script src="/js/simple-datatables.js"></script>
     <script src="/js/Sortable.min.js"></script>
     <script src="/js/swiper-bundle.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+
+
+    @stack('scripts')
 
 </body>
 

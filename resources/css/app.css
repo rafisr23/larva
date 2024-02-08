@@ -327,6 +327,14 @@ hover:text-primary hover:before:!bg-primary ltr:before:mr-2 rtl:before:ml-2 dark
     .btn-outline-dark {
         @apply border-dark text-dark shadow-none hover:bg-dark hover:text-white;
     }
+    
+    .btn-red {
+        @apply border-red bg-red text-white shadow-red/60;
+    }
+
+    .btn-outline-red {
+        @apply border-red text-red shadow-none hover:bg-red hover:text-white;
+    }
 
     .btn-gradient {
         @apply bg-gradient-to-r from-[#dd0429] to-[#17161a] hover:to-[#dd0429] hover:from-[#17161a] text-white;

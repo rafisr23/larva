@@ -3,7 +3,7 @@
         <div class="relative bg-white flex w-full items-center px-5 py-2.5 dark:bg-[#0e1726]">
             <div class="horizontal-logo flex lg:hidden justify-between items-center ltr:mr-2 rtl:ml-2">
                 <a href="/" class="main-logo flex items-center shrink-0">
-                    <img class="w-8 ltr:-ml-1 rtl:-mr-1 inline" src="/assets/images/logo.svg"
+                    <img class="w-8 ltr:-ml-1 rtl:-mr-1 inline" src="/images/logo.svg"
                         alt="image" />
                     <span
                         class="text-2xl ltr:ml-1.5 rtl:mr-1.5  font-semibold  align-middle hidden md:inline dark:text-white-light transition-all duration-300">VRISTO</span>
@@ -170,7 +170,7 @@
                     <a href="javascript:;"
                         class="block p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60"
                         @click="toggle">
-                        <img :src="`/assets/images/flags/${$store.app.locale.toUpperCase()}.svg`" alt="image"
+                        <img :src="`/images/flags/${$store.app.locale.toUpperCase()}.svg`" alt="image"
                             class="w-5 h-5 object-cover rounded-full" />
                     </a>
                     <ul x-cloak x-show="open" x-transition x-transition.duration.300ms
@@ -181,7 +181,7 @@
                                     @click="$store.app.toggleLocale(item.value),toggle()"
                                     :class="{ 'bg-primary/10 text-primary': $store.app.locale == item.value }">
                                     <img class="w-5 h-5 object-cover rounded-full"
-                                        :src="`/assets/images/flags/${item.value.toUpperCase()}.svg`" alt="image" />
+                                        :src="`/images/flags/${item.value.toUpperCase()}.svg`" alt="image" />
                                     <span class="ltr:ml-3 rtl:mr-3" x-text="item.key"></span>
                                 </a>
                             </li>
@@ -210,7 +210,7 @@
                         <li class="mb-5">
                             <div class="overflow-hidden relative rounded-t-md !p-5 text-white">
                                 <div
-                                    class="absolute h-full w-full bg-[url('/assets/images/menu-heade.jpg')] bg-no-repeat bg-center bg-cover inset-0">
+                                    class="absolute h-full w-full bg-[url('/images/menu-heade.jpg')] bg-no-repeat bg-center bg-cover inset-0">
                                 </div>
                                 <h4 class="font-semibold relative z-10 text-lg">Messages</h4>
                             </div>
@@ -312,7 +312,7 @@
                                     <div class="grid place-content-center rounded">
                                         <div class="w-12 h-12 relative">
                                             <img class="w-12 h-12 rounded-full object-cover"
-                                                :src="`/assets/images/${notification.profile}`"
+                                                :src="`/images/${notification.profile}`"
                                                 alt="image" />
                                             <span
                                                 class="bg-success w-2 h-2 rounded-full block absolute right-[6px] bottom-0"></span>
@@ -374,7 +374,7 @@
                 <div class="dropdown flex-shrink-0" x-data="dropdown" @click.outside="open = false">
                     <a href="javascript:;" class="relative group" @click="toggle()">
                         <span><img class="w-9 h-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
-                                src="/assets/images/user-profile.jpeg" alt="image" /></span>
+                                src="/images/user-profile.jpeg" alt="image" /></span>
                     </a>
                     <ul x-cloak x-show="open" x-transition x-transition.duration.300ms
                         class="ltr:right-0 rtl:left-0 text-dark dark:text-white-dark top-11 !py-0 w-[230px] font-semibold dark:text-white-light/90">
@@ -382,7 +382,7 @@
                             <div class="flex items-center px-4 py-4">
                                 <div class="flex-none">
                                     <img class="rounded-md w-10 h-10 object-cover"
-                                        src="/assets/images/user-profile.jpeg"
+                                        src="/images/user-profile.jpeg"
                                         alt="image" />
                                 </div>
                                 <div class="ltr:pl-4 rtl:pr-4 truncate">
