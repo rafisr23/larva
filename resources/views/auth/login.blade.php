@@ -85,14 +85,14 @@
                             </div>
                             <div>
                                 <label class="flex cursor-pointer items-center">
-                                    <input type="checkbox" class="form-checkbox bg-white dark:bg-black" />
+                                    <input type="checkbox" class="form-checkbox bg-white dark:bg-black accent-red-800" />
                                     <span class="text-white-dark">Subscribe to weekly newsletter</span>
                                 </label>
                             </div>
                             <button type="submit" class="btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"> Sign in </button>
                         </form>
                         
-                        <div class="text-center dark:text-white mt-5"> Don't have an account ? <a href="/auth/boxed-signup" class="uppercase text-red no-underline transition hover:text-black dark:hover:text-white">SIGN UP</a>
+                        <div class="text-center dark:text-white mt-5"> Don't have an account ? <a href="{{ route('register') }}" class="uppercase text-red no-underline transition hover:text-black dark:hover:text-white">SIGN UP</a>
                         </div>
                     </div>
                 </div>
@@ -100,93 +100,6 @@
         </div>
     </div>
     <script>
-        // main section
-        // document.addEventListener('alpine:init', () => {
-        //     Alpine.data('auth', () => ({
-        //         languages: [{
-        //                 id: 1,
-        //                 key: 'Chinese',
-        //                 value: 'zh',
-        //             },
-        //             {
-        //                 id: 2,
-        //                 key: 'Danish',
-        //                 value: 'da',
-        //             },
-        //             {
-        //                 id: 3,
-        //                 key: 'English',
-        //                 value: 'en',
-        //             },
-        //             {
-        //                 id: 4,
-        //                 key: 'French',
-        //                 value: 'fr',
-        //             },
-        //             {
-        //                 id: 5,
-        //                 key: 'German',
-        //                 value: 'de',
-        //             },
-        //             {
-        //                 id: 6,
-        //                 key: 'Greek',
-        //                 value: 'el',
-        //             },
-        //             {
-        //                 id: 7,
-        //                 key: 'Hungarian',
-        //                 value: 'hu',
-        //             },
-        //             {
-        //                 id: 8,
-        //                 key: 'Italian',
-        //                 value: 'it',
-        //             },
-        //             {
-        //                 id: 9,
-        //                 key: 'Japanese',
-        //                 value: 'ja',
-        //             },
-        //             {
-        //                 id: 10,
-        //                 key: 'Polish',
-        //                 value: 'pl',
-        //             },
-        //             {
-        //                 id: 11,
-        //                 key: 'Portuguese',
-        //                 value: 'pt',
-        //             },
-        //             {
-        //                 id: 12,
-        //                 key: 'Russian',
-        //                 value: 'ru',
-        //             },
-        //             {
-        //                 id: 13,
-        //                 key: 'Spanish',
-        //                 value: 'es',
-        //             },
-        //             {
-        //                 id: 14,
-        //                 key: 'Swedish',
-        //                 value: 'sv',
-        //             },
-        //             {
-        //                 id: 15,
-        //                 key: 'Turkish',
-        //                 value: 'tr',
-        //             },
-        //             {
-        //                 id: 16,
-        //                 key: 'Arabic',
-        //                 value: 'ae',
-        //             },
-        //         ],
-        //     }));
-        // });
+        
     </script>
-  
 </x-layout.auth>
-  
