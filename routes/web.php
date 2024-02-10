@@ -40,11 +40,15 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
         
         Route::controller(ServiceController::class)->prefix('service')->name('service')->group(function () {
             Route::get('/', 'index')->name('.index');
+            Route::get('/get-services', 'getServices')->name('.get-services');
             Route::get('/create', 'create')->name('.create');
             Route::post('/store', 'store')->name('.store');
             Route::get('/{service}/edit', 'edit')->name('.edit');
             Route::patch('/{service}', 'update')->name('.update');
+            Route::put('/{service}/update-status', 'updateStatus')->name('.update-status');
+            Route::put('/{imageId}/update-status-image', 'updateStatusImage')->name('.update-status-image');
             Route::delete('/{service}', 'destroy')->name('.destroy');
+            Route::delete('/{imageId}/destroy-image', 'destroyImage')->name('.destroy-image');
         });
     });
 
