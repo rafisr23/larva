@@ -44,7 +44,27 @@ class ServiceController extends Controller
             'min_price'         => $request->min_price,
             'max_price'         => $request->max_price,
             'notes'             => $request->notes,
+            'is_active'         => $request->is_active == 'on' ? '1' : '0',
         ]);
+
+        // store image with loop
+        if ($request->hasFile('service_image')) {
+            // add validation
+            $request->validate([
+                'service_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            ]);
+
+            foreach ($request->file('service_image') as $key => $image) {
+                $imageName = $service->slug . '-' . $key . '.' . $image->extension();
+                $file_path = $image->storeAs('service', $imageName);
+                
+                $service->serviceImage()->create([
+                    'service_id' => $service->id,
+                    'file_name' => $imageName,
+                    'file_path' => $file_path,
+                ]);
+            }
+        }
 
         return redirect()->route('admin.service.index')->with('success', 'Service created successfully.');
     }

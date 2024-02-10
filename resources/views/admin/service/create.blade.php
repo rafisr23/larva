@@ -63,11 +63,18 @@
                         <div class="mt-4 @error('service_image') has-error @enderror">
                             {{-- <div class="custom-file-container" data-upload-id="serviceImage"></div> --}}
                             <label for="service_image">Service Image</label>
-                            <input id="service_image" name="service_image" type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" multiple onchange="displayImage(this)" />
+                            <input id="service_image" name="service_image[]" type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" multiple onchange="displayImage(this)" />
                             <div id="imagePreview" class="mt-2 flex flex-wrap gap-2"></div>
                             @error('service_image')
                                 <p class="text-danger mt-1">{{ $message }}</p>
                             @enderror
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <label for="is_active" class="me-4">Service Status</label>
+                            <label class="w-12 h-6 relative">
+                                <input type="checkbox" class="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer" id="is_active" name="is_active" />
+                                <span for="is_active" class="bg-danger dark:bg-danger block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-success before:transition-all before:duration-300"></span>
+                            </label>
                         </div>
                         <button type="submit" class="btn btn-primary !mt-6">Save</button>
                     </form>
