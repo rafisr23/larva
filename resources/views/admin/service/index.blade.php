@@ -1,4 +1,5 @@
 <x-layout.default>
+    <x-slot name="title">{{ $title }}</x-slot>
 
     <div x-data="service">
         <div class="grid gap-6 mb-6">
@@ -10,8 +11,8 @@
             </div> --}}
 
             <div class="panel">
-                <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-xl">Service List</h5>
+                <div class="flex items-center mb-5">
+                    <h5 class="font-semibold text-xl me-5">Service List</h5>
                     <a href="{{ route('admin.service.create') }}" class="btn btn-danger">Add New</a>
                 </div>
                 <div class="overflow-x-auto">
@@ -20,6 +21,7 @@
                     </table>
                 </div>
             </div>
+            <div id="toast"></div>
         </div>
     </div>
 
@@ -43,7 +45,7 @@
                                         element.min_price + ' - ' + element.max_price,
                                         element.is_active == 1 ? 'Active' : 'Inactive',
                                         `<div class="flex items-center space-x-2">
-                                            <a href="{{ route('admin.service.edit', ':id') } }".replace(':id', element.id)" class="btn btn-primary">Edit</a>
+                                            <a href="{{ route('admin.service.edit', ':id') }}".replace(':id', element.id)" class="btn btn-primary">Edit</a>
                                             <button class="btn btn-danger" x-on:click="deleteService(${element.id})">Delete</button>
                                         </div>`
                                     ]),
@@ -77,5 +79,29 @@
             }));
         });
 
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('success'))
+                console.log('success');
+                const toast = window.Swal.mixin({
+                    toast: true,
+                    position: 'top-right',
+                    animation: true,
+                    showConfirmButton: false,
+                    timer: 3000,
+                    customClass: {
+                        popup: 'color-success'
+                    },
+                    showCloseButton: true,
+                    target: document.getElementById('toast')
+                });
+                toast.fire({
+                    icon: 'success',
+                    title: "{{ session('success') }}",
+                    padding: '10px 20px'
+                });
+            @endif
+        });
     </script>
+
+    
 </x-layout.default>

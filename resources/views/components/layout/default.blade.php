@@ -113,6 +113,7 @@
     <script defer src="/js/alpine-ui.min.js"></script>
     <script defer src="/js/alpine-focus.min.js"></script>
     <script defer src="/js/alpine.min.js"></script>
+    <script src="/js/alpine-mask.min.js"></script>
     <script src="/js/custom.js"></script>
     <script src="/js/apexcharts.js"></script>
     <script src="/js/clipboard.js"></script>
@@ -120,7 +121,7 @@
     <script src="/js/dayjs.min.js"></script>
     <script src="/js/easymde.min.js"></script>
     <script src="/js/fancybox.umd.js"></script>
-    <script src="/js/file-upload-with-previe.iifi.js"></script>
+    <script src="/js/file-upload-with-preview.iife.js"></script>
     <script src="/js/flatpickr.js"></script>
     <script src="/js/fullcalendar.min.js"></script>
     <script src="/js/highlight.min.js"></script>
