@@ -135,7 +135,7 @@ class ServiceController extends Controller
 
         if ($request->hasFile('service_image')) {
             $request->validate([
-                'service_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+                'service_image.*' => 'image|mimes:jpeg,png,jpg|max:10240',
             ]);
 
             foreach ($request->file('service_image') as $key => $image) {
@@ -191,5 +191,35 @@ class ServiceController extends Controller
     {
         $teams = $service->serviceTeam;
         return response()->json($teams);
+    }
+
+    public function storeTeam(Service $service, Request $request)
+    {
+        // return $request;
+
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $serviceTeam = $service->serviceTeam()->create([
+            'name' => $request->name,
+            'position' => $request->position,
+            'social_link' => $request->social_link,
+        ]);
+
+        if ($request->hasFile('team_image')) {
+            $request->validate([
+                'team_image' => 'image|mimes:jpeg,png,jpg|max:10240',
+            ]);
+
+            $imageName = $service->slug . '-' . $serviceTeam->name . time() . '.' . $request->team_image->extension();
+            $file_path = $request->team_image->storeAs('service/team', $imageName);
+            
+            $serviceTeam->update([
+                'image' => $file_path,
+            ]);
+        }
+
+        return redirect()->route('admin.service.team', $service->slug)->with('success', 'Team Member created successfully!');
     }
 }

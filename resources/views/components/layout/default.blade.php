@@ -21,6 +21,8 @@
     <script defer src="/js/tippy-bundle.umd.min.js"></script>
     <script defer src="/js/sweetalert.min.js"></script>
     @vite(['resources/css/app.css'])
+    @vite(['resources/css/swiper-bundle.min.css'])
+    @vite(['resources/css/highlight.min.css'])
 </head>
 
 <body x-data="main" class="antialiased relative font-nunito text-sm font-normal overflow-x-hidden"

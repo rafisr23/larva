@@ -51,6 +51,8 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
             Route::delete('/{imageId}/destroy-image', 'destroyImage')->name('.destroy-image');
             Route::get('/{service}/team', 'team')->name('.team');
             Route::get('/{service}/team/get', 'getTeams')->name('.get-teams');
+            Route::post('/{service}/team/store', 'storeTeam')->name('.store-team');
+            Route::delete('/{service}/team/{team}', 'destroyTeam')->name('.destroy-team');
         });
     });
 
