@@ -178,4 +178,18 @@ class ServiceController extends Controller
             'message' => 'Service image status updated successfully!',
         ]);
     }
+
+    public function team(Service $service)
+    {
+        $serviceName = $service->service_name;
+        $serviceSlug = $service->slug;
+        $title = "LARVA | " . ucwords(strtolower($serviceName)) . " Team";
+        return view('admin.service.team', compact('title', 'serviceName', 'serviceSlug'));
+    }
+
+    public function getTeams(Service $service)
+    {
+        $teams = $service->serviceTeam;
+        return response()->json($teams);
+    }
 }
