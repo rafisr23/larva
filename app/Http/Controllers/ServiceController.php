@@ -189,7 +189,13 @@ class ServiceController extends Controller
 
     public function getTeams(Service $service)
     {
-        $teams = $service->serviceTeam;
+        $teams = $service->serviceTeam; 
+
+        foreach ($teams as $team) {
+            $encId = encrypt($team->id);
+            $team->encId = $encId;
+        }
+
         return response()->json($teams);
     }
 
@@ -222,4 +228,49 @@ class ServiceController extends Controller
 
         return redirect()->route('admin.service.team', $service->slug)->with('success', 'Team Member created successfully!');
     }
+
+    public function getOneTeam(Service $service, $id) {
+        $team = $service->serviceTeam()->find(decrypt(request()->id));
+        return response()->json($team);
+    }
+
+    public function updateTeam(Service $service, Request $request) {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $serviceTeam = $service->serviceTeam()->find(decrypt($request->id));
+
+        $serviceTeam->update([
+            'name' => $request->name,
+            'position' => $request->position,
+            'social_link' => $request->social_link,
+        ]);
+
+        if ($request->hasFile('team_image')) {
+            $request->validate([
+                'team_image' => 'image|mimes:jpeg,png,jpg|max:10240',
+            ]);
+
+            $imageName = $service->slug . '-' . $serviceTeam->name . time() . '.' . $request->team_image->extension();
+            $file_path = $request->team_image->storeAs('service/team', $imageName);
+            
+            $serviceTeam->update([
+                'image' => $file_path,
+            ]);
+        }
+
+        return redirect()->route('admin.service.team', $service->slug)->with('success', 'Team Member updated successfully!');
+    }
+
+    public function destroyTeam(Service $service, $id) {
+        $serviceTeam = $service->serviceTeam()->find(decrypt($id));
+        $serviceTeam->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Team Member deleted successfully.',
+        ]);
+    }
+
 }

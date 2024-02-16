@@ -52,7 +52,9 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
             Route::get('/{service}/team', 'team')->name('.team');
             Route::get('/{service}/team/get', 'getTeams')->name('.get-teams');
             Route::post('/{service}/team/store', 'storeTeam')->name('.store-team');
-            Route::delete('/{service}/team/{team}', 'destroyTeam')->name('.destroy-team');
+            Route::get('/{service}/team/{id}/get-one', 'getOneTeam')->name('.get-one-team');
+            Route::put('/{service}/team/{id}/update', 'updateTeam')->name('.update-team');
+            Route::delete('/{service}/team/{id}/destroy', 'destroyTeam')->name('.destroy-team');
         });
     });
 

@@ -7,11 +7,11 @@
                 <div class="flex items-center mb-5">
                     <h5 class="font-semibold text-base md:text-xl me-5">{{ ucwords(strtolower($serviceName)) }} Team List</h5>
                     {{-- <a href="{{ route('admin.service.create') }}" class="btn btn-danger">Add New</a> --}}
-                    <button type="button" class="btn btn-danger w-18 text-xs px-2 md:w-26 md:text-sm md:px-5" @click="toggle">Add New</button>
+                    <button type="button" class="btn btn-danger w-18 text-xs px-2 md:w-26 md:text-sm md:px-5 md:py-2" @click="toggle">Add New</button>
                     <!-- button -->
             
                     <!-- modal -->
-                    <div class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto" :class="open && '!block'">
+                    <div class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto" :class="open && '!block'" id="modalTeam">
                         <div class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto"
                             :class="open && '!block'">
                             <div class="flex items-start justify-center min-h-screen px-4" @click.self="open = false">
@@ -34,7 +34,7 @@
                                         </button>
                                     </div>
                                     <div class="p-5">
-                                        <form action="{{ route('admin.service.store-team', $serviceSlug) }}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ route('admin.service.store-team', $serviceSlug) }}" method="POST" enctype="multipart/form-data" id="teamForm">
                                             @csrf
                                             <div class="">
                                                 <div class="@error('name') has-error @enderror">
@@ -162,7 +162,7 @@
                     .then(response => response.json())
                     .then(data => {
                         // data to aray
-                        console.log(data);
+                        // console.log(data);
                         let teamData = data.map((item, index) => {
                             return [
                                 "<div class='text-center'>" + (index + 1) + "</div>",
@@ -171,12 +171,12 @@
                                 item.social_link ? `<a href="${item.social_link}" target="_blank">${item.social_link}</a>` : "-",
                                 `<img src="{{ asset('storage') }}/${item.image}" class="w-20 h-20 object-cover rounded" alt="${item.name}">`,
                                 `<div class="flex justify-center gap-2">
-                                    <a href="{{ route('admin.service.edit', $serviceSlug) }}?team_id=${item.id}" class="text-primary" title="Edit Data">
+                                    <button class="text-primary btn-edit" data-slug="{{ $serviceSlug }}" data-id="${item.encId}" @click="toggle" type="button" title="Edit Data">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                             <path fill="currentColor" d="M3 17.46v3.04c0 .28.22.5.5.5h3.04c.13 0 .26-.05.35-.15L17.81 9.94l-3.75-3.75L3.15 17.1c-.1.1-.15.22-.15.36M20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83l3.75 3.75z"/>
                                         </svg>
-                                    </a>
-                                    <button class="text-danger btn-delete" data-slug="${item.id}" type="button" title="Delete Data">
+                                    </button>
+                                    <button class="text-danger btn-delete" data-slug="{{ $serviceSlug }}" data-id="${item.encId}" type="button" title="Delete Data">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                             <path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2zM18 4h-2.5l-.71-.71c-.18-.18-.44-.29-.7-.29H9.91c-.26 0-.52.11-.7.29L8.5 4H6c-.55 0-1 .45-1 1s.45 1 1 1h12c.55 0 1-.45 1-1s-.45-1-1-1"/>
                                         </svg>    
@@ -184,7 +184,7 @@
                                 </div>`
                             ];
                         });
-                        console.log(teamData);
+                        // console.log(teamData);
                         datatable.insert({ data: teamData });
                     })
                     .catch(error => {
@@ -224,6 +224,71 @@
                     });
                 @endif
             });
+
+            $('#serviceTeamTable').on('click', '.btn-edit', function() {
+                let slug = $(this).data('slug');
+                let id = $(this).data('id');
+                let url = "{{ route('admin.service.get-one-team', ['service' => ':slug', 'id' => ':id']) }}".replace(':slug', slug).replace(':id', id);
+
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    success: function(response) {
+                        // console.log(response);
+
+                        // show modal and change value
+                        $('#name').val(response.name);
+                        $('#position').val(response.position);
+                        $('#social_link').val(response.social_link);
+                        $('#imagePreview').html(`<img src="{{ asset('storage') }}/${response.image}" class="w-32 h-32 object-cover border rounded">`);
+
+                        $('#teamForm').attr('action', "{{ route('admin.service.update-team', ['service' => ':slug', 'id' => ':id']) }}".replace(':slug', slug).replace(':id', id));
+                        $('#teamForm').append('<input type="hidden" name="_method" value="PUT">');
+                    }
+                });
+            })
+
+            $('#serviceTeamTable').on('click', '.btn-delete', function() {
+                let slug = $(this).data('slug');
+                let id = $(this).data('id');
+                let url = "{{ route('admin.service.destroy-team', ['service' => ':slug', 'id' => ':id']) }}".replace(':slug', slug).replace(':id', id);
+
+                new window.Swal({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    customClass: 'sweet-alerts',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: url,
+                            method: 'DELETE',
+                            data: {
+                                _token: CSRF_TOKEN
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    new window.Swal('Deleted!', 'Your team has been deleted.', 'success')
+                                        .then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location.reload();
+                                            }
+                                        });
+                                } else {
+                                    new window.Swal({
+                                        title: 'Failed!',
+                                        text: 'Failed to delete data',
+                                        icon: 'error',
+                                        customClass: 'sweet-alerts',
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
         });
 
         function displayImage(input) {
@@ -245,6 +310,8 @@
                 }
             }
         }
+
+        
         
     </script>  
     
