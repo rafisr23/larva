@@ -76,7 +76,10 @@
                                 <span for="is_active" class="bg-danger dark:bg-danger block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-success before:transition-all before:duration-300"></span>
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-primary !mt-6">Save</button>
+                        <div class="!mt-8 flex">
+                            <a href="{{ route('admin.service.index') }}" class="btn btn-warning me-1">Back</a>
+                            <button type="submit" class="btn btn-primary ">Save</button>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -153,25 +153,23 @@
                             },
                             success: (response) => {
                                 if (response.success) {
-                                    window.location.reload();
-                                    // Alpine.store('service').init();
-                                    // const toast = window.Swal.mixin({
-                                    //     toast: true,
-                                    //     position: 'top-right',
-                                    //     animation: true,
-                                    //     showConfirmButton: false,
-                                    //     timer: 3000,
-                                    //     customClass: {
-                                    //         popup: 'color-success'
-                                    //     },
-                                    //     showCloseButton: true,
-                                    //     target: document.getElementById('toast')
-                                    // });
-                                    // toast.fire({
-                                    //     icon: 'success',
-                                    //     title: response.message,
-                                    //     padding: '10px 20px'
-                                    // });
+                                    new window.Swal({
+                                        title: 'Success!',
+                                        text: 'Service has been deleted!',
+                                        icon: 'success',
+                                        customClass: 'sweet-alerts',
+                                    }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location.reload();
+                                            }
+                                        });
+                                } else {
+                                    new window.Swal({
+                                        title: 'Failed!',
+                                        text: 'Failed to delete service!',
+                                        icon: 'error',
+                                        customClass: 'sweet-alerts',
+                                    });
                                 }
                             },
                             error: function(error) {

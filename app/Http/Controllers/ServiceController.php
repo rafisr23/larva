@@ -77,6 +77,11 @@ class ServiceController extends Controller
 
     public function destroy(Service $service)
     {
+        // unlink
+        foreach ($service->serviceImage as $image) {
+            unlink(public_path('storage/' . $image->file_path));
+        }
+        
         $service->delete();
         
         return response()->json([
@@ -122,9 +127,11 @@ class ServiceController extends Controller
         $request->min_price = str_replace('.', '', $request->min_price);
         $request->max_price = str_replace('.', '', $request->max_price);
 
+        $slug = $service->service_name != $request->service_name ? SlugService::createSlug(Service::class, 'slug', $request->service_name) : $service->slug;
+
         $service->update([
             'service_name'      => $request->service_name,
-            'slug'              => SlugService::createSlug(Service::class, 'slug', $request->service_name),
+            'slug'              => $slug,
             'tagline'           => $request->tagline,
             'description'       => $request->description,
             'min_price'         => $request->min_price,
@@ -265,6 +272,12 @@ class ServiceController extends Controller
 
     public function destroyTeam(Service $service, $id) {
         $serviceTeam = $service->serviceTeam()->find(decrypt($id));
+
+        // unlink image
+        if (file_exists(public_path('storage/' . $serviceTeam->image))) {
+            unlink(public_path('storage/' . $serviceTeam->image));
+        }
+
         $serviceTeam->delete();
 
         return response()->json([

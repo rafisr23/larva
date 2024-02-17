@@ -84,7 +84,7 @@
                 </table>
                 <div class="overflow-x-auto">
                 </div>
-                <a href="{{ route('admin.service.index') }}" class="btn btn-warning w-24 !mt-6">Back</a>
+                <a href="{{ route('admin.service.index') }}" class="btn btn-warning w-20 !mt-8">Back</a>
             </div>
         </div>
     </div>
@@ -270,8 +270,12 @@
                             },
                             success: function(response) {
                                 if (response.success) {
-                                    new window.Swal('Deleted!', 'Your team has been deleted.', 'success')
-                                        .then((result) => {
+                                    new window.Swal({
+                                        title: 'Success!',
+                                        text: 'Team has been deleted!',
+                                        icon: 'success',
+                                        customClass: 'sweet-alerts',
+                                    }).then((result) => {
                                             if (result.isConfirmed) {
                                                 window.location.reload();
                                             }
@@ -279,7 +283,7 @@
                                 } else {
                                     new window.Swal({
                                         title: 'Failed!',
-                                        text: 'Failed to delete data',
+                                        text: 'Failed to delete team!',
                                         icon: 'error',
                                         customClass: 'sweet-alerts',
                                     });

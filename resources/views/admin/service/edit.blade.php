@@ -116,7 +116,10 @@
                                 <span for="is_active" class="bg-danger dark:bg-danger block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-success before:transition-all before:duration-300"></span>
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-primary !mt-6">Save Changes</button>
+                        <div class="!mt-8 flex">
+                            <a href="{{ route('admin.service.index') }}" class="btn btn-warning me-1">Back</a>
+                            <button type="submit" class="btn btn-primary ">Save Changes</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -148,25 +151,23 @@
                             },
                             success: (response) => {
                                 if (response.success) {
-                                    window.location.reload();
-                                    // Alpine.store('service').init();
-                                    // const toast = window.Swal.mixin({
-                                    //     toast: true,
-                                    //     position: 'top-right',
-                                    //     animation: true,
-                                    //     showConfirmButton: false,
-                                    //     timer: 3000,
-                                    //     customClass: {
-                                    //         popup: 'color-success'
-                                    //     },
-                                    //     showCloseButton: true,
-                                    //     target: document.getElementById('toast')
-                                    // });
-                                    // toast.fire({
-                                    //     icon: 'success',
-                                    //     title: response.message,
-                                    //     padding: '10px 20px'
-                                    // });
+                                    new window.Swal({
+                                        title: 'Success!',
+                                        text: 'Image has been deleted!',
+                                        icon: 'success',
+                                        customClass: 'sweet-alerts',
+                                    }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location.reload();
+                                            }
+                                        });
+                                } else {
+                                    new window.Swal({
+                                        title: 'Failed!',
+                                        text: 'Failed to delete image!',
+                                        icon: 'error',
+                                        customClass: 'sweet-alerts',
+                                    });
                                 }
                             },
                             error: function(error) {
