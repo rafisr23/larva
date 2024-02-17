@@ -83,7 +83,7 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data);
+                        // console.log(data);
                         let partnerData = data.map((partner, index) => {
                             return [
                                 "<div class=''>" + (index + 1) + "</div>",
@@ -104,7 +104,7 @@
                                 </div>`.replace(':slug', partner.slug)
                             ];
                         });
-                        console.log(partnerData);
+                        // console.log(partnerData);
                         datatable.insert({ data: partnerData });
                     })
                     .catch(error => {

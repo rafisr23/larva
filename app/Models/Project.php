@@ -26,7 +26,7 @@ class Project extends Model
     {
         return [
             'slug' => [
-                'source' => 'service_name'
+                'source' => 'project_name'
             ]
         ];
     }

@@ -23,10 +23,10 @@
             </div>
             <ul class="perfect-scrollbar relative font-semibold space-y-0.5 h-[calc(100vh-80px)] overflow-y-auto overflow-x-hidden  p-4 py-0"
                 x-data="{ activeDropdown: null }">
-                <li class="menu nav-item">
+                <li class="menu nav-item my-2">
                     <a href="{{ route('admin.dashboard') }}" class="group @if (request()->routeIs('admin.dashboard')) active @endif">
                         <div class="flex items-center">
-                            <svg class="group-hover:!text-primary shrink-0 @if (request()->routeIs('admin.dashboard')) !text-primary @endif" width="20" height="20" viewBox="0 0 24 24"
+                            <svg class="group-hover:!text-red shrink-0 @if (request()->routeIs('admin.dashboard')) !text-red @endif" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path opacity="0.5"
                                     d="M2 12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274C22 8.77128 22 9.91549 22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039Z"
@@ -39,6 +39,34 @@
                             <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Dashboard</span>
                         </div>
                     </a>
+                </li>
+
+                <h2
+                    class="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
+
+                    <svg class="w-4 h-5 flex-none hidden" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
+                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>Database</span>
+                </h2>
+
+                <li class="nav-item">
+                    <ul>
+                        <li class="nav-item my-2">
+                            <a href="{{ route('admin.image-category.index') }}" class="group @if (request()->routeIs('admin.image-category.*')) active @endif">
+                                <div class="flex items-center">
+                                    <svg class="group-hover:!text-red shrink-0 @if (request()->routeIs('admin.image-category.*')) !text-red @endif" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                        <g fill="none">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 6v12a4 4 0 0 1-4 4H6"/>
+                                            <path fill="currentColor" fill-rule="evenodd" d="M1 3.7A2.7 2.7 0 0 1 3.7 1h12.6A2.7 2.7 0 0 1 19 3.7v5.85c0 .078-.01.153-.028.225A.897.897 0 0 1 19 10v6.3a2.7 2.7 0 0 1-2.7 2.7H3.7A2.7 2.7 0 0 1 1 16.3v-2.7a.9.9 0 0 1 .028-.225A.902.902 0 0 1 1 13.15zm2.695 8.848a13.81 13.81 0 0 0-.895.04V3.7a.9.9 0 0 1 .9-.9h12.6a.9.9 0 0 1 .9.9v5.414c-3.868.125-6.66 1.057-8.623 2.36c.745.265 1.575.64 2.391 1.131c1.26.756 2.54 1.819 3.4 3.225a.9.9 0 1 1-1.535.94c-.663-1.083-1.69-1.96-2.792-2.622c-1.1-.66-2.218-1.073-2.994-1.253a13.924 13.924 0 0 0-3.333-.348h-.02zM5.48 5.04a2.403 2.403 0 0 1 1.37-.44c.369 0 .903.103 1.37.44c.513.369.88.977.88 1.81c0 .833-.367 1.441-.88 1.81a2.403 2.403 0 0 1-1.37.44c-.369 0-.903-.103-1.37-.44c-.513-.369-.88-.977-.88-1.81c0-.833.367-1.441.88-1.81" clip-rule="evenodd"/>
+                                        </g>
+                                    </svg>
+                                    <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Image Category</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <h2

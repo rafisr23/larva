@@ -1,15 +1,72 @@
 <x-layout.default>
     <x-slot name="title">{{ $title }}</x-slot>
 
-    <div x-data="project">
-        <div class="panel">
-            <div class="flex items-center mb-5">
-                <h5 class="font-semibold text-xl me-5">Project List</h5>
-                <a href="{{ route('admin.project.create') }}" class="btn btn-danger">Add New</a>
+    <div x-data="modal" class="mb-5">
+        <div x-data="imageCategory">
+            <div class="panel">
+                <div class="flex items-center mb-5">
+                    <h5 class="font-semibold text-xl me-5">Image Category List</h5>
+                    {{-- <a href="{{ route('admin.image-category.create') }}" class="btn btn-danger" @click="toggle">Add New</a> --}}
+                    <button type="button" class="btn btn-danger w-18 text-xs px-2 md:w-26 md:text-sm md:px-5 md:py-2" @click="toggle">Add New</button>
+    
+                    <!-- modal -->
+                    <div class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto" :class="open && '!block'" id="modalTeam">
+                        <div class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto"
+                            :class="open && '!block'">
+                            <div class="flex items-start justify-center min-h-screen px-4" @click.self="open = false">
+                                <div x-show="open" x-transition x-transition.duration.300
+                                    class="panel border-0 p-0 rounded-lg overflow-hidden my-8 w-full max-w-lg">
+                                    <div
+                                        class="flex bg-[#fbfbfb] dark:bg-[#121c2c] items-center justify-between px-5 py-3">
+                                        <div class="font-bold text-lg">Add New Team Member</div>
+                                        <button type="button" class="text-white-dark hover:text-dark" @click="toggle">
+    
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                                class="w-6 h-6">
+                                                <line x1="18" y1="6" x2="6" y2="18">
+                                                </line>
+                                                <line x1="6" y1="6" x2="18" y2="18">
+                                                </line>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="p-5">
+                                        <form action="{{ route('admin.image-category.store') }}" method="POST" id="categoryForm">
+                                            @csrf
+                                            <div class="">
+                                                <div class="@error('category') has-error @enderror">
+                                                    <label for="category">Category Name <sup class="text-danger">*</sup></label>
+                                                    <input id="category" name="category" type="text" placeholder="Enter Category Name" class="form-input" value="{{ old('category') }}" autofocus required/>
+                                                    @error('category')
+                                                        <p class="text-danger mt-1">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                                <div class="@error('is_active') has-error @enderror mt-4">
+                                                    <label for="is_active" class="me-4">Category Status</label>
+                                                    <label class="w-12 h-6 relative">
+                                                        <input type="checkbox" class="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer" id="is_active" name="is_active" checked />
+                                                        <span for="is_active" class="bg-danger dark:bg-danger block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-success before:transition-all before:duration-300"></span>
+                                                    </label>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="flex justify-end items-center mt-8">
+                                                <button type="button" class="btn btn-outline-danger" @click="toggle">Discard</button>
+                                                <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="whitespace-nowrap table-hover" id="imgCategoryTable">
+                    
+                </table>
             </div>
-            <table class="whitespace-nowrap table-hover" id="projectTable">
-                
-            </table>
         </div>
     </div>
 
@@ -28,11 +85,11 @@
 
         document.addEventListener("alpine:init", () => {
             let datatable = null;
-            Alpine.data("project", () => ({
+            Alpine.data("imageCategory", () => ({
                 init() {
-                    datatable = new simpleDatatables.DataTable('#projectTable', {
+                    datatable = new simpleDatatables.DataTable('#imgCategoryTable', {
                         data: {
-                            headings: ["<div class='text-center'>No</div>", "Project Name", "Company Name", "Service", "<div class='text-center'>Status</div>", "<div class='text-center'>Action</div>"],
+                            headings: ["<div class='text-center'>No</div>", "Category Name", "<div class='text-center'>Status</div>", "<div class='text-center'>Action</div>"],
                             data: this.getData(),
                         },
                         searchable: true,
@@ -40,12 +97,7 @@
                         perPageSelect: [10, 20, 30, 50, 100],
                         columns: [
                             {
-                                select: 0,
-                                sortable: true,
-                                // headerClass: "text-center",
-                            },
-                            {
-                                select: 4,
+                                select: 2,
                                 render: (data, cell, row) => {
                                     const isChecked = (data == 'Active');
                                         return `
@@ -60,7 +112,7 @@
                                 sortable: false
                             },
                             {
-                                select: 5,
+                                select: 3,
                                 sortable: false,
                             }
                         ],
@@ -81,7 +133,7 @@
                 },
 
                 getData() {
-                    fetch("{{ route('admin.project.get-projects') }}", {
+                    fetch("{{ route('admin.image-category.get-image-categories') }}", {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
@@ -91,29 +143,27 @@
                     .then(response => response.json())
                     .then(data => {
                         // console.log(data);
-                        let projectData = data.map((project, index) => {
+                        let categoryData = data.map((category, index) => {
                             return [
                                 "<div class=''>" + (index + 1) + "</div>",
-                                project.project_name,
-                                project.company_name,
-                                project.service.service_name,
-                                project.is_active == 1 ? 'Active' : 'Inactive',
+                                category.category_name,
+                                category.is_active == 1 ? 'Active' : 'Inactive',
                                 `<div class="flex justify-center gap-2">
-                                    <a href="{{ route('admin.project.edit', ':slug') }}" class="text-primary btn-edit" type="button" title="Edit Data">
+                                    <button data-slug="${category.slug}" class="text-primary btn-edit" type="button" @click="toggle" title="Edit Data">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                             <path fill="currentColor" d="M3 17.46v3.04c0 .28.22.5.5.5h3.04c.13 0 .26-.05.35-.15L17.81 9.94l-3.75-3.75L3.15 17.1c-.1.1-.15.22-.15.36M20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83l3.75 3.75z"/>
                                         </svg>
-                                    </a>
-                                    <button class="text-danger btn-delete" data-slug="${project.slug}" type="button" title="Delete Data">
+                                    </button>
+                                    <button class="text-danger btn-delete" data-slug="${category.slug}" type="button" title="Delete Data">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                             <path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2zM18 4h-2.5l-.71-.71c-.18-.18-.44-.29-.7-.29H9.91c-.26 0-.52.11-.7.29L8.5 4H6c-.55 0-1 .45-1 1s.45 1 1 1h12c.55 0 1-.45 1-1s-.45-1-1-1"/>
                                         </svg>    
                                     </button>
-                                </div>`.replace(':slug', project.slug)
+                                </div>`.replace(':slug', category.slug)
                             ];
                         });
                         // console.log(projectData);
-                        datatable.insert({ data: projectData });
+                        datatable.insert({ data: categoryData });
                     })
                     .catch(error => {
                         console.error("Error:", error);
@@ -121,7 +171,32 @@
                 },
             }));
 
-            $('#projectTable').on('click', '.btn-delete', function() {
+            Alpine.data("modal", (initialOpenState = false) => ({
+                open: initialOpenState,
+
+                toggle() {
+                    this.open = !this.open;
+                },
+            }));
+
+            $('#imgCategoryTable').on('click', '.btn-edit', function() {
+                let slug = $(this).data('slug');
+                let url = "{{ route('admin.image-category.get-one', ':slug') }}".replace(':slug', slug);
+
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    success: function(response) {
+                        $('#category').val(response.category_name);
+                        $('#is_active').prop('checked', response.is_active == 1 ? true : false);
+
+                        $('#categoryForm').attr('action', "{{ route('admin.image-category.update', ':slug') }}".replace(':slug', slug));
+                        $('#categoryForm').append('<input type="hidden" name="_method" value="PUT">');
+                    }
+                });
+            })
+
+            $('#imgCategoryTable').on('click', '.btn-delete', function() {
                 let slug = $(this).data('slug');
 
                 new window.Swal({
@@ -133,7 +208,7 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        let url = "{{ route('admin.project.destroy', ':slug') }}".replace(':slug', slug);
+                        let url = "{{ route('admin.image-category.destroy', ':slug') }}".replace(':slug', slug);
                         $.ajax({
                             url: url,
                             type: "DELETE",
@@ -170,11 +245,11 @@
                 });
             });
 
-            $('#projectTable').on('change', '.is_active', function() {
+            $('#imgCategoryTable').on('change', '.is_active', function() {
                 let slug = $(this).closest('tr').find('.btn-delete').data('slug');
                 let status = $(this).prop('checked') ? 1 : 0;
 
-                let url = "{{ route('admin.project.update-status', ':slug') }}".replace(':slug', slug);
+                let url = "{{ route('admin.image-category.update-status', ':slug') }}".replace(':slug', slug);
                 $.ajax({
                     url: url,
                     type: "PUT",

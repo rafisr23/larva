@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Partner extends Model
+class PageImageCategory extends Model
 {
     use HasFactory, Sluggable;
 
@@ -16,7 +16,7 @@ class Partner extends Model
     {
         return [
             'slug' => [
-                'source' => 'company_name'
+                'source' => 'category_name'
             ]
         ];
     }

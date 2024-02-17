@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\HomeUserController;
+use App\Http\Controllers\PageImageCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,14 +87,22 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
         
         Route::controller(ContactController::class)->prefix('contact')->name('contact')->group(function () {
             Route::get('/', 'index')->name('.index');
-            Route::get('/get-contacts', 'getcontacts')->name('.get-contacts');
+            Route::post('/store', 'store')->name('.store');
+        });
+        
+        Route::controller(PageImageCategoryController::class)->prefix('image-category')->name('image-category')->group(function () {
+            Route::get('/', 'index')->name('.index');
+            Route::get('/get-image-categories', 'getImageCategories')->name('.get-image-categories');
             Route::get('/create', 'create')->name('.create');
             Route::post('/store', 'store')->name('.store');
-            Route::get('/{contact}/edit', 'edit')->name('.edit');
-            Route::put('/{contact}', 'update')->name('.update');
-            Route::put('/{contact}/update-status', 'updateStatus')->name('.update-status');
-            Route::delete('/{contact}', 'destroy')->name('.destroy');
+            Route::get('/{imageCategory}/edit', 'edit')->name('.edit');
+            Route::put('/{imageCategory}', 'update')->name('.update');
+            Route::put('/{imageCategory}/update-status', 'updateStatus')->name('.update-status');
+            Route::delete('/{imageCategory}', 'destroy')->name('.destroy');
+            Route::get('/{imageCategory}/get-one', 'getOne')->name('.get-one');
         });
+
+
 
     });
 });
