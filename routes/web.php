@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -81,6 +82,17 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
             Route::put('/{partner}', 'update')->name('.update');
             Route::put('/{partner}/update-status', 'updateStatus')->name('.update-status');
             Route::delete('/{partner}', 'destroy')->name('.destroy');
+        });
+        
+        Route::controller(ContactController::class)->prefix('contact')->name('contact')->group(function () {
+            Route::get('/', 'index')->name('.index');
+            Route::get('/get-contacts', 'getcontacts')->name('.get-contacts');
+            Route::get('/create', 'create')->name('.create');
+            Route::post('/store', 'store')->name('.store');
+            Route::get('/{contact}/edit', 'edit')->name('.edit');
+            Route::put('/{contact}', 'update')->name('.update');
+            Route::put('/{contact}/update-status', 'updateStatus')->name('.update-status');
+            Route::delete('/{contact}', 'destroy')->name('.destroy');
         });
 
     });
