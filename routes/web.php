@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\HomeUserController;
 
@@ -56,8 +57,20 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
             Route::put('/{service}/team/{id}/update', 'updateTeam')->name('.update-team');
             Route::delete('/{service}/team/{id}/destroy', 'destroyTeam')->name('.destroy-team');
         });
+        
+        Route::controller(ProjectController::class)->prefix('project')->name('project')->group(function () {
+            Route::get('/', 'index')->name('.index');
+            Route::get('/get-projects', 'getProjects')->name('.get-projects');
+            Route::get('/create', 'create')->name('.create');
+            Route::post('/store', 'store')->name('.store');
+            Route::get('/{project}/edit', 'edit')->name('.edit');
+            Route::put('/{project}', 'update')->name('.update');
+            Route::put('/{project}/update-status', 'updateStatus')->name('.update-status');
+            Route::put('/{imageId}/update-status-image', 'updateStatusImage')->name('.update-status-image');
+            Route::delete('/{project}', 'destroy')->name('.destroy');
+            Route::delete('/{imageId}/destroy-image', 'destroyImage')->name('.destroy-image');
+        });
     });
-
 });
 
 

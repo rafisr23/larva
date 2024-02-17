@@ -13,8 +13,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Trix Editor -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
 
     <script src="/js/perfect-scrollbar.min.js"></script>
     <script defer src="/js/popper.min.js"></script>
@@ -23,6 +26,7 @@
     @vite(['resources/css/app.css'])
     @vite(['resources/css/swiper-bundle.min.css'])
     @vite(['resources/css/highlight.min.css'])
+    @vite(['resources/css/nice-select2.css'])
 </head>
 
 <body x-data="main" class="antialiased relative font-nunito text-sm font-normal overflow-x-hidden"
