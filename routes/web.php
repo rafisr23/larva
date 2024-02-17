@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
@@ -70,6 +71,18 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
             Route::delete('/{project}', 'destroy')->name('.destroy');
             Route::delete('/{imageId}/destroy-image', 'destroyImage')->name('.destroy-image');
         });
+        
+        Route::controller(PartnerController::class)->prefix('partner')->name('partner')->group(function () {
+            Route::get('/', 'index')->name('.index');
+            Route::get('/get-partners', 'getPartners')->name('.get-partners');
+            Route::get('/create', 'create')->name('.create');
+            Route::post('/store', 'store')->name('.store');
+            Route::get('/{partner}/edit', 'edit')->name('.edit');
+            Route::put('/{partner}', 'update')->name('.update');
+            Route::put('/{partner}/update-status', 'updateStatus')->name('.update-status');
+            Route::delete('/{partner}', 'destroy')->name('.destroy');
+        });
+
     });
 });
 

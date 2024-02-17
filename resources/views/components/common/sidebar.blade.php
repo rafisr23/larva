@@ -70,10 +70,20 @@
                         <li class="nav-item mt-2">
                             <a href="{{ route('admin.project.index') }}" class="group @if (request()->routeIs('admin.project.*')) active @endif">
                                 <div class="flex items-center">
-                                    <svg class="group-hover:!text-red shrink-0 @if (request()->routeIs('admin.project.*')) !text-red @endif" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                        <path fill="currentColor" d="M11 6h3l3.29-3.3a1 1 0 0 1 1.42 0l2.58 2.59a1 1 0 0 1 0 1.41L19 9h-8v2a1 1 0 0 1-1 1a1 1 0 0 1-1-1V8a2 2 0 0 1 2-2m-6 5v4l-2.29 2.29a1 1 0 0 0 0 1.41l2.58 2.59a1 1 0 0 0 1.42 0L11 17h4a1 1 0 0 0 1-1v-1h1a1 1 0 0 0 1-1v-1h1a1 1 0 0 0 1-1v-1h-7v1a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V9Z"/>
+                                    <svg class="group-hover:!text-red shrink-0 @if (request()->routeIs('admin.project.*')) !text-red @endif" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 14 14">
+                                        <path fill="currentColor" fill-rule="evenodd" d="M3.5 4a2 2 0 1 0 0-4a2 2 0 0 0 0 4m2.045 6v-.03c0-.99.547-1.852 1.355-2.302A3.5 3.5 0 0 0 0 8.5v1a.5.5 0 0 0 .5.5h1l.445 3.562a.5.5 0 0 0 .496.438H4.56a.5.5 0 0 0 .496-.438L5.5 10zm4.382-2.313a.25.25 0 0 0-.25.25v.651h1.413v-.65a.25.25 0 0 0-.25-.25zm-1.75.25v.651c-.763 0-1.382.62-1.382 1.383v2.647c0 .763.619 1.382 1.382 1.382h4.412c.763 0 1.382-.619 1.382-1.382V9.97c0-.763-.618-1.382-1.381-1.382v-.65a1.75 1.75 0 0 0-1.75-1.75h-.913a1.75 1.75 0 0 0-1.75 1.75Z" clip-rule="evenodd"/>
                                     </svg>
                                     <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Project</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item mt-2">
+                            <a href="{{ route('admin.partner.index') }}" class="group @if (request()->routeIs('admin.partner.*')) active @endif">
+                                <div class="flex items-center">
+                                    <svg class="group-hover:!text-red shrink-0 @if (request()->routeIs('admin.partner.*')) !text-red @endif" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path fill="currentColor" d="M11 6h3l3.29-3.3a1 1 0 0 1 1.42 0l2.58 2.59a1 1 0 0 1 0 1.41L19 9h-8v2a1 1 0 0 1-1 1a1 1 0 0 1-1-1V8a2 2 0 0 1 2-2m-6 5v4l-2.29 2.29a1 1 0 0 0 0 1.41l2.58 2.59a1 1 0 0 0 1.42 0L11 17h4a1 1 0 0 0 1-1v-1h1a1 1 0 0 0 1-1v-1h1a1 1 0 0 0 1-1v-1h-7v1a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V9Z"/>
+                                    </svg>
+                                    <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Partner</span>
                                 </div>
                             </a>
                         </li>
