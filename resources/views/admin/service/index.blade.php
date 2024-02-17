@@ -71,13 +71,6 @@
                                 perPageSelect: [10, 20, 30, 50, 100],
                                 columns: [
                                     {
-                                        select: 0,
-                                        // add class text-center
-                                        render: (data, cell, row) => {
-                                            return `<div class="flex items-center justify-center ">${data}</div>`;
-                                        },
-                                    },
-                                    {
                                         select: 1,
                                         sortable: true,
                                     },

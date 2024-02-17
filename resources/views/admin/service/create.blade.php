@@ -30,7 +30,9 @@
                         </div>
                         <div class="mt-4 @error('description') has-error @enderror">
                             <label for="description">Description <sup class="text-danger">*</sup></label>
-                            <textarea id="description" name="description" class="form-textarea" placeholder="Enter Description" required>{{ old('description') }}</textarea>
+                            <input id="description" type="hidden" name="description">
+                            <trix-editor input="description" class="form-input" placeholder="Enter Description">{!! old('description') !!}</trix-editor>
+                            {{-- <textarea id="description" name="description" class="form-textarea" placeholder="Enter Description" required>{{ old('description') }}</textarea> --}}
                             @error('description')
                                 <p class="text-danger mt-1">{{ $message }}</p>
                             @enderror
@@ -55,7 +57,9 @@
                         </div>
                         <div class="mt-4 @error('notes') has-error @enderror">
                             <label for="notes">Notes</label>
-                            <textarea id="notes" name="notes" class="form-textarea" placeholder="Enter Notes">{{ old('notes') }}</textarea>
+                            <input id="notes" type="hidden" name="notes">
+                            <trix-editor input="notes" class="form-input" placeholder="Enter Notes">{!! old('notes') !!}</trix-editor>
+                            {{-- <textarea id="notes" name="notes" class="form-textarea" placeholder="Enter Notes">{{ old('notes') }}</textarea> --}}
                             @error('notes')
                                 <p class="text-danger mt-1">{{ $message }}</p>
                             @enderror
@@ -72,7 +76,7 @@
                         <div class="mt-4 flex items-center">
                             <label for="is_active" class="me-4">Service Status</label>
                             <label class="w-12 h-6 relative">
-                                <input type="checkbox" class="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer" id="is_active" name="is_active" />
+                                <input type="checkbox" class="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer" id="is_active" name="is_active" checked />
                                 <span for="is_active" class="bg-danger dark:bg-danger block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-success before:transition-all before:duration-300"></span>
                             </label>
                         </div>

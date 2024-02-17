@@ -31,7 +31,8 @@
                         </div>
                         <div class="mt-4 @error('description') has-error @enderror">
                             <label for="description">Description <sup class="text-danger">*</sup></label>
-                            <textarea id="description" name="description" class="form-textarea" placeholder="Enter Description" required>{{ old('description', $service->description) }}</textarea>
+                            <input id="description" type="hidden" name="description">
+                            <trix-editor input="description" class="form-input" placeholder="Enter Description">{!! old('description', $service->description) !!}</trix-editor>
                             @error('description')
                                 <p class="text-danger mt-1">{{ $message }}</p>
                             @enderror
@@ -56,7 +57,8 @@
                         </div>
                         <div class="mt-4 @error('notes') has-error @enderror">
                             <label for="notes">Notes</label>
-                            <textarea id="notes" name="notes" class="form-textarea" placeholder="Enter Notes">{{ old('notes', $service->notes) }}</textarea>
+                            <input id="notes" type="hidden" name="notes">
+                            <trix-editor input="notes" class="form-input" placeholder="Enter Notes">{!! old('notes', $service->notes) !!}</trix-editor>
                             @error('notes')
                                 <p class="text-danger mt-1">{{ $message }}</p>
                             @enderror
