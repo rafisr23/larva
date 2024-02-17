@@ -30,7 +30,7 @@
                             </div>
                             <div class="@error('service_id') has-error @enderror">
                                 <label for="service_id">Service <sup class="text-danger">*</sup></label>
-                                <select id="seachable-select" class="border-primary" name="service_id">
+                                <select id="seachable-select" class="border-primary" name="service_id" required>
                                     @foreach ($services as $service)
                                         <option value="{{ encrypt($service->id) }}">{{ $service->service_name }}</option> 
                                     @endforeach
@@ -44,7 +44,7 @@
                         <div class="mt-4 @error('description') has-error @enderror">
                             <label for="description">Description <sup class="text-danger">*</sup></label>
                             <input id="description" type="hidden" name="description">
-                            <trix-editor input="description" class="form-input"></trix-editor>
+                            <trix-editor input="description" class="form-input" placeholder="Enter Description">{!! old('description') !!}</trix-editor>
                             {{-- <textarea id="description" name="description" class="form-textarea" placeholder="Enter Description" required>{{ old('description') }}</textarea> --}}
                             @error('description')
                                 <p class="text-danger mt-1">{{ $message }}</p>
