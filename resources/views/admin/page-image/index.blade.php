@@ -188,6 +188,7 @@
                     .then(data => {
                         // console.log(data);
                         let imageData = data.map((image, index) => {
+                            // console.log(image);
                             return [
                                 "<div class=''>" + (index + 1) + "</div>",
                                 image.category.category_name,
@@ -217,9 +218,10 @@
                 
                 open: initialOpenState,
                 toggle() {
-                    $('#seachable-select').attr('selected', false);
                     var preview = document.getElementById('imagePreview');
                     preview.innerHTML = '';
+                    $('#imageForm').attr('action', "{{ route('admin.page-image.store') }}");
+                    $('#method').remove();
                     this.open = !this.open;
                 },
             }));
@@ -233,29 +235,15 @@
                     method: 'GET',
                     success: function(response) {
                         console.log(response);
-                        // clear select-wrap
-                        // $('#select-wrap').html('');
-                        // let selectHtml = '<select id="seachable-select" class="border-primary" name="category_id" required>';
-                        // response.categories.forEach(category => {
-                        //     let selected = response.headerPageImage.category_id == category.id ? 'selected' : '';
-                        //     selectHtml += `<option value="${category.id}" ${selected}>${category.category_name}</option>`;
-                        // });
-                        // selectHtml += '</select>';
-                        // $('#select-wrap').html(selectHtml);
-
-                        // var options = {
-                        //     searchable: true,
-                        //     placeholder: 'Select Category',
-                        // };
-                        // NiceSelect.bind(document.getElementById("seachable-select"), options);
-
-                        $('#category_id_old').val(response.headerPageImage.encCategoryId);
+                        $('#category_id_old').val(response.encCategoryId);
+                        $('#seachable-select').val(null).trigger('change');
                         
-                        $('#is_active').prop('checked', response.headerPageImage.is_active == 1 ? true : false);
-                        $('#imagePreview').html(`<img src="{{ asset('storage') }}/${response.headerPageImage.file_path}" class="w-32 h-32 object-cover border rounded">`);
+                        $('#is_active').prop('checked', response.is_active == 1 ? true : false);
+                        $('#page_image').attr('required', false);
+                        $('#imagePreview').html(`<img src="{{ asset('storage') }}/${response.file_path}" class="w-32 h-32 object-cover border rounded">`);
 
                         $('#imageForm').attr('action', "{{ route('admin.page-image.update', ':id') }}".replace(':id', id));
-                        $('#imageForm').append('<input type="hidden" name="_method" value="PUT">');
+                        $('#imageForm').append('<input type="hidden" name="_method" value="PUT" id="method">');
                     }
                 });
             })

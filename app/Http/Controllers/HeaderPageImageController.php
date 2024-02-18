@@ -66,35 +66,31 @@ class HeaderPageImageController extends Controller
         ]);
     }
 
-    public function getOne(Request $request)
+    public function getOne(Request $request, $id)
     {
-        $headerPageImage = HeaderPageImage::find(decrypt($request->id))->with('category')->first();
-        $categories = PageImageCategory::all();
+        $headerPageImage = HeaderPageImage::find(decrypt($id));
 
         $headerPageImage->encCategoryId = encrypt($headerPageImage->page_image_category_id);
 
-        return response()->json([
-            'headerPageImage' => $headerPageImage,
-            'categories' => $categories,
-        ]);
+        return response()->json($headerPageImage);
     }
 
     public function update(Request $request)
     {
+        // return $request;
         $request->validate([
-            'category_id' => 'required',
             'page_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
         ]);
 
         $headerPageImage = HeaderPageImage::find(decrypt($request->id));
 
-        if (($request->category_old_id != $request->category_id) && $request->category_id != null) {
-            $headerPageImage->page_image_category_id = decrypt($request->category_id);
+        if ($request->category_id == null) {
+            $headerPageImage->page_image_category_id = decrypt($request->category_id_old);
         } else {
-            $headerPageImage->page_image_category_id = $request->category_old_id;
+            $headerPageImage->page_image_category_id = decrypt($request->category_id);
         }
 
-        $headerPageImage->page_image_category_id = decrypt($request->category_id);
+        $category = PageImageCategory::find($headerPageImage->page_image_category_id);
         $headerPageImage->is_active = $request->is_active == 'on' ? '1' : '0';
 
         if ($request->hasFile('page_image')) {
@@ -102,7 +98,7 @@ class HeaderPageImageController extends Controller
                 unlink(public_path('storage/' .$headerPageImage->file_path));
             }
 
-            $imageName = $headerPageImage->category->category_name . '-' . time() . '.' . $request->page_image[0]->extension();
+            $imageName = $category->category_name . '-' . time() . '.' . $request->page_image[0]->extension();
             $file_path = $request->page_image[0]->storeAs('page-image', $imageName);
 
             $headerPageImage->file_path = $file_path;
