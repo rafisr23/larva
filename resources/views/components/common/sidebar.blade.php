@@ -125,6 +125,16 @@
                                 </div>
                             </a>
                         </li>
+                        <li class="nav-item mt-2">
+                            <a href="{{ route('admin.page-image.index') }}" class="group @if (request()->routeIs('admin.page-image.*')) active @endif">
+                                <div class="flex items-center">
+                                    <svg class="group-hover:!text-red shrink-0 @if (request()->routeIs('admin.page-image.*')) !text-red @endif" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16">
+                                        <path fill="currentColor" d="M4 2a2 2 0 0 0-2 2v1.337c.31-.148.647-.251 1-.302V4a1 1 0 0 1 1-1h3v.5A1.5 1.5 0 0 0 8.5 5H13v7a1 1 0 0 1-1 1h-1.035c-.05.353-.154.69-.302 1H12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm9 2H8.5a.5.5 0 0 1-.5-.5V3h4a1 1 0 0 1 1 1M1 8.5A2.5 2.5 0 0 1 3.5 6h4A2.5 2.5 0 0 1 10 8.5v4c0 .51-.152.983-.414 1.379L6.56 10.854a1.5 1.5 0 0 0-2.122 0l-3.025 3.025A2.488 2.488 0 0 1 1 12.5zm7 .25a.75.75 0 1 0-1.5 0a.75.75 0 0 0 1.5 0m-5.879 5.836c.396.262.87.414 1.379.414h4c.51 0 .983-.152 1.379-.414L5.854 11.56a.5.5 0 0 0-.708 0z"/>
+                                    </svg>
+                                    <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Page Image</span>
+                                </div>
+                            </a>
+                        </li>
                         
                     </ul>
                 </li>

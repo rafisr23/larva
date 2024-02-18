@@ -12,6 +12,11 @@ class PageImageCategory extends Model
 
     protected $guarded = ['id'];
 
+    public function headerPageImages()
+    {
+        return $this->hasMany(HeaderPageImage::class, 'category_id');
+    }
+
     public function sluggable(): array
     {
         return [

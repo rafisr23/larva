@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\HomeUserController;
+use App\Http\Controllers\HeaderPageImageController;
 use App\Http\Controllers\PageImageCategoryController;
 
 /*
@@ -93,13 +94,21 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
         Route::controller(PageImageCategoryController::class)->prefix('image-category')->name('image-category')->group(function () {
             Route::get('/', 'index')->name('.index');
             Route::get('/get-image-categories', 'getImageCategories')->name('.get-image-categories');
-            Route::get('/create', 'create')->name('.create');
             Route::post('/store', 'store')->name('.store');
-            Route::get('/{imageCategory}/edit', 'edit')->name('.edit');
             Route::put('/{imageCategory}', 'update')->name('.update');
             Route::put('/{imageCategory}/update-status', 'updateStatus')->name('.update-status');
             Route::delete('/{imageCategory}', 'destroy')->name('.destroy');
             Route::get('/{imageCategory}/get-one', 'getOne')->name('.get-one');
+        });
+
+        Route::controller(HeaderPageImageController::class)->prefix('page-image')->name('page-image')->group(function () {
+            Route::get('/', 'index')->name('.index');
+            Route::get('/get-header-page-images', 'getHeaderPageImages')->name('.get-header-page-images');
+            Route::post('/store', 'store')->name('.store');
+            Route::put('/{id}', 'update')->name('.update');
+            Route::put('/{id}/update-status', 'updateStatus')->name('.update-status');
+            Route::delete('/{id}', 'destroy')->name('.destroy');
+            Route::get('/{id}/get-one', 'getOne')->name('.get-one');
         });
 
 
