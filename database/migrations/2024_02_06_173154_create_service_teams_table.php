@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('service_teams', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->constrained()->cascadeOnDelete()->nullable();
+            $table->unsignedBigInteger('service_id')->nullable();
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('set null');
             $table->string('name')->nullable();
             $table->string('position')->nullable();
             $table->string('social_link')->nullable();

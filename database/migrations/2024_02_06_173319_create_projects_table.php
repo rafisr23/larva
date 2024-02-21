@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->constrained()->cascadeOnDelete()->nullable();
+            $table->unsignedBigInteger('service_id')->nullable();
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('set null');
             $table->string('project_name')->nullable();
             $table->string('slug')->nullable();
             $table->string('company_name')->nullable();

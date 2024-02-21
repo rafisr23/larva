@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class HomeUserController extends Controller
@@ -32,7 +34,19 @@ class HomeUserController extends Controller
 
     public function projects()
     {
-        return view('frontend.home.projects');
+        $project = Project::with('service', 'projectImage')->get();
+        $service = Service::all();
+
+        // return $project;
+        return view('frontend.home.projects', compact('project', 'service'));
+    }
+
+    public function projectDetail(Project $project)
+    {
+        $project = $project->load('service', 'projectImage');
+
+        // return $project;
+        return view('frontend.home.projects-detail', compact('project'));
     }
 
     public function contact()

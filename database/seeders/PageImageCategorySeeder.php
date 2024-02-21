@@ -12,6 +12,9 @@ class PageImageCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        PageImageCategory::create([
+            'name' => 'Home',
+            'slug' => 'home',
+        ]);
     }
 }

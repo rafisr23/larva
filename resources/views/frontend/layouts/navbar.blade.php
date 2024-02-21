@@ -10,10 +10,10 @@
                     <li class="dropdown">
                         <a href="{{ route('user-index') }}">Home</a>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown @if (request()->routeIs('user-about')) current @endif">
                         <a href="{{ route('user-about') }}">Tentang Kami</a>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown @if (request()->routeIs('user-services')) current @endif">
                         <a href="{{ route('user-services') }}">Layanan</a>
                         <ul>
                             <li><a href="{{ route('user-services', ['type' => 'merch']) }}">Mechandise & Gift</a></li>
@@ -23,13 +23,15 @@
                             <li><a href="{{ route('user-services', ['type' => 'clothing']) }}">Clothing Supplier</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="{{ route('user-projects') }}">Portofolio</a>
+                    <li class="dropdown @if (request()->routeIs('user-projects')) current @endif">
+                        <a href="{{ route('user-projects') }}">Project</a>
                     </li>
                     {{-- <li class="dropdown">
                         <a href="blog.html">Blog</a>
                     </li> --}}
-                    <li><a href="{{ route('user-contact') }}">Kontak</a></li>
+                    <li class="@if (request()->routeIs('user-contact')) current @endif">
+                        <a href="{{ route('user-contact') }}">Kontak</a>
+                    </li>
                 </ul>
             </div>
             <div class="main-menu-wrapper__right">
@@ -43,7 +45,7 @@
                         {{-- check first is user logged in --}}
                         @if (Auth::check())
                             @role('admin')
-                                <h5><a href="{{ route('dashboard') }}">Dashboard</a></h5>
+                                <h5><a href="{{ route('admin.dashboard') }}">Dashboard</a></h5>
                             @endrole
                             {{-- logout with a submit a form --}}
                             <form action="{{ route('logout') }}" method="post">
