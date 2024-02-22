@@ -367,8 +367,8 @@ ul {
 
 .main-menu-wrapper__logo {
     position: relative;
-    padding-top: 37px;
-    padding-bottom: 37px;
+    /* padding-top: 37px; */
+    /* padding-bottom: 37px; */
     z-index: 11;
 }
 
@@ -381,9 +381,10 @@ ul {
 
 @media(min-width: 1200px) {
     .main-menu-wrapper__main-menu {
-        position: absolute;
+        /* position: fixed; */
         top: 0;
         left: 0;
+        margin: 0;
         width: 100%;
         z-index: 10;
     }
@@ -432,7 +433,7 @@ ul {
 }
 
 .main-menu-wrapper__call-number a:hover {
-    color: var(--mibooz-primary);
+    /* color: var(--mibooz-primary); */
 }
 
 .main-menu-wrapper__call-number p {

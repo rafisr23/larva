@@ -1,16 +1,16 @@
 <header class="main-header clearfix">
     <nav class="main-menu clearfix">
         <div class="main-menu-wrapper">
-            <div class="main-menu-wrapper__logo">
-                <a href="index.html"><img src="{{ asset('images/resources/logo-1.png') }}" alt=""></a>
+            <div class="main-menu-wrapper__logo align-self-center">
+                <a href="index.html" class="align-self-center"><img src="{{ asset('images/larva-logo.png') }}" alt="" height="50"></a>
             </div>
             <div class="main-menu-wrapper__main-menu">
                 <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
                 <ul class="main-menu__list">
-                    <li class="dropdown">
+                    <li class="@if (request()->routeIs('user-index')) current @endif">
                         <a href="{{ route('user-index') }}">Home</a>
                     </li>
-                    <li class="dropdown @if (request()->routeIs('user-about')) current @endif">
+                    <li class="@if (request()->routeIs('user-about')) current @endif">
                         <a href="{{ route('user-about') }}">Tentang Kami</a>
                     </li>
                     <li class="dropdown @if (request()->routeIs('user-services')) current @endif">
@@ -23,7 +23,7 @@
                             <li><a href="{{ route('user-services', ['type' => 'clothing']) }}">Clothing Supplier</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown @if (request()->routeIs('user-projects')) current @endif">
+                    <li class=" @if (request()->routeIs('user-projects')) current @endif">
                         <a href="{{ route('user-projects') }}">Project</a>
                     </li>
                     {{-- <li class="dropdown">
@@ -32,34 +32,39 @@
                     <li class="@if (request()->routeIs('user-contact')) current @endif">
                         <a href="{{ route('user-contact') }}">Kontak</a>
                     </li>
+                    <li>
+                        @if (Auth::check())
+                            @role('admin')
+                                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                            @endrole
+                        @endif
+                    </li>
+                    <li class="d-md-none">
+                        @if (Auth::check())
+                            <form action="{{ route('logout') }}" method="post" class="ms-0 p-0">
+                                @csrf
+                                <button type="submit" class="btn text-white ms-0 p-0">Logout</button>
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}">Login</a>
+                        @endif
+                    </li>
                 </ul>
             </div>
             <div class="main-menu-wrapper__right">
                 <div class="main-menu-wrapper__call">
-                    {{-- <div class="main-menu-wrapper__call-icon">
-                        <img src="{{ asset('images/icon/phone-icon.png') }}" alt="">
-                    </div> --}}
                     <div class="main-menu-wrapper__call-number">
-                        {{-- <p>Hubungi Kami</p> --}}
-                        {{-- <h5><a href="/login">Login</a></h5> --}}
-                        {{-- check first is user logged in --}}
                         @if (Auth::check())
-                            @role('admin')
-                                <h5><a href="{{ route('admin.dashboard') }}">Dashboard</a></h5>
-                            @endrole
-                            {{-- logout with a submit a form --}}
-                            <form action="{{ route('logout') }}" method="post">
-                                @csrf
-                                <button type="submit" class="btn">Logout</button>
-                            </form>
+                        <form action="{{ route('logout') }}" method="post" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-light text-decoration-none px-5">Logout</button>
+                        </form>
                         @else
-                            <h5><a href="{{ route('login') }}">Login</a></h5>
+                            {{-- create button with bootstrap --}}
+                            <h5><a href="{{ route('login') }}" class="btn btn-outline-light text-decoration-none px-5">Login</a></h5>
                         @endif
                     </div>
                 </div>
-                {{-- <div class="main-menu-wrapper__search-box">
-                    <a href="#" class="main-menu-wrapper__search search-toggler icon-magnifying-glass"></a>
-                </div> --}}
             </div>
         </div>
     </nav>
