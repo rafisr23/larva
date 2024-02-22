@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Models\HeaderPageImage;
+use App\Models\PageImageCategory;
 
 class HomeUserController extends Controller
 {
@@ -36,17 +38,22 @@ class HomeUserController extends Controller
     {
         $project = Project::with('service', 'projectImage')->get();
         $service = Service::all();
+        
+        $categoryImage = PageImageCategory::where('category_name', 'project-header')->first();
+        $headerImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();
 
-        // return $project;
-        return view('frontend.home.projects', compact('project', 'service'));
+        // return $headerImage;
+        return view('frontend.home.projects', compact('project', 'service', 'headerImage'));
     }
 
     public function projectDetail(Project $project)
     {
         $project = $project->load('service', 'projectImage');
 
+        $categoryImage = PageImageCategory::where('category_name', 'project-header')->first();
+        $headerImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();
         // return $project;
-        return view('frontend.home.projects-detail', compact('project'));
+        return view('frontend.home.projects-detail', compact('project', 'headerImage'));
     }
 
     public function contact()

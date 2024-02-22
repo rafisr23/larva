@@ -3,7 +3,7 @@
 @section('content')
     <!--Page Header Start-->
     <section class="page-header">
-        <div class="page-header-bg" style="background-image: url(images/backgrounds/page-header-bg.jpg)">
+        <div class="page-header-bg" style="background-image: {{ isset($headerImage) ? 'url(../storage/' . $headerImage[0]->file_path . ')' : 'url(../images/backgrounds/page-header-bg.jpg)' }}">
         </div>
         <div class="container">
             <div class="page-header__inner">
@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="project-details__img">
-                        <img src="/images/resources/project-details-img.jpg" alt="">
+                        <img src="{{ count($project->projectImage) > 0 ? asset('storage/' . $project->projectImage[0]->file_path) : asset('/images/resources/project-details-img.jpg') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -34,32 +34,15 @@
                         <div class="project-details__content-left">
                             <h3 class="project-details__content-title">{{ $project->project_name }}</h3>
                             <p class="project-details__content-text-1 mb-3">{!! $project->description !!}</p>
-                            {{-- <ul class="list-unstyled project-details__points">
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-check"></span>
+                            <div class="row">
+                                @foreach ($project->projectImage as $item)
+                                    <div class="col-xl-3">
+                                        <div class="project-detail-img">
+                                            <img src="{{ asset('storage/' . $item->file_path) }}" alt="">
+                                        </div>
                                     </div>
-                                    <div class="text">
-                                        <p>Take a look at our round up of the best shows</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-check"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p>It has survived not only five centuries</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-check"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p>Lorem Ipsum has been the ndustry standard dummy text</p>
-                                    </div>
-                                </li>
-                            </ul> --}}
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-5">
