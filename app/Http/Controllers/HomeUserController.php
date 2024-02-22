@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Project;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -58,6 +59,11 @@ class HomeUserController extends Controller
 
     public function contact()
     {
-        return view('frontend.home.contact');
+        $contact = Contact::first();
+
+        $categoryImage = PageImageCategory::where('category_name', 'contact-header')->first();
+        $headerImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();
+        
+        return view('frontend.home.contact', compact('contact', 'headerImage'));
     }
 }
