@@ -6,7 +6,7 @@
             <div class="site-footer__top-inner">
                 <div class="site-footer__top-left">
                     <h3 class="site-footer__top-left-title">Your Perfect Business Partner Solution</h3>
-                    <a href="tel:6281234501305" class="site-footer__top-left-phone">+6281234501305</a>
+                    <a href="tel:6281234501305" class="site-footer__top-left-phone">{{ $contact->phone }}</a>
                 </div>
                 <div class="site-footer__top-right">
                     <div class="site-footer__top-right-social">
@@ -22,17 +22,15 @@
     <div class="site-footer__middle">
         <div class="container">
             <div class="site-footer__middle-inner">
-                <div class="row">
+                <div class="row justify-content-evenly">
                     <div class="col-xl-3 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
                         <div class="footer-widget__column footer-widget__contact">
                             <h3 class="footer-widget__title">Contact</h3>
-                            <p class="footer-widget__contact-text">86 Road Broklyn Street, 600 <br> New York,
-                                USA</p>
+                            <p class="footer-widget__contact-text">{{ $contact->address }}</p>
                             <h4 class="footer-widget__contact-email-phone">
-                                <a href="mailto:larvacreative@gmail.com"
-                                    class="footer-widget__contact-email">larvacreative@gmail.com</a>
-                                <a href="tel:926668880000" class="footer-widget__contact-phone">+ 92 666 888
-                                    0000</a>
+                                <a href="mailto:{{ $contact->email }}"
+                                    class="footer-widget__contact-email">{{ $contact->email }}</a>
+                                <a href="tel:926668880000" class="footer-widget__contact-phone">{{ $contact->phone }}</a>
                             </h4>
                         </div>
                     </div>
@@ -40,23 +38,23 @@
                         <div class="footer-widget__column footer-widget__links clearfix">
                             <h3 class="footer-widget__title">Links</h3>
                             <ul class="footer-widget__links-list list-unstyled clearfix">
-                                <li><a href="services.html">Our Services</a></li>
-                                <li><a href="team.html">Meet Our Team</a></li>
-                                <li><a href="project.html">Our Portfolio</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li><a href="blog.html">News</a></li>
+                                <li><a href="{{ route('user-services') }}">Our Services</a></li>
+                                {{-- <li><a href="team.html">Meet Our Team</a></li> --}}
+                                <li><a href="{{ route('user-projects') }}">Our Portfolio</a></li>
+                                <li><a href="{{ route('user-contact') }}">Contact</a></li>
+                                {{-- <li><a href="blog.html">News</a></li> --}}
                             </ul>
                             <ul
                                 class="footer-widget__links-list footer-widget__links-list-two list-unstyled clearfix">
-                                <li><a href="faq.html">FAQs</a></li>
-                                <li><a href="about.html">Terms & Conditions</a></li>
-                                <li><a href="about.html">Privacy Policy</a></li>
-                                <li><a href="about.html">Help</a></li>
-                                <li><a href="services.html">Services</a></li>
+                                <li><a href="#">FAQs</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Help</a></li>
+                                <li><a href="{{ route('user-services') }}">Services</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-xl-5 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
+                    {{-- <div class="col-xl-5 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
                         <div class="footer-widget__column footer-widget__newsletter">
                             <h3 class="footer-widget__title">Newsletter</h3>
                             <form class="footer-widget__newsletter-form">
@@ -75,7 +73,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -85,8 +83,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="site-footer__bottom-inner">
-                        <p class="site-footer__bottom-text">© Copyrights, <span class="dynamic-year"></span> <a
-                                href="#">larvacreative.com</a>
+                        <p class="site-footer__bottom-text">© Copyrights, <span class="dynamic-year"></span><a href="/"> larvacreative.com</a>
                         </p>
                     </div>
                 </div>
