@@ -6,6 +6,7 @@ use App\Models\Contact;
 use App\Models\Partner;
 use App\Models\Project;
 use App\Models\Service;
+use App\Models\Testimoni;
 use Illuminate\Http\Request;
 use App\Models\HeaderPageImage;
 use App\Models\PageImageCategory;
@@ -20,8 +21,15 @@ class HomeUserController extends Controller
 
     public function about()
     {
+        $categoryImage = PageImageCategory::where('category_name', 'about-header')->first();
+        $headerImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();
+
+        $testimoni = Testimoni::latest()->limit(3)->with('user')->get();
+
+        // return $testimoni;
+        
         $contact = Contact::first();
-        return view('frontend.home.about', compact('contact'));
+        return view('frontend.home.about', compact('contact', 'headerImage', 'testimoni'));
     }
 
     public function services(Request $request)

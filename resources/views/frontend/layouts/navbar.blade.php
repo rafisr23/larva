@@ -13,15 +13,15 @@
                     <li class="@if (request()->routeIs('user-about')) current @endif">
                         <a href="{{ route('user-about') }}">Tentang Kami</a>
                     </li>
-                    <li class="dropdown @if (request()->routeIs('user-services')) current @endif">
+                    <li class=" @if (request()->routeIs('user-services')) current @endif">
                         <a href="{{ route('user-services') }}">Layanan</a>
-                        <ul>
+                        {{-- <ul>
                             <li><a href="{{ route('user-services', ['type' => 'merch']) }}">Mechandise & Gift</a></li>
                             <li><a href="{{ route('user-services', ['type' => 'konveksi']) }}">Konveksi Sablon</a></li>
                             <li><a href="{{ route('user-services', ['type' => 'design']) }}">Design Studio</a></li>
                             <li><a href="{{ route('user-services', ['type' => 'website']) }}">Screen Printing</a></li>
                             <li><a href="{{ route('user-services', ['type' => 'clothing']) }}">Clothing Supplier</a></li>
-                        </ul>
+                        </ul> --}}
                     </li>
                     <li class=" @if (request()->routeIs('user-projects')) current @endif">
                         <a href="{{ route('user-projects') }}">Project</a>
@@ -34,7 +34,7 @@
                     </li>
                     <li>
                         @if (Auth::check())
-                            @role('admin')
+                            @role(['superadmin', 'admin'])
                                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                             @endrole
                         @endif

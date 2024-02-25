@@ -40,4 +40,9 @@ class Service extends Model
     {
         return 'slug';
     }
+
+    public function testimoni()
+    {
+        return $this->hasMany(Testimoni::class);
+    }
 }

@@ -3,15 +3,15 @@
 @section('content')
     <!--Page Header Start-->
     <section class="page-header">
-        <div class="page-header-bg" style="background-image: url(images/backgrounds/page-header-bg.jpg)">
+        <div class="page-header-bg" style="background-image: {{ isset($headerImage) ? 'url(storage/' . $headerImage[0]->file_path . ')' : 'url(images/backgrounds/page-header-bg.jpg)' }}">
         </div>
         <div class="container">
             <div class="page-header__inner">
                 <ul class="thm-breadcrumb list-unstyled">
-                    <li><a href="index.html">Home</a></li>
-                    <li>About</li>
+                    <li><a href="{{ route('user-index') }}">Beranda</a></li>
+                    <li>Tentang</li>
                 </ul>
-                <h2>About us</h2>
+                <h2>Tentang Kami</h2>
             </div>
         </div>
     </section>
@@ -26,12 +26,7 @@
                         <ul class="list-unstyled about-page__images">
                             <li>
                                 <div class="about-page__img-1">
-                                    <img src="{{ asset('images/resources/about-page-img-1.jpg') }}" alt="">
-                                </div>
-                            </li>
-                            <li>
-                                <div class="about-page__img-2">
-                                    <img src="{{ asset('images/resources/about-page-img-1.jpg') }}" alt="">
+                                    <img src="{{ asset('images/larva-logo.png') }}" alt="">
                                 </div>
                             </li>
                         </ul>
@@ -42,112 +37,18 @@
                 <div class="col-xl-6">
                     <div class="about-page__right">
                         <div class="section-title text-left">
-                            <span class="section-title__tagline">about company</span>
-                            <h2 class="section-title__title">get to know about agency</h2>
+                            <span class="section-title__tagline">Tentang Perusahaan</span>
+                            <h2 class="section-title__title">Apa itu larva?</h2>
                         </div>
-                        <p class="about-page__right-text-1">There are many variations of pass of lorem ipsum
-                            available but the majority have suffered alteration in some Injected humour randomised
-                            words.</p>
-                        <h4 class="about-page__right-text-2">providing innovative Website solutions for future.</h4>
-                        <a href="about.html" class="thm-btn abut-page__btn">Discover More</a>
+                        <p class="about-page__right-text-1">Larva Creative Industry adalah sebuah agency creative yang berlokasi di Bandung, Indonesia. Larva menyediakan banyak layanan untuk mendukung proses bisnis creative Anda</p>
+                        <h4 class="about-page__right-text-2">The best agency for your business or needs</h4>
+                        <a href="{{ route('user-services') }}" class="thm-btn abut-page__btn">Layanan Kami</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!--About Page End-->
-
-    <!--Brand One Start-->
-    <section class="brand-one">
-        <div class="container">
-            <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100, "slidesPerView": 5, "autoplay": { "delay": 5000 }, "breakpoints": {
-                "0": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 2
-                },
-                "375": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 2
-                },
-                "575": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 3
-                },
-                "767": {
-                    "spaceBetween": 50,
-                    "slidesPerView": 4
-                },
-                "991": {
-                    "spaceBetween": 50,
-                    "slidesPerView": 5
-                },
-                "1199": {
-                    "spaceBetween": 100,
-                    "slidesPerView": 5
-                }
-            }}'>
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Brand One End-->
-
-    <!--Design Studio Start-->
-    <section class="design-studio services-page-design-studio">
-        <div class="design-studio-bg-box">
-            <div class="design-studio-bg jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
-                style="background-image: url(images/backgrounds/design-studio-bg.jpg)">
-
-            </div>
-        </div>
-        <div class="container">
-            <div class="col-lg-12">
-                <div class="design-studio__inner">
-                    <h2 class="design-studio__title">Design <span>Studio</span> that gets <br> excited about</h2>
-                    <div class="design-studio__video-link">
-                        <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
-                            <div class="design-studio__video-icon">
-                                <span class="icon-play-button"></span>
-                                <i class="ripple"></i>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Design Studio End-->
 
     <!--Testimonial Two Start-->
     <section class="testimonial-two about-page-testimonial-two">
@@ -159,10 +60,10 @@
                     <div class="testimonial-two__left wow slideInLeft" data-wow-delay="100ms"
                         data-wow-duration="2500ms">
                         <div class="testimonial-two__img">
-                            <img src="{{ asset('images/testimonial/testimonial-two-img.jpg') }}" alt="">
-                            <div class="testimonial-two__content">
+                            <img src="{{ asset('images/resources/community.png') }}" alt="">
+                            {{-- <div class="testimonial-two__content">
                                 <h3 class="testimonial-two__title">#Happy <span>Customers</span></h3>
-                            </div>
+                            </div> --}}
                             <div class="testimonial-two__box-1"></div>
                             <div class="testimonial-two__box-2"></div>
                         </div>
@@ -171,70 +72,24 @@
                 <div class="col-xl-6">
                     <div class="testimonial-two__right">
                         <div class="section-title text-left">
-                            <span class="section-title__tagline">our customer feedbacks</span>
-                            <h2 class="section-title__title">What they’re saying</h2>
+                            <span class="section-title__tagline">Testimoni Pelanggan</span>
+                            <h2 class="section-title__title">Apa kata mereka?</h2>
                         </div>
                         <div class="testimonial-two__carousel owl-theme owl-carousel">
-                            <!--Testimonial Two Single-->
-                            <div class="testimonial-two__single">
-                                <p class="testimonial-two__text">This is due to their excellent service, competitive
-                                    pricing and customer support. It’s throughly refresing to get such a personal
-                                    touch. Duis aute lorem ipsum is simply free text irure dolor in reprehen.</p>
-                                <div class="testimonial-two__client-info">
-                                    <div class="testimonial-two__client-img">
-                                        <img src="{{ asset('images/testimonial/testimonial-one-img-2.jpg') }}" alt="">
-                                    </div>
-                                    <div class="testimonial-two__client-details">
-                                        <h4 class="testimonial-two__client-name">kevin martin</h4>
-                                        <p class="testimonial-two__client-title">Customer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Testimonial Two Single-->
-                            <div class="testimonial-two__single">
-                                <p class="testimonial-two__text">This is due to their excellent service, competitive
-                                    pricing and customer support. It’s throughly refresing to get such a personal
-                                    touch. Duis aute lorem ipsum is simply free text irure dolor in reprehen.</p>
-                                <div class="testimonial-two__client-info">
-                                    <div class="testimonial-two__client-img">
-                                        <img src="{{ asset('images/testimonial/testimonial-one-img-2.jpg') }}" alt="">
-                                    </div>
-                                    <div class="testimonial-two__client-details">
-                                        <h4 class="testimonial-two__client-name">Jessica Brown</h4>
-                                        <p class="testimonial-two__client-title">Customer</p>
+                            @foreach ($testimoni as $item)
+                                <div class="testimonial-two__single">
+                                    <p class="testimonial-two__text">{{ $item->description }}</p>
+                                    <div class="testimonial-two__client-info">
+                                        <div class="testimonial-two__client-img">
+                                            <img src="{{ asset('images/resources/user.png') }}" alt="">
+                                        </div>
+                                        <div class="testimonial-two__client-details">
+                                            <h4 class="testimonial-two__client-name">{{ $item->user->name }}</h4>
+                                            <p class="testimonial-two__client-title">Customer</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!--Testimonial Two Single-->
-                            <div class="testimonial-two__single">
-                                <p class="testimonial-two__text">This is due to their excellent service, competitive
-                                    pricing and customer support. It’s throughly refresing to get such a personal
-                                    touch. Duis aute lorem ipsum is simply free text irure dolor in reprehen.</p>
-                                <div class="testimonial-two__client-info">
-                                    <div class="testimonial-two__client-img">
-                                        <img src="{{ asset('images/testimonial/testimonial-one-img-2.jpg') }}" alt="">
-                                    </div>
-                                    <div class="testimonial-two__client-details">
-                                        <h4 class="testimonial-two__client-name">sarah rose</h4>
-                                        <p class="testimonial-two__client-title">Customer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Testimonial Two Single-->
-                            <div class="testimonial-two__single">
-                                <p class="testimonial-two__text">This is due to their excellent service, competitive
-                                    pricing and customer support. It’s throughly refresing to get such a personal
-                                    touch. Duis aute lorem ipsum is simply free text irure dolor in reprehen.</p>
-                                <div class="testimonial-two__client-info">
-                                    <div class="testimonial-two__client-img">
-                                        <img src="{{ asset('images/testimonial/testimonial-one-img-2.jpg') }}" alt="">
-                                    </div>
-                                    <div class="testimonial-two__client-details">
-                                        <h4 class="testimonial-two__client-name">kevin martin</h4>
-                                        <p class="testimonial-two__client-title">Customer</p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -243,12 +98,12 @@
     </section>
     <!--Testimonial Two End-->
 
-    <!--Team One Start-->
+    {{-- <!--Team One Start-->
     <section class="team-one">
         <div class="container">
             <div class="section-title text-center">
-                <span class="section-title__tagline">people behind it</span>
-                <h2 class="section-title__title">meet the team</h2>
+                <span class="section-title__tagline">Siapa dibalik Larva?</span>
+                <h2 class="section-title__title">Team kami</h2>
             </div>
             <div class="row">
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
@@ -322,7 +177,7 @@
             </div>
         </div>
     </section>
-    <!--Team One End-->
+    <!--Team One End--> --}}
 
     <!--Best Agency Start-->
     <section class="best-agency about-page-best-agency">
@@ -333,8 +188,8 @@
                 <div class="col-xl-6 col-lg-6">
                     <div class="best-agency__left">
                         <div class="section-title text-left">
-                            <span class="section-title__tagline">best creative agency</span>
-                            <h2 class="section-title__title">Our Agency all soltutions</h2>
+                            <span class="section-title__tagline">Agency Creative Terbaik</span>
+                            <h2 class="section-title__title">Agency Kami adalah solusi dari semuanya!</h2>
                         </div>
                         <ul class="list-unstyled best-agency__points">
                             <li>
@@ -342,7 +197,7 @@
                                     <span class="icon-check"></span>
                                 </div>
                                 <div class="text">
-                                    <p>Reliable and Proven</p>
+                                    <p>Terpercaya</p>
                                 </div>
                             </li>
                             <li>
@@ -350,7 +205,7 @@
                                     <span class="icon-check"></span>
                                 </div>
                                 <div class="text">
-                                    <p>Best Team Members</p>
+                                    <p>Terjamin</p>
                                 </div>
                             </li>
                         </ul>
@@ -359,8 +214,7 @@
                                 <span class="icon-social-media"></span>
                             </div>
                             <div class="best-agency__experience-text-box">
-                                <p class="best-agency__experience-text">We have 30+ years of experiences for give
-                                    you <br> better quality results.</p>
+                                <p class="best-agency__experience-text">Kami sudah berpengalaman lebih dari 5 tahun.</p>
                             </div>
                         </div>
                     </div>
@@ -370,37 +224,31 @@
                         <div class="accrodion-grp" data-grp-name="faq-one-accrodion">
                             <div class="accrodion active">
                                 <div class="accrodion-title">
-                                    <h4>We Help to Create Visual Strategies</h4>
+                                    <h4>Apa itu sebuah creative agency?</h4>
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>There are many variations of passages the majority have suffered
-                                            alteration in some fo injected humour, or randomised words believable.
-                                        </p>
+                                        <p>Creative agency adalah perusahaan atau tim profesional yang menyediakan layanan kreatif seperti desain grafis, pemasaran kreatif, produksi video, dan sebagainya.</p>
                                     </div><!-- /.inner -->
                                 </div>
                             </div>
                             <div class="accrodion">
                                 <div class="accrodion-title">
-                                    <h4>Motion Graphics & Animations</h4>
+                                    <h4>Bagaimana proses kerja antara klien dan Larva?</h4>
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>There are many variations of passages the majority have suffered
-                                            alteration in some fo injected humour, or randomised words believable.
-                                        </p>
+                                        <p>Proses kerja biasanya melibatkan pertemuan awal untuk menetapkan tujuan, perencanaan strategis, tahap desain atau produksi, revisi berdasarkan umpan balik, dan akhirnya, implementasi proyek.</p>
                                     </div><!-- /.inner -->
                                 </div>
                             </div>
                             <div class="accrodion last-chiled">
                                 <div class="accrodion-title">
-                                    <h4>We Help to Achieve Mutual Goals</h4>
+                                    <h4>Berapa biaya yang terkait dengan menggunakan jasa dari Larva?</h4>
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>There are many variations of passages the majority have suffered
-                                            alteration in some fo injected humour, or randomised words believable.
-                                        </p>
+                                        <p>Biaya bisa bervariasi tergantung pada lingkup proyek, tingkat kesulitan, dan tingkat keahlian yang diperlukan. Sebaiknya diskusikan secara terperinci dengan Larva untuk mendapatkan perkiraan biaya yang akurat.</p>
                                     </div><!-- /.inner -->
                                 </div>
                             </div>

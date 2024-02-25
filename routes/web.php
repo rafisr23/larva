@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\HomeUserController;
+use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\HeaderPageImageController;
 use App\Http\Controllers\PageImageCategoryController;
 
@@ -115,7 +116,15 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
             Route::get('/{id}/get-one', 'getOne')->name('.get-one');
         });
 
-
+        // testimoni
+        Route::controller(TestimoniController::class)->prefix('testimoni')->name('testimoni')->group(function () {
+            Route::get('/', 'index')->name('.index');
+            Route::get('/get-testimonis', 'getTestimonis')->name('.get-testimonis');
+            Route::post('/store', 'store')->name('.store');
+            Route::get('/{testimoni}/edit', 'edit')->name('.edit');
+            Route::put('/{testimoni}', 'update')->name('.update');
+            Route::delete('/{testimoni}', 'destroy')->name('.destroy');
+        });
 
     });
 });
