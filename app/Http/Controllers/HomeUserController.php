@@ -36,7 +36,7 @@ class HomeUserController extends Controller
         $middleImage = HeaderPageImage::where('page_image_category_id', $categoryImage2->id)->get();
 
         if (!$type) {
-            $service = Service::with('serviceImage')->get();
+            $service = Service::with('serviceImage')->where('is_active', '1')->get();
             $partner = Partner::all();
             
             return view('frontend.home.services', compact('contact', 'headerImage', 'middleImage', 'service', 'partner'));
