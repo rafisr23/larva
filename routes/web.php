@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\HomeUserController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\HeaderPageImageController;
 use App\Http\Controllers\PageImageCategoryController;
@@ -46,7 +47,10 @@ Route::middleware('auth')->group(function () {
 
 Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], function () {
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-        Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+
+        Route::controller(DashboardController::class)->prefix('dashboard')->name('dashboard')->group(function () {
+            Route::get('/', 'index')->name('.index');
+        });
         
         Route::controller(ServiceController::class)->prefix('service')->name('service')->group(function () {
             Route::get('/', 'index')->name('.index');

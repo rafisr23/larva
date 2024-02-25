@@ -35,7 +35,7 @@
                     <li>
                         @if (Auth::check())
                             @role(['superadmin', 'admin'])
-                                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                                <a href="{{ route('admin.dashboard.index') }}">Dashboard</a>
                             @endrole
                         @endif
                     </li>

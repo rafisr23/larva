@@ -1,5 +1,6 @@
 <x-layout.default>
     <script defer src="/js/apexcharts.js"></script>
+    <x-slot name="title">{{ $title }}</x-slot>
     <div x-data="sales">
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
