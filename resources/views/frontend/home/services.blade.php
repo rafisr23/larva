@@ -3,15 +3,15 @@
 @section('content')
     <!--Page Header Start-->
     <section class="page-header">
-        <div class="page-header-bg" style="background-image: url(images/backgrounds/page-header-bg.jpg)">
+        <div class="page-header-bg" style="background-image: {{ isset($headerImage) ? 'url(storage/' . $headerImage[0]->file_path . ')' : 'url(images/backgrounds/page-header-bg.jpg)' }}">
         </div>
         <div class="container">
             <div class="page-header__inner">
                 <ul class="thm-breadcrumb list-unstyled">
-                    <li><a href="index.html">Home</a></li>
-                    <li>Services</li>
+                    <li><a href="{{ route('user-index') }}">Beranda</a></li>
+                    <li>Layanan</li>
                 </ul>
-                <h2>Services</h2>
+                <h2>Layanan</h2>
             </div>
         </div>
     </section>
@@ -23,12 +23,29 @@
             style="background-image: url(shapes/services-three-shape.png)"></div>
         <div class="container">
             <div class="section-title text-center">
-                <span class="section-title__tagline">check our services list</span>
-                <h2 class="section-title__title">what we’re offering</h2>
+                <span class="section-title__tagline">Lihat layanan kami</span>
+                <h2 class="section-title__title">apa yang kami tawarkan</h2>
             </div>
             <div class="services-three__top">
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
+                    @foreach ($service as $item)
+                        @if($loop->iteration <= 3)
+                            <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
+                                <!--Services Three Single-->
+                                <div class="services-three__single">
+                                    <div class="services-three_icon">
+                                        <span class="icon-online-shopping"></span>
+                                    </div>
+                                    <h3 class="services-three__title"><a href="mobile-application.html">{{ $item->service_name }}</a></h3>
+                                    <p class="services-three__text">{{ $item->tagline }}</p>
+                                    <div class="services-three__btn-box">
+                                        <a href="{{ route('user-services', ['type' => $item->slug]) }}" class="services-three__btn">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                    {{-- <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
                         <!--Services Three Single-->
                         <div class="services-three__single">
                             <div class="services-three_icon">
@@ -72,12 +89,8 @@
                                 <a href="website-development.html" class="services-three__btn">Read More</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
-            </div>
-            <div class="services-three__bottom">
-                <p class="services-three__bottom-text">Mibooz services built specifically for your business. <a
-                        href="about.html">Find Your Solution</a></p>
             </div>
         </div>
     </section>
@@ -87,30 +100,21 @@
     <section class="two-boxes">
         <div class="container">
             <div class="row">
-                <div class="col-xl-6 col-lg-6 wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
-                    <!--Two Boxes Single-->
-                    <div class="two-boxes__single">
-                        <div class="two-boxes__bg"
-                            style="background-image: url(assets/images/backgrounds/two-boxes-bg-1.jpg)"></div>
-                        <p class="two-boxes__tagline">extra features</p>
-                        <h4 class="two-boxes__title">Lorem Ipsum available, but the majority is have suffered.</h4>
-                        <div class="two-boxes__arrow">
-                            <a href="#"><span class="icon-arrow-right"></span></a>
+                @foreach ($service as $item)
+                    @if($loop->iteration <= 2)
+                        <div class="col-xl-6 col-lg-6 wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
+                            <!--Two Boxes Single-->
+                            <div class="two-boxes__single">
+                                <div class="two-boxes__bg" style="background-image: url(assets/images/backgrounds/two-boxes-bg-1.jpg)"></div>
+                                <p class="two-boxes__tagline">{{ $item->service_name }}</p>
+                                <h4 class="two-boxes__title">{!! $item->description !!}</h4>
+                                <div class="two-boxes__arrow">
+                                    <a href="{{ route('user-services', ['type' => $item->slug]) }}"><span class="icon-arrow-right"></span></a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 wow slideInRight" data-wow-delay="100ms" data-wow-duration="2500ms">
-                    <!--Two Boxes Single-->
-                    <div class="two-boxes__single">
-                        <div class="two-boxes__bg"
-                            style="background-image: url(assets/images/backgrounds/two-boxes-bg-2.jpg)"></div>
-                        <p class="two-boxes__tagline">extra features</p>
-                        <h4 class="two-boxes__title">Lorem Ipsum available, but the majority is have suffered.</h4>
-                        <div class="two-boxes__arrow">
-                            <a href="#"><span class="icon-arrow-right"></span></a>
-                        </div>
-                    </div>
-                </div>
+                    @endif
+                @endforeach
             </div>
         </div>
     </section>
@@ -126,89 +130,32 @@
                     <div class="col-xl-7 col-lg-6">
                         <div class="services-one__top-left">
                             <div class="section-title text-left">
-                                <span class="section-title__tagline">Our Services</span>
-                                <h2 class="section-title__title">We Shape the <br> Perfect solution</h2>
+                                <span class="section-title__tagline">Layanan Kami</span>
+                                <h2 class="section-title__title">Kami Menawarkan <br> Solusi yang Sempurna</h2>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-5 col-lg-6">
                         <div class="services-one__top-right">
-                            <p class="services-one__top-text">We are committed to providing our customers with not
-                                service while offering our emod tempor incididunt ut labore employees the best
-                                training.</p>
+                            <p class="services-one__top-text">Kami berkomitmen memberikan layanan terbaik yang memenuhi kebutuhan Anda. Dengan fokus pada kepuasan pelanggan, kami hadir dengan solusi efisien dan tim berpengalaman.</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="services-one__bottom">
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
-                        <!--Services One Single-->
-                        <div class="services-one__single">
-                            <h3 class="services-one__title"><a href="mobile-application.html">mobile <br>
-                                    applications</a></h3>
-                            <div class="services-one__icon">
-                                <span class="icon-online-shopping"></span>
-                            </div>
-                            <div class="services-one__count"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
-                        <!--Services One Single-->
-                        <div class="services-one__single">
-                            <h3 class="services-one__title"><a href="digital-marketing.html">digital <br>
-                                    marketings</a></h3>
-                            <div class="services-one__icon">
-                                <span class="icon-growth"></span>
-                            </div>
-                            <div class="services-one__count"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
-                        <!--Services One Single-->
-                        <div class="services-one__single">
-                            <h3 class="services-one__title"><a href="graphic-designing.html">Graphic <br>
-                                    Designings</a></h3>
-                            <div class="services-one__icon">
-                                <span class="icon-webpage"></span>
-                            </div>
-                            <div class="services-one__count"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="400ms">
-                        <!--Services One Single-->
-                        <div class="services-one__single">
-                            <h3 class="services-one__title"><a href="website-development.html">Website <br>
-                                    developments</a></h3>
-                            <div class="services-one__icon">
-                                <span class="icon-front-end"></span>
-                            </div>
-                            <div class="services-one__count"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="500ms">
-                        <!--Services One Single-->
-                        <div class="services-one__single">
-                            <h3 class="services-one__title"><a href="social-marketing.html">Social <br>
-                                    marketings</a></h3>
-                            <div class="services-one__icon">
-                                <span class="icon-bullhorn"></span>
-                            </div>
-                            <div class="services-one__count"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="600ms">
-                        <!--Services One Single-->
-                        <div class="services-one__view-all">
-                            <div class="services-one__view-all-title-box">
-                                <h3 class="services-one__view-all-title"><a href="services.html">View our <br> all
-                                        services</a></h3>
-                            </div>
-                            <div class="services-one__view-all-arrow">
-                                <a href="services.html"><span class="icon-arrow-right"></span></a>
+                    @foreach ($service as $item)
+                        <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
+                            <!--Services One Single-->
+                            <div class="services-one__single">
+                                <h3 class="services-one__title"><a href="{{ route('user-services', ['type' => $item->slug]) }}l">{{ $item->service_name }}</a></h3>
+                                <div class="services-one__icon">
+                                    <span class="icon-online-shopping"></span>
+                                </div>
+                                <div class="services-one__count"></div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -219,7 +166,7 @@
     <section class="design-studio services-page-design-studio">
         <div class="design-studio-bg-box">
             <div class="design-studio-bg jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
-                style="background-image: url(images/backgrounds/design-studio-bg.jpg)">
+                style="background-image: {{ isset($middleImage) ? 'url(storage/' . $middleImage[0]->file_path . ')' : 'url(images/backgrounds/page-header-bg.jpg)' }}">
 
             </div>
         </div>
@@ -242,11 +189,11 @@
     <!--Design Studio End-->
 
     <!--Services Two Start-->
-    <section class="services-two services-page-services-two">
+    {{-- <section class="services-two services-page-services-two">
         <div class="container">
             <div class="section-title text-center">
-                <span class="section-title__tagline">check our services list</span>
-                <h2 class="section-title__title">what we’re offering</h2>
+                <span class="section-title__tagline">Lihat layanan kami</span>
+                <h2 class="section-title__title">apa yang kami tawarkan</h2>
             </div>
             <ul class="list-unstyled clearfix services-two__list">
                 <!--Services Two Single-->
@@ -285,7 +232,7 @@
                 </li>
             </ul>
         </div>
-    </section>
+    </section> --}}
     <!--Services Two End-->
 
     <!--Brand One Start-->
@@ -318,36 +265,11 @@
                 }
             }}'>
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
+                    @foreach ($partner as $item)
+                        <div class="swiper-slide">
+                            <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
+                        </div><!-- /.swiper-slide -->
+                    @endforeach
                 </div>
             </div>
         </div>

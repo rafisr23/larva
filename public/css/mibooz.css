@@ -7726,6 +7726,7 @@ ul {
     overflow: hidden;
     counter-reset: count;
     margin-top: 50px;
+    list-style: none;
 }
 
 .service-details__points li {
@@ -7736,6 +7737,8 @@ ul {
     padding-bottom: 26px;
     padding-left: 72px;
     padding-right: 87px;
+    /* clear bullet */
+    list-style: none;
 }
 
 .service-details__points li+li {
@@ -7847,7 +7850,13 @@ ul {
 }
 
 .service-details__benefits-img img {
-    width: 100%;
+    /* width: 100%; */
+    width: 370px;
+    height: 301px;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     mix-blend-mode: luminosity;
 }
 

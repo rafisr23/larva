@@ -26,7 +26,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/', [HomeUserController::class, 'index'])->name('user-index');
     Route::get('/about', [HomeUserController::class, 'about'])->name('user-about');
     Route::get('/services', [HomeUserController::class, 'services'])->name('user-services');
-    Route::get('/service', [HomeUserController::class, 'serviceDetail'])->name('user-service');
+    // Route::get('/service', [HomeUserController::class, 'serviceDetail'])->name('user-service');
     Route::get('/projects', [HomeUserController::class, 'projects'])->name('user-projects');
     Route::get('/project/{project}', [HomeUserController::class, 'projectDetail'])->name('user-project-detail');
     Route::get('/contact', [HomeUserController::class, 'contact'])->name('user-contact');

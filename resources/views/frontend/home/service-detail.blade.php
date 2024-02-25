@@ -3,16 +3,16 @@
 @section('content')
 	<!--Page Header Start-->
 	<section class="page-header">
-		<div class="page-header-bg" style="background-image: url(assets/images/backgrounds/page-header-bg.jpg)">
+		<div class="page-header-bg" style="background-image: {{ isset($headerImage) ? 'url(storage/' . $headerImage[0]->file_path . ')' : 'url(images/backgrounds/page-header-bg.jpg)' }}">
 		</div>
 		<div class="container">
 			<div class="page-header__inner">
 				<ul class="thm-breadcrumb list-unstyled">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="services.html">Services</a></li>
-					<li>Service Details</li>
+					<li><a href="{{ route('user-index') }}">Beranda</a></li>
+					<li><a href="{{ route('user-services') }}">Layanan</a></li>
+					<li>Detail Layanan</li>
 				</ul>
-				<h2>{{ $type }}</h2>
+				<h2>{{ $service->service_name }}</h2>
 			</div>
 		</div>
 	</section>
@@ -24,7 +24,7 @@
 			<div class="row">
 				<div class="col-xl-4 col-lg-5">
 					<div class="service-details__sidebar">
-						<div class="service-details__sidebar-service">
+						{{-- <div class="service-details__sidebar-service">
 							<h4 class="service-details__sidebar-title">Categories</h4>
 							<ul class="service-details__sidebar-service-list list-unstyled">
 								<li><a href="mobile-application.html">Mobile Application <span
@@ -40,7 +40,7 @@
 								<li><a href="content-writing.html">Content Writting <span
 											class="icon-arrow-right"></span></a></li>
 							</ul>
-						</div>
+						</div> --}}
 						<div class="service-details__need-help">
 							<div class="service-details__need-help-bg"
 								style="background-image: url(assets/images/backgrounds/service-details-need-help-bg.jpg)">
@@ -50,8 +50,8 @@
 							</div>
 							<h2 class="service-details__need-help-title">Best Quality <br> services</h2>
 							<div class="service-details__need-help-contact">
-								<p>Call us Anytime</p>
-								<a href="tel:926668880000">+ 92 666 888 0000</a>
+								<p>Hubungi Kami Kapan Saja</p>
+								<a href="tel:{{ $contact->phone }}">{{ $contact->phone }}</a>
 							</div>
 						</div>
 					</div>
@@ -59,36 +59,21 @@
 				<div class="col-xl-8 col-lg-7">
 					<div class="service-details__right">
 						<div class="service-details__img">
-							<img src="assets/images/resources/service-details-img-4.jpg" alt="">
+							<img src="{{ asset('storage/' . $service->serviceImage[0]->file_path) }}" alt="">
 						</div>
 						<div class="service-details__content">
-							<h3 class="service-details__title">Website Development</h3>
-							<p class="service-details__text">Lorem ipsum is simply free text used by copytyping
-								refreshing. Neque porro est qui dolorem ipsum quia quaed inventore veritatis et
-								quasi architecto beatae vitae dicta sunt explicabo. Aelltes port lacus quis enim var
-								sed efficitur turpis gilla sed sit amet finibus eros. Lorem Ipsum is simply dummy
-								text of the printing and typesetting industry. Lorem Ipsum has been the ndustry
-								standard dummy text ever since the 1500s, when an unknown printer took a galley of
-								type and scrambled it to make a type specimen book. It has survived not only five
-								centuries. Lorem Ipsum is simply dummy text of the new design printng and type
-								setting Ipsum Take a look at our round up of the best shows coming soon to your
-								telly box has been the is industrys. Lorem Ipsum is simply dummy text of the
-								printing and typesetting industry. Lorem Ipsum has industr standard dummy text ever
-								since the 1500s, when an unknown printer took a galley of type and scrambled it to
-								make a type specimen book. It has survived not only five centuries, but also the
-								leap into electronic typesetting, remaining essentially unchanged. It was
-								popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-								passages, and more recently with desktop publishing software like Aldus PageMaker
-								including versions of.</p>
+							<h3 class="service-details__title">{{ $service->service_name }}</h3>
+							<p class="service-details__text">{!! $service->description !!}</p>
 						</div>
-						<ul class="service-details__points list-unstyled">
+                        <h4 class="service-details__benefits-title mt-5">Range Harga</h4>
+						<ul class="service-details__points list-unstyled mt-2">
 							<li>
-								<h4>high quality project</h4>
-								<div class="service-details__points-count"></div>
+								<h4>{{ "Rp " . number_format($service->min_price, 0, ",", "."); }}</h4>
+								{{-- <div class="service-details__points-count"></div> --}}
 							</li>
 							<li>
-								<h4>Fast & relaible service</h4>
-								<div class="service-details__points-count"></div>
+								<h4>{{ "Rp " . number_format($service->max_price, 0, ",", "."); }}</h4>
+								{{-- <div class="service-details__points-count"></div> --}}
 							</li>
 						</ul>
 						<div class="service-details__benefits">
@@ -96,9 +81,9 @@
 								<div class="col-xl-6">
 									<div class="service-details__benefits-content">
 										<h3 class="service-details__benefits-title">Our Benefits</h3>
-										<p class="service-details__benefits-text">Duis aute irure dolor in simply
-											free text exist on reprehende voluptate velit esse cillum.</p>
+										<p class="service-details__benefits-text">{{ $service->tagline }}</p>
 										<ul class="list-unstyled service-details__benefits-list">
+                                            
 											<li>
 												<div class="icon">
 													<span class="icon-check"></span>
@@ -136,12 +121,12 @@
 								</div>
 								<div class="col-xl-6">
 									<div class="service-details__benefits-img">
-										<img src="assets/images/resources/service-details__benefits-img.jpg" alt="">
+										<img src="{{ asset('storage/' . $service->serviceImage[0]->file_path) }}" alt="">
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="service-details__faq">
+						{{-- <div class="service-details__faq">
 							<div class="accrodion-grp" data-grp-name="faq-one-accrodion">
 								<div class="accrodion active">
 									<div class="accrodion-title">
@@ -183,7 +168,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>

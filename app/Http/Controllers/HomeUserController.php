@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Partner;
 use App\Models\Project;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -28,11 +29,20 @@ class HomeUserController extends Controller
         $contact = Contact::first();
         $type = $request->query('type');
 
+        $categoryImage = PageImageCategory::where('category_name', 'service-header')->first();
+        $headerImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();
+
+        $categoryImage2 = PageImageCategory::where('category_name', 'service-middle')->first();
+        $middleImage = HeaderPageImage::where('page_image_category_id', $categoryImage2->id)->get();
+
         if (!$type) {
-            return view('frontend.home.services', compact('contact'));
+            $service = Service::with('serviceImage')->get();
+            $partner = Partner::all();
+            
+            return view('frontend.home.services', compact('contact', 'headerImage', 'middleImage', 'service', 'partner'));
         } else {
-            return view('frontend.home.service-detail', compact('type', 'contact'));
-        
+            $service = Service::where('slug', $type)->with('serviceImage')->first();
+            return view('frontend.home.service-detail', compact('type', 'contact', 'service', 'headerImage'));
         }
 
         return view('frontend.home.service-detail', compact('contact'));
