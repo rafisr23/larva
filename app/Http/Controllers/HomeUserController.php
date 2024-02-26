@@ -16,7 +16,15 @@ class HomeUserController extends Controller
     public function index()
     {
         $contact = Contact::first();
-        return view('frontend.home.index', compact('contact'));
+
+        $categoryImage = PageImageCategory::where('category_name', 'home-middle')->first();
+        $middleImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();
+
+        $service = Service::with('serviceImage')->where('is_active', '1')->get();
+        $project = Project::with('service', 'projectImage')->orderBy('created_at', 'desc')->get();
+        $testimoni = Testimoni::latest()->limit(3)->with('user')->get();
+        
+        return view('frontend.home.index', compact('contact', 'service', 'middleImage', 'project', 'testimoni'));
     }
 
     public function about()

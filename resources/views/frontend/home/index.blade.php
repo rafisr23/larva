@@ -63,9 +63,9 @@
                                 <div class="main-slider__content">
                                     <div class="main-slider__title-box-1">
                                         <h2>Creative <br> Talent <br> Here</h2>
-                                        <div class="main-slider__title-box-2">
+                                        {{-- <div class="main-slider__title-box-2">
                                             <h2>Creative <br> Talent <br> Here</h2>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <a href="about.html" class="thm-btn">About Us</a>
                                     <div class="main-slider-badge">
@@ -93,9 +93,9 @@
                                 <div class="main-slider__content">
                                     <div class="main-slider__title-box-1">
                                         <h2>Creative <br> Talent <br> Here</h2>
-                                        <div class="main-slider__title-box-2">
+                                        {{-- <div class="main-slider__title-box-2">
                                             <h2>Creative <br> Talent <br> Here</h2>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <a href="about.html" class="thm-btn">About Us</a>
                                     <div class="main-slider-badge">
@@ -134,75 +134,33 @@
                         <div class="services-one__top-left">
                             <div class="section-title text-left">
                                 <span class="section-title__tagline">Layanan Kami</span>
-                                <h2 class="section-title__title">We Shape the <br> Perfect solution</h2>
+                                <h2 class="section-title__title">Kami Menawarkan <br> Solusi yang Sempurna</h2>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-5 col-lg-6">
                         <div class="services-one__top-right">
-                            <p class="services-one__top-text">We are committed to providing our customers with not
-                                service while offering our emod tempor incididunt ut labore employees the best
-                                training.</p>
+                            <p class="services-one__top-text">Kami berkomitmen memberikan layanan terbaik yang memenuhi kebutuhan Anda. Dengan fokus pada kepuasan pelanggan, kami hadir dengan solusi efisien dan tim berpengalaman.</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="services-one__bottom">
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
-                        <!--Services One Single-->
-                        <div class="services-one__single">
-                            <h3 class="services-one__title"><a href="mobile-application.html">Merchandise <br>
-                                    Gift</a></h3>
-                            <div class="services-one__icon">
-                                <span class="icon-online-shopping"></span>
+                    @foreach ($service as $item)
+                        @if ($loop->iteration <= 5)
+                            <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
+                                <!--Services One Single-->
+                                <div class="services-one__single">
+                                    <h3 class="services-one__title"><a href="{{ route('user-services', ['type' => $item->slug]) }}l">{{ $item->service_name }}</a></h3>
+                                    <div class="services-one__icon">
+                                        <span class="icon-online-shopping"></span>
+                                    </div>
+                                    <div class="services-one__count"></div>
+                                </div>
                             </div>
-                            <div class="services-one__count"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
-                        <!--Services One Single-->
-                        <div class="services-one__single">
-                            <h3 class="services-one__title"><a href="digital-marketing.html">Konveksi <br> Sablon</a></h3>
-                            <div class="services-one__icon">
-                                <span class="icon-growth"></span>
-                            </div>
-                            <div class="services-one__count"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
-                        <!--Services One Single-->
-                        <div class="services-one__single">
-                            <h3 class="services-one__title"><a href="graphic-designing.html">Design <br>
-                                    Studio</a></h3>
-                            <div class="services-one__icon">
-                                <span class="icon-webpage"></span>
-                            </div>
-                            <div class="services-one__count"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="400ms">
-                        <!--Services One Single-->
-                        <div class="services-one__single">
-                            <h3 class="services-one__title"><a href="website-development.html">Screen <br>
-                                    Printing</a></h3>
-                            <div class="services-one__icon">
-                                <span class="icon-front-end"></span>
-                            </div>
-                            <div class="services-one__count"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="500ms">
-                        <!--Services One Single-->
-                        <div class="services-one__single">
-                            <h3 class="services-one__title"><a href="social-marketing.html">Clothing <br>
-                                    Supplier</a></h3>
-                            <div class="services-one__icon">
-                                <span class="icon-bullhorn"></span>
-                            </div>
-                            <div class="services-one__count"></div>
-                        </div>
-                    </div>
+                        @endif
+                    @endforeach
                     <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="600ms">
                         <!--Services One Single-->
                         <div class="services-one__view-all">
@@ -222,7 +180,7 @@
     <!--Services One End-->
 
     <!--Welcome One Start-->
-    <section class="welcome-one">
+    {{-- <section class="welcome-one">
         <div class="welcome-one-shape wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms"><img
                 src="{{ asset('images/shapes/welcom-one-shape.png') }}" alt=""></div>
         <div class="container">
@@ -292,27 +250,6 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                        <div class="welcome-one__person">
-                                            <div class="welcome-one__person-img">
-                                                <img src="{{ asset('images/resources/welcome-one-person-img.jpg') }}"
-                                                    alt="">
-                                            </div>
-                                            <div class="welcome-one__person-sign">
-                                                <h3>J. Albert</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6">
-                                    <div class="welcome-one__bottom-right">
-                                        <div class="welcome-one__bottom-right-content">
-                                            <div class="welcome-one__bottom-right-icon">
-                                                <span class="icon-help"></span>
-                                            </div>
-                                            <h4 class="welcome-one__bottom-right-title">How Can mibooz Help Your
-                                                business to grow</h4>
-                                            <a href="about.html" class="thm-btn welcome-one__btn">read more</a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -321,7 +258,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--Welcome One End-->
 
     <!--Brand One Start-->
@@ -394,7 +331,7 @@
     <section class="design-studio">
         <div class="design-studio-bg-box">
             <div class="design-studio-bg jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
-                style="background-image: url(images/backgrounds/design-studio-bg.jpg)">
+                style="background-image: {{ isset($middleImage) ? 'url(storage/' . $middleImage[0]->file_path . ')' : 'url(images/backgrounds/page-header-bg.jpg)' }}">
 
             </div>
         </div>
@@ -431,29 +368,29 @@
                                 <div class="counter-one__icon">
                                     <span class="icon-recommend"></span>
                                 </div>
-                                <h3 class="odometer" data-count="578">00</h3>
-                                <p class="counter-one__text">Projects Completed</p>
+                                <h3 class="odometer" data-count="{{ $service->count() }}">00</h3>
+                                <p class="counter-one__text">Layanan</p>
                             </li>
                             <li class="counter-one__single wow fadeInUp" data-wow-delay="200ms">
                                 <div class="counter-one__icon">
                                     <span class="icon-recruit"></span>
                                 </div>
-                                <h3 class="odometer" data-count="56">00</h3>
-                                <p class="counter-one__text">Active Clients</p>
+                                <h3 class="odometer" data-count="{{ $project->count() }}">00</h3>
+                                <p class="counter-one__text">Project</p>
                             </li>
                             <li class="counter-one__single wow fadeInUp" data-wow-delay="300ms">
                                 <div class="counter-one__icon">
                                     <span class="icon-customer"></span>
                                 </div>
-                                <h3 class="odometer" data-count="763">00</h3>
-                                <p class="counter-one__text">Satisfied Clients</p>
+                                <h3 class="odometer" data-count="89">00</h3>
+                                <p class="counter-one__text">Pelanggan</p>
                             </li>
                             <li class="counter-one__single wow fadeInUp" data-wow-delay="400ms">
                                 <div class="counter-one__icon">
                                     <span class="icon-graphic-designer"></span>
                                 </div>
-                                <h3 class="odometer" data-count="36">00</h3>
-                                <p class="counter-one__text">Expert Teams</p>
+                                <h3 class="odometer" data-count="13">00</h3>
+                                <p class="counter-one__text">Team</p>
                             </li>
                         </ul>
                     </div>
@@ -469,13 +406,12 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="we-care__inner">
-                        <div class="we-care__img">
+                        {{-- <div class="we-care__img">
                             <img src="{{ asset('images/resources/we-care-img.jpg') }}" alt="">
-                        </div>
+                        </div> --}}
                         <div class="we-care__content">
                             <h3 class="we-care__title">We Care About Business Growths</h3>
-                            <p class="we-care__text">There are many variations of passages of Lorem Ipsum available,
-                                but the majority have suffered.</p>
+                            <p class="we-care__text">Dengan jasa kami, perkembangan bisnismu terjamin.</p>
                         </div>
                     </div>
                 </div>
@@ -488,98 +424,48 @@
     <section class="project-one">
         <div class="container">
             <div class="section-title text-center">
-                <span class="section-title__tagline">recent projects</span>
-                <h2 class="section-title__title">work showcase</h2>
+                <span class="section-title__tagline">Project Terbaru</span>
+                <h2 class="section-title__title">showcase</h2>
             </div>
-            <div class="row">
-                <div class="col-xl-12">
-                    <ul class="project-filter style1 post-filter has-dynamic-filters-counter list-unstyled">
-                        <li data-filter=".filter-item" class="active"><span class="filter-text">Semua</span></li>
-                        <li data-filter=".bra"><span class="filter-text">Konveksi</span></li>
-                        <li data-filter=".photo"><span class="filter-text">Design Studio</span></li>
-                        <li data-filter=".web"><span class="filter-text">Merchandise & Gift</span></li>
-                        <li data-filter=".app"><span class="filter-text last-pd-none">Clothing Suppliers</span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row filter-layout masonary-layout">
-                <div class="col-xl-4 col-lg-6 col-md-6 filter-item bra photo web">
-                    <!--Portfolio One Single-->
-                    <div class="project-one__single">
-                        <div class="project-one__img">
-                            <img src="{{ asset('images/resources/project-one-img-1.jpg') }}" alt="">
-                            <div class="project-one__hover">
-                                <p class="project-one__tagline">Graphic</p>
-                                <h3 class="project-one__title"><a href="project-details.html">Fimlor Experience</a>
-                                </h3>
-                            </div>
-                        </div>
+            @if (isset($project) && count($project) > 0)
+                <div class="row">
+                    <div class="col-xl-12">
+                        <ul class="project-filter style1 post-filter has-dynamic-filters-counter list-unstyled">
+                            <li data-filter=".filter-item" class="active"><span class="filter-text">Semua</span></li>
+                            @foreach ($service as $item)
+                                <li data-filter=".{{ $item->slug }}-slug"><span class="filter-text">{{ $item->service_name }}</span></li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 filter-item bra app web">
-                    <!--Portfolio One Single-->
-                    <div class="project-one__single">
-                        <div class="project-one__img">
-                            <img src="{{ asset('images/resources/project-one-img-2.jpg') }}" alt="">
-                            <div class="project-one__hover">
-                                <p class="project-one__tagline">Graphic</p>
-                                <h3 class="project-one__title"><a href="project-details.html">Fimlor Experience</a>
-                                </h3>
+                <div class="row filter-layout masonary-layout">
+                    @foreach ($project as $item)
+                        @if ($loop->iteration <= 6)
+                        <div class="col-xl-4 col-lg-6 col-md-6 filter-item {{ $item->service->slug }}-slug">
+                            <!--Portfolio One Single-->
+                            <div class="project-one__single">
+                                <div class="project-one__img">
+                                    <img src="{{ count($item->projectImage) > 0 ? asset('storage/' . $item->projectImage[0]->file_path) : asset('images/resources/project-one-img-1.jpg') }}" alt="">
+                                    <div class="project-one__hover">
+                                        <p class="project-one__tagline">{{ $item->company_name }}</p>
+                                        <h3 class="project-one__title"><a href="{{ route('user-project-detail', $item->slug) }}">{{ $item->project_name }}</a></h3>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        @endif
+                    @endforeach
+                </div>
+            @else
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p>Belum ada project yang ditambahkan.</p>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 filter-item bra web">
-                    <!--Portfolio One Single-->
-                    <div class="project-one__single">
-                        <div class="project-one__img">
-                            <img src="{{ asset('images/resources/project-one-img-3.jpg') }}" alt="">
-                            <div class="project-one__hover">
-                                <p class="project-one__tagline">Graphic</p>
-                                <h3 class="project-one__title"><a href="project-details.html">Fimlor Experience</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 filter-item bra photo web">
-                    <!--Portfolio One Single-->
-                    <div class="project-one__single">
-                        <div class="project-one__img">
-                            <img src="{{ asset('images/resources/project-one-img-4.jpg') }}" alt="">
-                            <div class="project-one__hover">
-                                <p class="project-one__tagline">Graphic</p>
-                                <h3 class="project-one__title"><a href="project-details.html">Fimlor Experience</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 filter-item bra web">
-                    <!--Portfolio One Single-->
-                    <div class="project-one__single">
-                        <div class="project-one__img">
-                            <img src="{{ asset('images/resources/project-one-img-5.jpg') }}" alt="">
-                            <div class="project-one__hover">
-                                <p class="project-one__tagline">Graphic</p>
-                                <h3 class="project-one__title"><a href="project-details.html">Fimlor Experience</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 filter-item app photo">
-                    <!--Portfolio One Single-->
-                    <div class="project-one__single">
-                        <div class="project-one__img">
-                            <img src="{{ asset('images/resources/project-one-img-6.jpg') }}" alt="">
-                            <div class="project-one__hover">
-                                <p class="project-one__tagline">Graphic</p>
-                                <h3 class="project-one__title"><a href="project-details.html">Fimlor Experience</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
+            @endif
+            <div class="row justify-content-center">
+                <div class="col-xl-12 d-flex align-items-center justify-content-center">
+                    <a href="{{ route('user-services') }}" class="thm-btn welcome-one__btn m-auto">Lihat selengkapnya..</a>
                 </div>
             </div>
         </div>
@@ -587,7 +473,7 @@
     <!--Project One End-->
 
     <!--Why Choose One Start-->
-    <section class="why-choose-one">
+    {{-- <section class="why-choose-one">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
@@ -664,7 +550,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--Why Choose One End-->
 
     <!--Testimonial One Start-->
@@ -679,51 +565,20 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="testimonial-one__carousel owl-theme owl-carousel">
-                        <!--Testimonial One Single-->
-                        <div class="testimonial-one__single">
-                            <div class="testimonial-one__content">
-                                <p class="testimonial-one__text">I was very impresed by the mibooz service and their
-                                    work of quality lorem ipsum is simply free text used by copy typing refreshing.
-                                    Neque porro est qui ipsum.</p>
-                            </div>
-                            <div class="testimonial-one__client-info">
-                                <div class="testimonial-one__client__img">
-                                    <img src="{{ asset('images/testimonial/testimonial-one-img-1.jpg') }}" alt="">
+                        @foreach ($testimoni as $item)
+                            <div class="testimonial-one__single">
+                                <div class="testimonial-one__content">
+                                    <p class="testimonial-one__text">{{ $item->description }}</p>
                                 </div>
-                                <h4 class="testimonial-one__name">Jessica Brown</h4>
-                                <p class="testimonial-one__title">Customer</p>
-                            </div>
-                        </div>
-                        <!--Testimonial One Single-->
-                        <div class="testimonial-one__single">
-                            <div class="testimonial-one__content">
-                                <p class="testimonial-one__text">I was very impresed by the mibooz service and their
-                                    work of quality lorem ipsum is simply free text used by copy typing refreshing.
-                                    Neque porro est qui ipsum.</p>
-                            </div>
-                            <div class="testimonial-one__client-info">
-                                <div class="testimonial-one__client__img">
-                                    <img src="{{ asset('images/testimonial/testimonial-one-img-1.jpg') }}" alt="">
+                                <div class="testimonial-one__client-info">
+                                    <div class="testimonial-one__client__img">
+                                        <img src="{{ asset('images/resources/user.png') }}" alt="">
+                                    </div>
+                                    <h4 class="testimonial-one__name">{{ $item->user->name }}</h4>
+                                    <p class="testimonial-one__title">Customer</p>
                                 </div>
-                                <h4 class="testimonial-one__name">kevin martin</h4>
-                                <p class="testimonial-one__title">Customer</p>
                             </div>
-                        </div>
-                        <!--Testimonial One Single-->
-                        <div class="testimonial-one__single">
-                            <div class="testimonial-one__content">
-                                <p class="testimonial-one__text">I was very impresed by the mibooz service and their
-                                    work of quality lorem ipsum is simply free text used by copy typing refreshing.
-                                    Neque porro est qui ipsum.</p>
-                            </div>
-                            <div class="testimonial-one__client-info">
-                                <div class="testimonial-one__client__img">
-                                    <img src="{{ asset('images/testimonial/testimonial-one-img-1.jpg') }}" alt="">
-                                </div>
-                                <h4 class="testimonial-one__name">sarah rose</h4>
-                                <p class="testimonial-one__title">Customer</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -744,11 +599,11 @@
                                 <span class="icon-consulting"></span>
                             </div>
                             <div class="cta-one__title-box">
-                                <h2 class="cta-one__title">we’re delivering the best <br> customer experience</h2>
+                                <h2 class="cta-one__title">kami menawarkan <br> pengalaman terbaik</h2>
                             </div>
                         </div>
                         <div class="cta-one__right">
-                            <a href="contact.html" class="thm-btn cta-one__btn">let’s get started</a>
+                            <a href="{{ route('user-contact') }}" class="thm-btn cta-one__btn">let’s get started</a>
                         </div>
                     </div>
                 </div>
@@ -758,7 +613,7 @@
     <!--CTA One End-->
 
     <!--Best Agency Start-->
-    <section class="best-agency">
+    <section class="best-agency about-page-best-agency">
         <div class="best-agency-shape" style="background-image: url(assets/images/shapes/best-agency-shape.png)">
         </div>
         <div class="container">
@@ -766,8 +621,8 @@
                 <div class="col-xl-6 col-lg-6">
                     <div class="best-agency__left">
                         <div class="section-title text-left">
-                            <span class="section-title__tagline">best creative agency</span>
-                            <h2 class="section-title__title">Our Agency all soltutions</h2>
+                            <span class="section-title__tagline">Agency Creative Terbaik</span>
+                            <h2 class="section-title__title">Agency Kami adalah solusi dari semuanya!</h2>
                         </div>
                         <ul class="list-unstyled best-agency__points">
                             <li>
@@ -775,7 +630,7 @@
                                     <span class="icon-check"></span>
                                 </div>
                                 <div class="text">
-                                    <p>Reliable and Proven</p>
+                                    <p>Terpercaya</p>
                                 </div>
                             </li>
                             <li>
@@ -783,7 +638,7 @@
                                     <span class="icon-check"></span>
                                 </div>
                                 <div class="text">
-                                    <p>Best Team Members</p>
+                                    <p>Terjamin</p>
                                 </div>
                             </li>
                         </ul>
@@ -792,9 +647,7 @@
                                 <span class="icon-social-media"></span>
                             </div>
                             <div class="best-agency__experience-text-box">
-                                <p class="best-agency__experience-text">We have <span>30+</span> years of
-                                    experiences for give
-                                    you <br> better quality results.</p>
+                                <p class="best-agency__experience-text">Kami sudah berpengalaman lebih dari 5 tahun.</p>
                             </div>
                         </div>
                     </div>
@@ -804,37 +657,31 @@
                         <div class="accrodion-grp" data-grp-name="faq-one-accrodion">
                             <div class="accrodion active">
                                 <div class="accrodion-title">
-                                    <h4>We Help to Create Visual Strategies</h4>
+                                    <h4>Apa itu sebuah creative agency?</h4>
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>There are many variations of passages the majority have suffered
-                                            alteration in some fo injected humour, or randomised words believable.
-                                        </p>
+                                        <p>Creative agency adalah perusahaan atau tim profesional yang menyediakan layanan kreatif seperti desain grafis, pemasaran kreatif, produksi video, dan sebagainya.</p>
                                     </div><!-- /.inner -->
                                 </div>
                             </div>
                             <div class="accrodion">
                                 <div class="accrodion-title">
-                                    <h4>Motion Graphics & Animations</h4>
+                                    <h4>Bagaimana proses kerja antara klien dan Larva?</h4>
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>There are many variations of passages the majority have suffered
-                                            alteration in some fo injected humour, or randomised words believable.
-                                        </p>
+                                        <p>Proses kerja biasanya melibatkan pertemuan awal untuk menetapkan tujuan, perencanaan strategis, tahap desain atau produksi, revisi berdasarkan umpan balik, dan akhirnya, implementasi proyek.</p>
                                     </div><!-- /.inner -->
                                 </div>
                             </div>
                             <div class="accrodion last-chiled">
                                 <div class="accrodion-title">
-                                    <h4>We Help to Achieve Mutual Goals</h4>
+                                    <h4>Berapa biaya yang terkait dengan menggunakan jasa dari Larva?</h4>
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>There are many variations of passages the majority have suffered
-                                            alteration in some fo injected humour, or randomised words believable.
-                                        </p>
+                                        <p>Biaya bisa bervariasi tergantung pada lingkup proyek, tingkat kesulitan, dan tingkat keahlian yang diperlukan. Sebaiknya diskusikan secara terperinci dengan Larva untuk mendapatkan perkiraan biaya yang akurat.</p>
                                     </div><!-- /.inner -->
                                 </div>
                             </div>
@@ -845,103 +692,6 @@
         </div>
     </section>
     <!--Best Agency End-->
-
-    <!--Blog One Start-->
-    <section class="blog-one">
-        <div class="container">
-            <div class="section-title text-center">
-                <span class="section-title__tagline">directly from the blog</span>
-                <h2 class="section-title__title">What’s happening?</h2>
-            </div>
-            <div class="row">
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
-                    <!--Blog One Single-->
-                    <div class="blog-one__single">
-                        <div class="blog-one__img">
-                            <img src="{{ asset('images/blog/blog-one-img-1.jpg') }}" alt="">
-                            <a href="blog-details.html">
-                                <span class="blog-one__plus"></span>
-                            </a>
-                            <div class="blog-one__date">
-                                <p>26 aug</p>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <ul class="list-unstyled blog-one__meta">
-                                <li><a href="blog-details.html"><i class="far fa-user-circle"></i> By admin</a></li>
-                                <li><span>/</span></li>
-                                <li><a href="blog-details.html"><i class="far fa-comments"></i> 2 Comments</a>
-                                </li>
-                            </ul>
-                            <h3 class="blog-one__title">
-                                <a href="blog-details.html">How much does a website cost to build</a>
-                            </h3>
-                            <div class="blog-one__read-btn">
-                                <a href="blog-details.html">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="400ms">
-                    <!--Blog One Single-->
-                    <div class="blog-one__single">
-                        <div class="blog-one__img">
-                            <img src="{{ asset('images/blog/blog-one-img-1.jpg') }}" alt="">
-                            <a href="blog-details.html">
-                                <span class="blog-one__plus"></span>
-                            </a>
-                            <div class="blog-one__date">
-                                <p>26 aug</p>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <ul class="list-unstyled blog-one__meta">
-                                <li><a href="blog-details.html"><i class="far fa-user-circle"></i> By admin</a></li>
-                                <li><span>/</span></li>
-                                <li><a href="blog-details.html"><i class="far fa-comments"></i> 2 Comments</a>
-                                </li>
-                            </ul>
-                            <h3 class="blog-one__title">
-                                <a href="blog-details.html">Uniquely enable accurate supply chains</a>
-                            </h3>
-                            <div class="blog-one__read-btn">
-                                <a href="blog-details.html">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="600ms">
-                    <!--Blog One Single-->
-                    <div class="blog-one__single">
-                        <div class="blog-one__img">
-                            <img src="{{ asset('images/blog/blog-one-img-1.jpg') }}" alt="">
-                            <a href="blog-details.html">
-                                <span class="blog-one__plus"></span>
-                            </a>
-                            <div class="blog-one__date">
-                                <p>26 aug</p>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <ul class="list-unstyled blog-one__meta">
-                                <li><a href="blog-details.html"><i class="far fa-user-circle"></i> By admin</a></li>
-                                <li><span>/</span></li>
-                                <li><a href="blog-details.html"><i class="far fa-comments"></i> 2 Comments</a>
-                                </li>
-                            </ul>
-                            <h3 class="blog-one__title">
-                                <a href="blog-details.html">task researched data enterprise process</a>
-                            </h3>
-                            <div class="blog-one__read-btn">
-                                <a href="blog-details.html">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Blog One End-->
 
     <!--Google Map Start-->
     <section class="google-map">
