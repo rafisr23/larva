@@ -465,7 +465,7 @@
             @endif
             <div class="row justify-content-center">
                 <div class="col-xl-12 d-flex align-items-center justify-content-center">
-                    <a href="{{ route('user-services') }}" class="thm-btn welcome-one__btn m-auto">Lihat selengkapnya..</a>
+                    <a href="{{ route('user-projects') }}" class="thm-btn welcome-one__btn m-auto">Lihat selengkapnya..</a>
                 </div>
             </div>
         </div>
@@ -559,8 +559,8 @@
             style="background-image: url(images/shapes/testimonial-one-map.png)"></div>
         <div class="container">
             <div class="section-title text-center">
-                <span class="section-title__tagline">our customer feedbacks</span>
-                <h2 class="section-title__title">What they’re saying</h2>
+                <span class="section-title__tagline">testimoni pelanggan</span>
+                <h2 class="section-title__title">Apa kata mereka?</h2>
             </div>
             <div class="row">
                 <div class="col-xl-12">

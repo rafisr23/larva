@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="{{ asset('css/mibooz.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/mibooz-responsive.css') }}" />
     <!-- css assets end-->
+    
 </head>
 
 <body>
@@ -82,7 +83,14 @@
     </div>
     <!-- /.search-popup -->
 
-    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+    {{-- <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-comments"></i></a> --}}
+
+    {{-- <div class="shortcut-chat p-3 ">
+        <button class="btn btn-dark fs-3 rounded-circle">
+            <i class="fa fa-comments"></i>
+        </button>
+    </div> --}}
+    {{-- <a href="#" data-target="html" class="scroll-to-target scroll-to-top mb-5"><i class="fa fa-angle-up"></i></a> --}}
 
 
     <script src="{{ asset('vendors-mibooz/jquery/jquery-3.6.0.min.js') }}"></script>
@@ -108,6 +116,8 @@
     <script src="{{ asset('vendors-mibooz/jquery-tilt/tilt.jquery.min.js') }}"></script>
     <!-- template js -->
     <script src="{{ asset('js/mibooz.js') }}"></script>
+
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="3b52e7ac-1d86-4664-9299-3c12586ff683";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </body>
 
 </html>
