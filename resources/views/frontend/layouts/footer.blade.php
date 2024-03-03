@@ -6,14 +6,14 @@
             <div class="site-footer__top-inner">
                 <div class="site-footer__top-left">
                     <h3 class="site-footer__top-left-title">Your Perfect Business Partner Solution</h3>
-                    <a href="tel:6281234501305" class="site-footer__top-left-phone">{{ $contact->phone }}</a>
+                    <a href="https://wa.me/{{ $contact->phone }}" class="site-footer__top-left-phone">{{ $contact->phone }}</a>
                 </div>
                 <div class="site-footer__top-right">
                     <div class="site-footer__top-right-social">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        {{-- <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a> --}}
+                        <a href="https://www.instagram.com/larvacreative.id/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                             <h4 class="footer-widget__contact-email-phone">
                                 <a href="mailto:{{ $contact->email }}"
                                     class="footer-widget__contact-email">{{ $contact->email }}</a>
-                                <a href="tel:926668880000" class="footer-widget__contact-phone">{{ $contact->phone }}</a>
+                                <a href="https://wa.me/{{ $contact->phone }}" class="footer-widget__contact-phone">{{ $contact->phone }}</a>
                             </h4>
                         </div>
                     </div>
@@ -38,20 +38,20 @@
                         <div class="footer-widget__column footer-widget__links clearfix">
                             <h3 class="footer-widget__title">Links</h3>
                             <ul class="footer-widget__links-list list-unstyled clearfix">
-                                <li><a href="{{ route('user-services') }}">Our Services</a></li>
-                                {{-- <li><a href="team.html">Meet Our Team</a></li> --}}
-                                <li><a href="{{ route('user-projects') }}">Our Portfolio</a></li>
-                                <li><a href="{{ route('user-contact') }}">Contact</a></li>
+                                <li><a href="{{ route('user-about') }}">Tentang Kami</a></li>
+                                <li><a href="{{ route('user-services') }}">Layanan Kami</a></li>
+                                <li><a href="{{ route('user-projects') }}">Project Kami</a></li>
+                                <li><a href="{{ route('user-contact') }}">Kontak</a></li>
                                 {{-- <li><a href="blog.html">News</a></li> --}}
                             </ul>
-                            <ul
+                            {{-- <ul
                                 class="footer-widget__links-list footer-widget__links-list-two list-unstyled clearfix">
                                 <li><a href="#">FAQs</a></li>
                                 <li><a href="#">Terms & Conditions</a></li>
                                 <li><a href="#">Privacy Policy</a></li>
                                 <li><a href="#">Help</a></li>
                                 <li><a href="{{ route('user-services') }}">Services</a></li>
-                            </ul>
+                            </ul> --}}
                         </div>
                     </div>
                     {{-- <div class="col-xl-5 col-lg-4 wow fadeInUp" data-wow-delay="300ms">

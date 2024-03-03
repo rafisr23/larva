@@ -8,10 +8,10 @@
         <div class="container">
             <div class="page-header__inner">
                 <ul class="thm-breadcrumb list-unstyled">
-                    <li><a href="{{ route('user-index') }}">Home</a></li>
-                    <li>Contact</li>
+                    <li><a href="{{ route('user-index') }}">Beranda</a></li>
+                    <li>Kontak</li>
                 </ul>
-                <h2>Contact</h2>
+                <h2>Kontak</h2>
             </div>
         </div>
     </section>
@@ -34,7 +34,7 @@
                     <div class="location__single location__single-last">
                         <h3 class="location__title">contact</h3>
                         <h5 class="location__phone-email">
-                            <a href="tel:{{ $contact->phone }}" class="location__phone">{{ $contact->phone }}</a>
+                            <a href="https://wa.me/{{ $contact->phone }}" class="location__phone">{{ $contact->phone }}</a>
                             <a href="mailto:{{ $contact->email }}" class="location__email">{{ $contact->email }}</a>
                         </h5>
                         {{-- <div class="location__social">
@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="contact-page__form">
-                        <form action="assets/inc/sendemail.php" class="comment-one__form contact-form-validated" novalidate="novalidate">
+                        <form action="#" class="comment-one__form contact-form-validated" novalidate="novalidate">
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="comment-form__input-box">

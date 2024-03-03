@@ -51,7 +51,7 @@
 							<h2 class="service-details__need-help-title">Best Quality <br> services</h2>
 							<div class="service-details__need-help-contact">
 								<p>Hubungi Kami Kapan Saja</p>
-								<a href="tel:{{ $contact->phone }}">{{ $contact->phone }}</a>
+								<a href="https://wa.me/{{ $contact->phone }}">{{ $contact->phone }}</a>
 							</div>
 						</div>
 					</div>
@@ -65,6 +65,15 @@
 							<h3 class="service-details__title">{{ $service->service_name }}</h3>
 							<p class="service-details__text">{!! $service->description !!}</p>
 						</div>
+						<div class="row">
+							@foreach ($service->serviceImage as $item)
+								<div class="col-xl-3">
+									<div class="project-detail-img">
+										<img src="{{ asset('storage/' . $item->file_path) }}" alt="">
+									</div>
+								</div>
+							@endforeach
+						</div>
                         <h4 class="service-details__benefits-title mt-5">Range Harga</h4>
 						<ul class="service-details__points list-unstyled mt-2">
 							<li>
@@ -76,7 +85,7 @@
 								{{-- <div class="service-details__points-count"></div> --}}
 							</li>
 						</ul>
-						<div class="service-details__benefits">
+						{{-- <div class="service-details__benefits">
 							<div class="row">
 								<div class="col-xl-6">
 									<div class="service-details__benefits-content">
@@ -124,7 +133,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 						{{-- <div class="service-details__faq">
 							<div class="accrodion-grp" data-grp-name="faq-one-accrodion">
 								<div class="accrodion active">

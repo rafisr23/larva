@@ -8,7 +8,7 @@
         <div class="container">
             <div class="page-header__inner">
                 <ul class="thm-breadcrumb list-unstyled">
-                    <li><a href="{{ route('user-index') }}">Home</a></li>
+                    <li><a href="{{ route('user-index') }}">Beranda</a></li>
                     <li>projects</li>
                 </ul>
                 <h2>projects</h2>

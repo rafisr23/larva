@@ -24,9 +24,9 @@
                     </div>
                     <!-- /.image-layer -->
                     <div class="main-slider__social">
-                        <a href="#">facebook</a>
-                        <a href="#">twitter</a>
-                        <a href="#">instagram</a>
+                        {{-- <a href="#">facebook</a> --}}
+                        {{-- <a href="#">twitter</a> --}}
+                        <a href="https://www.instagram.com/larvacreative.id/">instagram</a>
                     </div>
                     <div class="container">
                         <div class="row">
@@ -38,7 +38,7 @@
                                             <h2>Creative <br> Talent <br> Here</h2>
                                         </div>
                                     </div>
-                                    <a href="about.html" class="thm-btn">About Us</a>
+                                    <a href="{{ route('user-about') }}" class="thm-btn">Tentang Kami</a>
                                     <div class="main-slider-badge">
                                         <img data-tilt src="{{ asset('images/resources/main-slider-badge.png') }}" alt="">
                                     </div>
@@ -53,9 +53,9 @@
                     </div>
                     <!-- /.image-layer -->
                     <div class="main-slider__social">
-                        <a href="#">facebook</a>
-                        <a href="#">twitter</a>
-                        <a href="#">instagram</a>
+                        {{-- <a href="#">facebook</a> --}}
+                        {{-- <a href="#">twitter</a> --}}
+                        <a href="https://www.instagram.com/larvacreative.id/">instagram</a>
                     </div>
                     <div class="container">
                         <div class="row">
@@ -67,7 +67,7 @@
                                             <h2>Creative <br> Talent <br> Here</h2>
                                         </div> --}}
                                     </div>
-                                    <a href="about.html" class="thm-btn">About Us</a>
+                                    <a href="{{ route('user-about') }}" class="thm-btn">Tentang Kami</a>
                                     <div class="main-slider-badge">
                                         <img data-tilt src="{{ asset('images/resources/main-slider-badge.png') }}" alt="">
                                     </div>
@@ -83,9 +83,9 @@
                     </div>
                     <!-- /.image-layer -->
                     <div class="main-slider__social">
-                        <a href="#">facebook</a>
-                        <a href="#">twitter</a>
-                        <a href="#">instagram</a>
+                        {{-- <a href="#">facebook</a> --}}
+                        {{-- <a href="#">twitter</a> --}}
+                        <a href="https://www.instagram.com/larvacreative.id/">instagram</a>
                     </div>
                     <div class="container">
                         <div class="row">
@@ -97,7 +97,7 @@
                                             <h2>Creative <br> Talent <br> Here</h2>
                                         </div> --}}
                                     </div>
-                                    <a href="about.html" class="thm-btn">About Us</a>
+                                    <a href="{{ route('user-about') }}" class="thm-btn">Tentang Kami</a>
                                     <div class="main-slider-badge">
                                         <img data-tilt src="{{ asset('images/resources/main-slider-badge.png') }}" alt="">
                                     </div>
@@ -152,7 +152,7 @@
                             <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
                                 <!--Services One Single-->
                                 <div class="services-one__single">
-                                    <h3 class="services-one__title"><a href="{{ route('user-services', ['type' => $item->slug]) }}l">{{ $item->service_name }}</a></h3>
+                                    <h3 class="services-one__title"><a href="{{ route('user-services', ['type' => $item->slug]) }}">{{ $item->service_name }}</a></h3>
                                     <div class="services-one__icon">
                                         <span class="icon-online-shopping"></span>
                                     </div>
@@ -165,8 +165,7 @@
                         <!--Services One Single-->
                         <div class="services-one__view-all">
                             <div class="services-one__view-all-title-box">
-                                <h3 class="services-one__view-all-title"><a href="services.html">View our <br> all
-                                        services</a></h3>
+                                <h3 class="services-one__view-all-title"><a href="{{ route('user-services') }}">View our <br> all services</a></h3>
                             </div>
                             <div class="services-one__view-all-arrow">
                                 <a href="services.html"><span class="icon-arrow-right"></span></a>
@@ -575,7 +574,7 @@
                                         <img src="{{ asset('images/resources/user.png') }}" alt="">
                                     </div>
                                     <h4 class="testimonial-one__name">{{ $item->user->name }}</h4>
-                                    <p class="testimonial-one__title">Customer</p>
+                                    <p class="testimonial-one__title">Pelanggan</p>
                                 </div>
                             </div>
                         @endforeach

@@ -1353,7 +1353,7 @@ ul {
 .main-slider__social {
     position: absolute;
     bottom: 400px;
-    left: -57px;
+    left: 57px;
     z-index: 100;
     display: flex;
     align-items: center;

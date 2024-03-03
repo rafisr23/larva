@@ -36,7 +36,7 @@
                                     <div class="services-three_icon">
                                         <span class="icon-online-shopping"></span>
                                     </div>
-                                    <h3 class="services-three__title"><a href="mobile-application.html">{{ $item->service_name }}</a></h3>
+                                    <h3 class="services-three__title"><a href="{{ route('user-services', ['type' => $item->slug]) }}">{{ $item->service_name }}</a></h3>
                                     <p class="services-three__text">{{ $item->tagline }}</p>
                                     <div class="services-three__btn-box">
                                         <a href="{{ route('user-services', ['type' => $item->slug]) }}" class="services-three__btn">Read More</a>
@@ -148,7 +148,7 @@
                         <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
                             <!--Services One Single-->
                             <div class="services-one__single">
-                                <h3 class="services-one__title"><a href="{{ route('user-services', ['type' => $item->slug]) }}l">{{ $item->service_name }}</a></h3>
+                                <h3 class="services-one__title"><a href="{{ route('user-services', ['type' => $item->slug]) }}">{{ $item->service_name }}</a></h3>
                                 <div class="services-one__icon">
                                     <span class="icon-online-shopping"></span>
                                 </div>
