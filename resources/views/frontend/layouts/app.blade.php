@@ -66,7 +66,8 @@
             window.CRISP_TOKEN_ID = "{{ Auth::user()->uuid ?? '' }}";
             // window.$crisp.push(["set", "user:email", "{{ Auth::user()->email }}"]);
             (function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
-            // $crisp.push(["do", "session:reset"]);
+            $crisp.push(["set", "user:email", ["{{ Auth::user()->email }}"]]);
+            $crisp.push(["set", "user:nickname", ["{{ Auth::user()->name }}"]]);
         @endif
     </script>
     
