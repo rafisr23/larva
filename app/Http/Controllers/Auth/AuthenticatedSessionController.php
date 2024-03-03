@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Ramsey\Uuid\Uuid;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,6 +29,14 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        // check if user exist
+        if (!auth()->user()->uuid) {
+            $uuid = Uuid::uuid4();
+            auth()->user()->update([
+                'uuid' => $uuid
+            ]);
+        }
 
         if (auth()->user()->hasRole('superadmin|admin')) {
             return redirect()->route('admin.dashboard.index');

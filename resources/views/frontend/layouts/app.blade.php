@@ -18,6 +18,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Federo&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
+    {{-- meta tag for SEO --}}
+    <meta name="application-name" content="Larva Creative Industry" />
+    <meta name="description" content="Larva Creative Industry adalah perusahaan jasa yang berlokasi di Bandung, Indonesia. Kami spesialis dalam pembuatan merchandise and gift, konveksi sablon, design studio, screen printing, clothing supplier, dan layanan web development. Keunggulan kami meliputi pelayanan murah, cepat, terpercaya, terjamin, dengan kualitas terbaik. Dapatkan harga bersaing dari kami yang ramah dan berkomitmen memberikan solusi terbaik untuk kebutuhan kreatif Anda." />
+    <meta name="keywords" content="Larva Creative Industry, Perusahaan Jasa, Bandung, Indonesia, Pembuatan merchandise, gift, konveksi sablon, design studio, screen printing, clothing supplier, web development, murah, cepat, terpercaya, terjamin, kualitas terbaik, harga bersaing, ramah" />
+    <meta name="author" content="Larva Creative Industry" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Indonesia" />
+    <meta name="web_author" content="Larva Creative Industry" />
+    <meta name="distribution" content="global" />
+    <meta name="apple-mobile-web-app-title" content="Larva Creative Industry" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="HandheldFriendly" content="True" />
+
     <link rel="stylesheet" href="{{ asset('vendors-mibooz/bootstrap/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('vendors-mibooz/animate/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('vendors-mibooz/animate/custom-animate.css') }}" />
@@ -41,6 +56,19 @@
     <link rel="stylesheet" href="{{ asset('css/mibooz.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/mibooz-responsive.css') }}" />
     <!-- css assets end-->
+
+    <!-- crisp -->
+    <script type="text/javascript">
+        window.$crisp=[];
+        window.CRISP_WEBSITE_ID="b204ec33-0744-4a99-8df2-4cd346fc30eb";
+
+        @if (Auth::check())
+            window.CRISP_TOKEN_ID = "{{ Auth::user()->uuid ?? '' }}";
+            // window.$crisp.push(["set", "user:email", "{{ Auth::user()->email }}"]);
+            (function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
+            // $crisp.push(["do", "session:reset"]);
+        @endif
+    </script>
     
 </head>
 
@@ -83,13 +111,20 @@
     </div>
     <!-- /.search-popup -->
 
-    {{-- <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-comments"></i></a> --}}
 
-    {{-- <div class="shortcut-chat p-3 ">
-        <button class="btn btn-dark fs-3 rounded-circle">
-            <i class="fa fa-comments"></i>
-        </button>
-    </div> --}}
+    @if (!Auth::check())
+        {{-- Chat --}}
+        <div class="shortcut-chat p-3 ">
+            <button onclick="window.location.href='/login';" id="btn-chat" class="btn btn-dark fs-3 rounded-circle" style="width: 60px; height:60px">
+                {{-- <span class="cc-ci26 cc-4yys" style="background-image: url(&quot;https://image.crisp.chat/avatar/operator/f71c5580-d2c8-445e-b18b-65f8c4dfe65a/240/?1708939348972&quot;) !important;"></span><button --}}
+                {{-- <i class="fa fa-comments"></i> --}}
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16"><path fill="currentColor" d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/></svg>
+                {{-- <span class="cc-imbb cc-qfnu" data-has-unread="false"><span data-id="chat_opened" class="cc-11f2" data-is-ongoing="false"><span class="cc-15e7"><span class="cc-1d2k cc-18ij"><span class="cc-ci26 cc-4yys" style="background-image: url(&quot;https://image.crisp.chat/avatar/operator/f71c5580-d2c8-445e-b18b-65f8c4dfe65a/240/?1708939348972&quot;) !important;"></span></span></span><span class="cc-1ygf"></span><!--v-if--></span></span> --}}
+            </button>
+        </div>
+
+    @endif
+
     {{-- <a href="#" data-target="html" class="scroll-to-target scroll-to-top mb-5"><i class="fa fa-angle-up"></i></a> --}}
 
 
@@ -117,7 +152,8 @@
     <!-- template js -->
     <script src="{{ asset('js/mibooz.js') }}"></script>
 
-    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="3b52e7ac-1d86-4664-9299-3c12586ff683";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <!-- crisp config-->
+    <script src="{{ asset('js/crisp-config.js') }}"></script>
 </body>
 
 </html>

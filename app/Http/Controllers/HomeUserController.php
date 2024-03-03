@@ -10,12 +10,17 @@ use App\Models\Testimoni;
 use Illuminate\Http\Request;
 use App\Models\HeaderPageImage;
 use App\Models\PageImageCategory;
+use Ramsey\Uuid\Uuid;
 
 class HomeUserController extends Controller
 {
-    public function index()
+    public function index() 
     {
         $contact = Contact::first();
+
+        $uuid = Uuid::uuid4();
+
+        // return $uuid;
 
         $categoryImage = PageImageCategory::where('category_name', 'home-middle')->first();
         $middleImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();

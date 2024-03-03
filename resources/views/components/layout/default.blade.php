@@ -4,12 +4,27 @@
 <head>
     <meta charset='utf-8' />
     <meta http-equiv='X-UA-Compatible' content='IE=edge' />
-    <title>{{ $title ?? 'VRISTO - Multipurpose Tailwind Dashboard Template' }}</title>
+    <title>{{ $title ?? 'VRISTO - Larva Creative Industry' }}</title>
 
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link rel="icon" type="image/svg" href="{{ asset('images/larva-logo.png') }}" />
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    {{-- meta tag for SEO --}}
+    <meta name="application-name" content="Larva Creative Industry" />
+    <meta name="description" content="Larva Creative Industry adalah perusahaan jasa yang berlokasi di Bandung, Indonesia. Kami spesialis dalam pembuatan merchandise and gift, konveksi sablon, design studio, screen printing, clothing supplier, dan layanan web development. Keunggulan kami meliputi pelayanan murah, cepat, terpercaya, terjamin, dengan kualitas terbaik. Dapatkan harga bersaing dari kami yang ramah dan berkomitmen memberikan solusi terbaik untuk kebutuhan kreatif Anda." />
+    <meta name="keywords" content="Larva Creative Industry, Perusahaan Jasa, Bandung, Indonesia, Pembuatan merchandise, gift, konveksi sablon, design studio, screen printing, clothing supplier, web development, murah, cepat, terpercaya, terjamin, kualitas terbaik, harga bersaing, ramah" />
+    <meta name="author" content="Larva Creative Industry" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Indonesia" />
+    <meta name="web_author" content="Larva Creative Industry" />
+    <meta name="distribution" content="global" />
+    <meta name="apple-mobile-web-app-title" content="Larva Creative Industry" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="HandheldFriendly" content="True" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

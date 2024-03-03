@@ -8574,8 +8574,12 @@ ul {
 
 .shortcut-chat {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 5px;
+    right: 5px;
     z-index: 1000;
 }
-  
+
+#btn-chat {
+    /* rotate */
+    transform: rotate(-5deg);
+}
