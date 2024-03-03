@@ -42,8 +42,7 @@
 							</ul>
 						</div> --}}
 						<div class="service-details__need-help">
-							<div class="service-details__need-help-bg"
-								style="background-image: url(assets/images/backgrounds/service-details-need-help-bg.jpg)">
+							<div class="service-details__need-help-bg">
 							</div>
 							<div class="service-details__need-help-icon">
 								<span class="icon-phone-call"></span>

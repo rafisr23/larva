@@ -51,7 +51,7 @@
 						</div>
 						<div class="!mt-8 flex">
 							<a href="{{ route('admin.partner.index') }}" class="btn btn-warning me-1">Back</a>
-							<button type="submit" class="btn btn-primary ">Save</button>
+							<button type="submit" class="btn btn-primary ">Save Changes</button>
 						</div>
 					</form>
 				</div>
@@ -83,13 +83,13 @@
 			}
 		}
 
-		document.addEventListener("DOMContentLoaded", function(e) {
-			// seachable 
-			var options = {
-				searchable: true,
-				placeholder: 'Select Service',
-			};
-			NiceSelect.bind(document.getElementById("seachable-select"), options);
-		});
+		// document.addEventListener("DOMContentLoaded", function(e) {
+		// 	// seachable 
+		// 	var options = {
+		// 		searchable: true,
+		// 		placeholder: 'Select Service',
+		// 	};
+		// 	NiceSelect.bind(document.getElementById("seachable-select"), options);
+		// });
 	</script>
 </x-layout.default>

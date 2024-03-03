@@ -105,7 +105,7 @@
                         <div class="col-xl-6 col-lg-6 wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
                             <!--Two Boxes Single-->
                             <div class="two-boxes__single">
-                                <div class="two-boxes__bg" style="background-image: url(assets/images/backgrounds/two-boxes-bg-1.jpg)"></div>
+                                <div class="two-boxes__bg" style="background-image: {{ isset($item->serviceImage[0]) ? asset('storage/' . $item->serviceImage[0]->file_path) : 'url(images/backgrounds/two-boxes-bg-1.jpg)'}}"></div>
                                 <p class="two-boxes__tagline">{{ $item->service_name }}</p>
                                 <h4 class="two-boxes__title">{!! $item->description !!}</h4>
                                 <div class="two-boxes__arrow">
@@ -122,7 +122,7 @@
 
     <!--Services One Start-->
     <section class="services-one">
-        <div class="services-one-shape" style="background-image: url(assets/images/shapes/services-one-shape.png)">
+        <div class="services-one-shape" style="background-image: url(images/shapes/services-one-shape.png)">
         </div>
         <div class="container">
             <div class="services-one__top">

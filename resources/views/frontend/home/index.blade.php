@@ -613,7 +613,7 @@
 
     <!--Best Agency Start-->
     <section class="best-agency about-page-best-agency">
-        <div class="best-agency-shape" style="background-image: url(assets/images/shapes/best-agency-shape.png)">
+        <div class="best-agency-shape">
         </div>
         <div class="container">
             <div class="row">

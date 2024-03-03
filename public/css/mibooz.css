@@ -4908,6 +4908,7 @@ ul {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    object-fit: cover;
     background-color: var(--mibooz-black);
     background-blend-mode: luminosity;
     opacity: 0.30;

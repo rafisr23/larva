@@ -70,7 +70,7 @@
                                             </div>
                                             <div class="flex justify-end items-center mt-8">
                                                 <button type="button" class="btn btn-outline-danger" @click="toggle">Discard</button>
-                                                <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">Save</button>
+                                                <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">Save Changes</button>
                                             </div>
                                         </form>
                                     </div>

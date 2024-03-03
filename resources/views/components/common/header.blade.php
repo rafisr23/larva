@@ -76,7 +76,7 @@
                     </a>
                 </div>
 
-                <div class="dropdown" x-data="dropdown" @click.outside="open = false">
+                {{-- <div class="dropdown" x-data="dropdown" @click.outside="open = false">
                     <a href="javascript:;"
                         class="block p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60"
                         @click="toggle">
@@ -161,7 +161,7 @@
                             </li>
                         </template>
                     </ul>
-                </div>
+                </div> --}}
                 <div class="dropdown flex-shrink-0" x-data="dropdown" @click.outside="open = false">
                     <a href="javascript:;" class="relative group" @click="toggle()">
                         <span><img class="w-9 h-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
@@ -184,7 +184,7 @@
                             </div>
                         </li>
                         <li>
-                            <a href="/users/profile" class="dark:hover:text-white" @click="toggle">
+                            <a href="#" class="dark:hover:text-white" @click="toggle">
                                 <svg class="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0" width="18" height="18"
                                     viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="6" r="4" stroke="currentColor"

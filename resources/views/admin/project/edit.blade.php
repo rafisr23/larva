@@ -105,8 +105,8 @@
                             </label>
                         </div>
                         <div class="!mt-8 flex">
-                            <a href="{{ route('admin.project.index') }}" class="btn btn-warning w-24 me-1">Back</a>
-                            <button type="submit" class="btn btn-primary ">Save</button>
+                            <a href="{{ route('admin.project.index') }}" class="btn btn-warning me-1">Back</a>
+                            <button type="submit" class="btn btn-primary ">Save Changes</button>
                         </div>
                     </form>
                 </div>

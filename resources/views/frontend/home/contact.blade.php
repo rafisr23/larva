@@ -19,9 +19,9 @@
 
     <!--Location Start-->
     <section class="location">
-        <div class="location-shape" style="background-image: url(assets/images/shapes/location-shape.png)"></div>
+        <div class="location-shape"></div>
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-xl-6 col-lg-6 align-items-center">
                     <!--Location Single-->
                     <div class="location__single">
