@@ -38,6 +38,10 @@
     <script defer src="/js/popper.min.js"></script>
     <script defer src="/js/tippy-bundle.umd.min.js"></script>
     <script defer src="/js/sweetalert.min.js"></script>
+
+    {{-- css --}}
+    <link rel="stylesheet" type="text/css" href="/css/app.css" />
+
     @vite(['resources/css/app.css'])
     @vite(['resources/css/swiper-bundle.min.css'])
     @vite(['resources/css/highlight.min.css'])
