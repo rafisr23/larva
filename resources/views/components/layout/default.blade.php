@@ -40,8 +40,6 @@
     <script defer src="/js/sweetalert.min.js"></script>
 
     {{-- css --}}
-    <link rel="stylesheet" type="text/css" href="/css/app.css" />
-
     @vite(['resources/css/app.css'])
     @vite(['resources/css/swiper-bundle.min.css'])
     @vite(['resources/css/highlight.min.css'])

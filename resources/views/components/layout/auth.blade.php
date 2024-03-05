@@ -9,15 +9,15 @@
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
-            rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        @vite(['resources/css/app.css'])
-
+    @vite(['resources/css/app.css'])
+    
     <script src="/js/perfect-scrollbar.min.js"></script>
     <script defer src="/js/popper.min.js"></script>
     <script defer src="/js/tippy-bundle.umd.min.js"></script>
     <script defer src="/js/sweetalert.min.js"></script>
+
 </head>
 
 
