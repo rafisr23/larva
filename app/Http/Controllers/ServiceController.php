@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Image;
 use App\Models\Service;
 use App\Models\ServiceImage;
 use Illuminate\Http\Request;
@@ -72,6 +73,26 @@ class ServiceController extends Controller
             }
         }
 
+        if ($request->hasFile('service_icon')) {
+            $request->validate([
+                'service_icon' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            ]);
+
+            $image = $request->file('service_icon');
+            $imageName = $service->slug . '-icon' . time() . '.' . $image->extension();
+            $file_path = $image->storeAs('service', $imageName);
+            
+            $service->update([
+                'icon' => $file_path,
+            ]);
+
+            // crop image
+            // $img = Image::make(public_path('storage/' . $file_path));
+            // $img->fit(96, 96);
+            // $img->save(public_path('storage/' . $file_path));
+
+        }
+
         return redirect()->route('admin.service.index')->with('success', 'Service created successfully!');
     }
 
@@ -80,6 +101,10 @@ class ServiceController extends Controller
         // unlink
         foreach ($service->serviceImage as $image) {
             unlink(public_path('storage/' . $image->file_path));
+        }
+
+        if (isset($service->icon)) {
+            unlink(public_path('storage/' . $service->icon));
         }
         
         $service->delete();
@@ -155,6 +180,31 @@ class ServiceController extends Controller
                     'file_path' => $file_path,
                 ]);
             }
+        }
+
+        if ($request->hasFile('service_icon')) {
+            // delete old icon
+            if (isset($service->icon)) {
+                unlink(public_path('storage/' . $service->icon));
+            }
+
+            $request->validate([
+                'service_icon' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            ]);
+
+            $image = $request->file('service_icon');
+            $imageName = $service->slug . '-icon' . time() . '.' . $image->extension();
+            $file_path = $image->storeAs('service', $imageName);
+            
+            $service->update([
+                'icon' => $file_path,
+            ]);
+
+            // crop image
+            // $img = Image::make(public_path('storage/' . $file_path));
+            // $img->fit(96, 96);
+            // $img->save(public_path('storage/' . $file_path));
+
         }
 
         return redirect()->route('admin.service.index')->with('success', 'Service updated successfully!');

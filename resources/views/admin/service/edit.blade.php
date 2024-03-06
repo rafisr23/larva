@@ -63,6 +63,21 @@
                                 <p class="text-danger mt-1">{{ $message }}</p>
                             @enderror
                         </div>
+                        <div class="mt-4 @error('service_icon') has-error @enderror">
+                            <label for="service_icon">Service Icon <span class="text-sm block italic">icon size: 96px * 96px</span></label>
+                            <input id="service_icon" name="service_icon" type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" onchange="displayIcon(this)" />
+                            <div id="iconPreview" class="mt-2 flex flex-wrap gap-2">
+                                @if ($service->icon)
+                                    <img src="{{ asset('storage/' . $service->icon) }}" class="w-24 h-24 object-cover border rounded" />
+                                @else
+                                    {{-- service has not icon --}}
+                                    <p>Icon not found.</p>
+                                @endif
+                            </div>
+                            @error('service_icon')
+                                <p class="text-danger mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
                         <div class="mt-4 @error('service_image') has-error @enderror">
                             <label for="service_image">Service Image</label>
                             <div class="table-responsive">
@@ -80,7 +95,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    <div id="imagePreview" class="mt-2 flex flex-wrap gap-2">
+                                                    <div id="" class="mt-2 flex flex-wrap gap-2">
                                                         <img src="{{ asset('storage/' . $image->file_path) }}" class="w-24 h-24 object-cover border rounded" />
                                                     </div>
                                                 </td>
@@ -232,6 +247,26 @@
                         image.className = 'w-32 h-32 object-cover border rounded';
                         preview.appendChild(image);
                     };
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+        }
+
+        function displayIcon(input) {
+            var preview = document.getElementById('iconPreview');
+            preview.innerHTML = '';
+
+            if (input.files && input.files.length > 0) {
+                for (var i = 0; i < input.files.length; i++) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        var image = document.createElement('img');
+                        image.src = e.target.result;
+                        image.className = 'w-32 h-32 object-cover border rounded';
+                        preview.appendChild(image);
+                    };
+
                     reader.readAsDataURL(input.files[i]);
                 }
             }

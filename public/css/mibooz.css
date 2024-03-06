@@ -4909,8 +4909,8 @@ ul {
     background-size: cover;
     background-position: center;
     object-fit: cover;
-    background-color: var(--mibooz-black);
-    background-blend-mode: luminosity;
+    /* background-color: var(--mibooz-black); */
+    /* background-blend-mode: luminosity; */
     opacity: 0.30;
     z-index: -1;
 }
@@ -5693,7 +5693,7 @@ ul {
     position: relative;
     height: 106px;
     width: 106px;
-    background-color: var(--mibooz-extra);
+    /* background-color: var(--mibooz-extra); */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -5707,7 +5707,7 @@ ul {
     right: 0;
     bottom: 0;
     content: "";
-    background-color: var(--mibooz-primary);
+    /* background-color: var(--mibooz-primary); */
     transition: transform 500ms ease;
     transform: scale(1, 0);
     transform-origin: bottom center;
@@ -5721,14 +5721,14 @@ ul {
 .services-three_icon span {
     position: relative;
     display: inline-block;
-    color: var(--mibooz-primary);
+    /* color: var(--mibooz-primary); */
     font-size: 64px;
     transition: transform 500ms ease, color 500ms ease;
     transform: scale(1);
 }
 
 .services-three__single:hover .services-three_icon span {
-    color: var(--mibooz-base);
+    /* color: var(--mibooz-base); */
     transform: scale(.9);
 }
 
