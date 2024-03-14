@@ -20,7 +20,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="image-layer"
-                        style="background-image: url(images/backgrounds/LARVA\ CREATIVE\ WEBSITE-04-min.png);">
+                        style="background-image: url(images/backgrounds/bg1.jpg);">
                     </div>
                     <!-- /.image-layer -->
                     <div class="main-slider__social">
@@ -33,12 +33,17 @@
                             <div class="col-lg-12">
                                 <div class="main-slider__content">
                                     <div class="main-slider__title-box-1">
-                                        <h2>Creative <br> Talent <br> Here</h2>
+                                        <h2>Creative <br> Solution <br> Here</h2>
                                         <div class="main-slider__title-box-2">
-                                            <h2>Creative <br> Talent <br> Here</h2>
+                                            <h2>Creative <br> Solution <br> Here</h2>
                                         </div>
                                     </div>
-                                    <a href="{{ route('user-about') }}" class="thm-btn">Tentang Kami</a>
+                                    <div class="mb-2">
+                                        <a href="{{ route('user-about') }}" class="thm-btn">Tentang Kami</a>
+                                    </div>
+                                    <div class="">
+                                        <a href="https://wa.me/{{ $contact->phone }}" class="thm-btn">Mulai Konsultasi</a>
+                                    </div>
                                     <div class="main-slider-badge">
                                         <img data-tilt src="{{ asset('images/resources/main-slider-badge.png') }}" alt="">
                                     </div>
@@ -49,7 +54,7 @@
                 </div>
                 <div class="swiper-slide">
                     <div class="image-layer"
-                        style="background-image: url(images/backgrounds/LARVA\ CREATIVE\ WEBSITE-02-min.png);">
+                        style="background-image: url(images/backgrounds/bg2.jpg);">
                     </div>
                     <!-- /.image-layer -->
                     <div class="main-slider__social">
@@ -62,12 +67,17 @@
                             <div class="col-lg-12">
                                 <div class="main-slider__content">
                                     <div class="main-slider__title-box-1">
-                                        <h2>Creative <br> Talent <br> Here</h2>
-                                        {{-- <div class="main-slider__title-box-2">
-                                            <h2>Creative <br> Talent <br> Here</h2>
-                                        </div> --}}
+                                        <h2>Creative <br> Solution <br> Here</h2>
+                                        <div class="main-slider__title-box-2">
+                                            <h2>Creative <br> Solution <br> Here</h2>
+                                        </div>
                                     </div>
-                                    <a href="{{ route('user-about') }}" class="thm-btn">Tentang Kami</a>
+                                    <div class="mb-2">
+                                        <a href="{{ route('user-about') }}" class="thm-btn">Tentang Kami</a>
+                                    </div>
+                                    <div class="">
+                                        <a href="https://wa.me/{{ $contact->phone }}" class="thm-btn">Mulai Konsultasi</a>
+                                    </div>
                                     <div class="main-slider-badge">
                                         <img data-tilt src="{{ asset('images/resources/main-slider-badge.png') }}" alt="">
                                     </div>
@@ -79,7 +89,7 @@
 
                 <div class="swiper-slide">
                     <div class="image-layer"
-                        style="background-image: url(images/backgrounds/LARVA\ CREATIVE\ WEBSITE-01-min.png);">
+                        style="background-image: url(images/backgrounds/bg3.jpg);">
                     </div>
                     <!-- /.image-layer -->
                     <div class="main-slider__social">
@@ -92,12 +102,17 @@
                             <div class="col-lg-12">
                                 <div class="main-slider__content">
                                     <div class="main-slider__title-box-1">
-                                        <h2>Creative <br> Talent <br> Here</h2>
-                                        {{-- <div class="main-slider__title-box-2">
-                                            <h2>Creative <br> Talent <br> Here</h2>
-                                        </div> --}}
+                                        <h2>Creative <br> Solution <br> Here</h2>
+                                        <div class="main-slider__title-box-2">
+                                            <h2>Creative <br> Solution <br> Here</h2>
+                                        </div>
                                     </div>
-                                    <a href="{{ route('user-about') }}" class="thm-btn">Tentang Kami</a>
+                                    <div class="mb-2">
+                                        <a href="{{ route('user-about') }}" class="thm-btn">Tentang Kami</a>
+                                    </div>
+                                    <div class="">
+                                        <a href="https://wa.me/{{ $contact->phone }}" class="thm-btn">Mulai Konsultasi</a>
+                                    </div>
                                     <div class="main-slider-badge">
                                         <img data-tilt src="{{ asset('images/resources/main-slider-badge.png') }}" alt="">
                                     </div>
@@ -111,10 +126,10 @@
             <div class="slider-bottom-box clearfix">
                 <div class="swiper-pagination" id="main-slider-pagination"></div>
                 <div class="main-slider__nav">
-                    <div class="swiper-button-prev" id="main-slider__swiper-button-next">
+                    <div class="swiper-button-prev" id="main-slider__swiper-button-prev">
                         <span class="icon-arrow-left"></span>
                     </div>
-                    <div class="swiper-button-next" id="main-slider__swiper-button-prev">
+                    <div class="swiper-button-next" id="main-slider__swiper-button-next">
                         <span class="icon-arrow-right"></span>
                     </div>
                 </div>
@@ -290,36 +305,11 @@
                 }
                 }}'>
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/brand/brand-1-1.png') }}" alt="">
-                    </div><!-- /.swiper-slide -->
+                    @foreach ($partner as $item)
+                        <div class="swiper-slide">
+                            <img src="{{ isset($item->icon) ? asset('storage/' . $item->icon) : asset('images/brand/brand-1-1.png') }}" alt="{{ $item->company_name }}">
+                        </div><!-- /.swiper-slide -->
+                    @endforeach
                 </div>
             </div>
         </div>
