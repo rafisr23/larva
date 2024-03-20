@@ -31,7 +31,8 @@
                         <div class="mt-4 @error('description') has-error @enderror">
                             <label for="description">Description <sup class="text-danger">*</sup></label>
                             <input id="description" type="hidden" name="description">
-                            <trix-editor input="description" class="form-input" placeholder="Enter Description">{!! old('description') !!}</trix-editor>
+                            {{-- <div class="quill-editor" id="description"></div> --}}
+                            <trix-editor input="x" class="form-input trix-editor" placeholder="Enter Description">{!! old('description') !!}</trix-editor>
                             {{-- <textarea id="description" name="description" class="form-textarea" placeholder="Enter Description" required>{{ old('description') }}</textarea> --}}
                             @error('description')
                                 <p class="text-danger mt-1">{{ $message }}</p>
@@ -58,7 +59,7 @@
                         <div class="mt-4 @error('notes') has-error @enderror">
                             <label for="notes">Notes</label>
                             <input id="notes" type="hidden" name="notes">
-                            <trix-editor input="notes" class="form-input" placeholder="Enter Notes">{!! old('notes') !!}</trix-editor>
+                            <trix-editor input="notes" class="form-input trix-editor" placeholder="Enter Notes">{!! old('notes') !!}</trix-editor>
                             {{-- <textarea id="notes" name="notes" class="form-textarea" placeholder="Enter Notes">{{ old('notes') }}</textarea> --}}
                             @error('notes')
                                 <p class="text-danger mt-1">{{ $message }}</p>
@@ -114,6 +115,7 @@
 
             // console.log(uploadedImage);
         });
+
         
         function displayImage(input) {
             var preview = document.getElementById('imagePreview');
