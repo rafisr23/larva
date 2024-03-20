@@ -165,12 +165,6 @@
 
     @stack('scripts')
 
-    <script>
-        const quill = new Quill('.quill-editor', {
-            theme: 'snow'
-        });
-    </script>
-
 </body>
 
 </html>
