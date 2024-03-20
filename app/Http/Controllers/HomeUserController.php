@@ -24,6 +24,10 @@ class HomeUserController extends Controller
 
         $categoryImage = PageImageCategory::where('category_name', 'home-middle')->first();
         $middleImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();
+        
+        if ($middleImage->isEmpty()) {
+            $middleImage = null;
+        }
 
         $service = Service::with('serviceImage')->where('is_active', '1')->get();
         $project = Project::with('service', 'projectImage')->orderBy('created_at', 'desc')->get();
@@ -37,6 +41,10 @@ class HomeUserController extends Controller
     {
         $categoryImage = PageImageCategory::where('category_name', 'about-header')->first();
         $headerImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();
+
+        if ($headerImage->isEmpty()) {
+            $headerImage = null;
+        }
 
         $testimoni = Testimoni::latest()->limit(3)->with('user')->get();
 
@@ -54,8 +62,16 @@ class HomeUserController extends Controller
         $categoryImage = PageImageCategory::where('category_name', 'service-header')->first();
         $headerImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();
 
+        if ($headerImage->isEmpty()) {
+            $headerImage = null;
+        }
+
         $categoryImage2 = PageImageCategory::where('category_name', 'service-middle')->first();
         $middleImage = HeaderPageImage::where('page_image_category_id', $categoryImage2->id)->get();
+
+        if ($middleImage->isEmpty()) {
+            $middleImage = null;
+        }
 
         if (!$type) {
             $service = Service::with('serviceImage')->where('is_active', '1')->get();
@@ -79,6 +95,10 @@ class HomeUserController extends Controller
         $categoryImage = PageImageCategory::where('category_name', 'project-header')->first();
         $headerImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();
 
+        if ($headerImage->isEmpty()) {
+            $headerImage = null;
+        }
+
         // return $headerImage;
         return view('frontend.home.projects', compact('project', 'service', 'headerImage', 'contact'));
     }
@@ -90,6 +110,11 @@ class HomeUserController extends Controller
 
         $categoryImage = PageImageCategory::where('category_name', 'project-header')->first();
         $headerImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();
+
+        if ($headerImage->isEmpty()) {
+            $headerImage = null;
+        }
+
         // return $project;
         return view('frontend.home.projects-detail', compact('project', 'headerImage', 'contact'));
     }
@@ -100,6 +125,10 @@ class HomeUserController extends Controller
 
         $categoryImage = PageImageCategory::where('category_name', 'contact-header')->first();
         $headerImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();
+
+        if ($headerImage->isEmpty()) {
+            $headerImage = null;
+        }
         
         return view('frontend.home.contact', compact('contact', 'headerImage', 'contact'));
     }
