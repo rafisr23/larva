@@ -4,6 +4,11 @@
     "src": "resources/css/highlight.min.css",
     "isEntry": true
   },
+  "resources/css/tippy.css": {
+    "file": "assets/tippy.79ba074f.css",
+    "src": "resources/css/tippy.css",
+    "isEntry": true
+  },
   "resources/css/markdown-editor.css": {
     "file": "assets/markdown-editor.854cb2a8.css",
     "src": "resources/css/markdown-editor.css",
@@ -14,9 +19,9 @@
     "src": "resources/css/nice-select.css",
     "isEntry": true
   },
-  "resources/css/tippy.css": {
-    "file": "assets/tippy.79ba074f.css",
-    "src": "resources/css/tippy.css",
+  "resources/css/easymde.min.css": {
+    "file": "assets/easymde.min.86d3f618.css",
+    "src": "resources/css/easymde.min.css",
     "isEntry": true
   },
   "resources/css/nice-select2.css": {
@@ -24,14 +29,9 @@
     "src": "resources/css/nice-select2.css",
     "isEntry": true
   },
-  "resources/css/nouislider.min.css": {
-    "file": "assets/nouislider.min.3771034d.css",
-    "src": "resources/css/nouislider.min.css",
-    "isEntry": true
-  },
-  "resources/css/easymde.min.css": {
-    "file": "assets/easymde.min.86d3f618.css",
-    "src": "resources/css/easymde.min.css",
+  "resources/css/swiper-bundle.min.css": {
+    "file": "assets/swiper-bundle.min.3f0abbd1.css",
+    "src": "resources/css/swiper-bundle.min.css",
     "isEntry": true
   },
   "resources/css/flatpickr.min.css": {
@@ -39,14 +39,14 @@
     "src": "resources/css/flatpickr.min.css",
     "isEntry": true
   },
-  "resources/css/fancybox.css": {
-    "file": "assets/fancybox.404514f5.css",
-    "src": "resources/css/fancybox.css",
+  "resources/css/fullcalendar.min.css": {
+    "file": "assets/fullcalendar.min.97e9cb23.css",
+    "src": "resources/css/fullcalendar.min.css",
     "isEntry": true
   },
-  "resources/css/swiper-bundle.min.css": {
-    "file": "assets/swiper-bundle.min.3f0abbd1.css",
-    "src": "resources/css/swiper-bundle.min.css",
+  "resources/css/nouislider.min.css": {
+    "file": "assets/nouislider.min.3771034d.css",
+    "src": "resources/css/nouislider.min.css",
     "isEntry": true
   },
   "resources/css/quill.snow.css": {
@@ -54,9 +54,9 @@
     "src": "resources/css/quill.snow.css",
     "isEntry": true
   },
-  "resources/css/fullcalendar.min.css": {
-    "file": "assets/fullcalendar.min.97e9cb23.css",
-    "src": "resources/css/fullcalendar.min.css",
+  "resources/css/fancybox.css": {
+    "file": "assets/fancybox.404514f5.css",
+    "src": "resources/css/fancybox.css",
     "isEntry": true
   },
   "resources/css/font-awesome.min.css": {
@@ -65,7 +65,7 @@
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app.e1dcdfd0.css",
+    "file": "assets/app.485fb1fe.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }
