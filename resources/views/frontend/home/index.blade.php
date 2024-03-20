@@ -3,7 +3,9 @@
 @section('content')
     <!--Main Slider Start-->
     <section class="main-slider">
-        <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true,
+        <div class="swiper-container thm-swiper__slider" data-swiper-options='{
+            "slidesPerView": 1, 
+            "loop": true,
             "effect": "fade",
             "pagination": {
                 "el": "#main-slider-pagination",
@@ -16,7 +18,8 @@
             },
             "autoplay": {
                 "delay": 5000
-            }}'>
+            }
+        }'>
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="image-layer"

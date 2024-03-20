@@ -32,7 +32,11 @@
 
     <!-- Trix Editor -->
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
-    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
+
+    <!-- Quil Editor -->
+    {{-- <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.3/dist/quill.snow.css" rel="stylesheet"> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.3/dist/quill.js"></script> --}}
 
     <script src="/js/perfect-scrollbar.min.js"></script>
     <script defer src="/js/popper.min.js"></script>
@@ -160,6 +164,12 @@
 
 
     @stack('scripts')
+
+    <script>
+        const quill = new Quill('.quill-editor', {
+            theme: 'snow'
+        });
+    </script>
 
 </body>
 
