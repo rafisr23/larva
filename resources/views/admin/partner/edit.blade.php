@@ -24,8 +24,8 @@
 						</div>
 						<div class="mt-4 @error('description') has-error @enderror">
 							<label for="description">Description <sup class="text-danger">*</sup></label>
-							<input id="description" type="hidden" name="description">
-							<trix-editor input="description" class="form-input" placeholder="Enter Description">{!! old('description', $partner->description) !!}</trix-editor>
+							<input id="description" type="hidden" name="description" value="{!! old('description', $partner->description) !!}">
+							<trix-editor input="description" class="form-input trix-editor" placeholder="Enter Description">{!! old('description', $partner->description) !!}</trix-editor>
 							{{-- <textarea id="description" name="description" class="form-textarea" placeholder="Enter Description" required>{{ old('description') }}</textarea> --}}
 							@error('description')
 								<p class="text-danger mt-1">{{ $message }}</p>
