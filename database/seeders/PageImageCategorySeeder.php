@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\PageImageCategory;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PageImageCategorySeeder extends Seeder
 {
