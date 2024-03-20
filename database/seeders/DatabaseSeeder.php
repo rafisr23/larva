@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             TestimoniSeeder::class,
             PageImageCategorySeeder::class,
+            ContactSeeder::class,
         ]);
     }
 }
