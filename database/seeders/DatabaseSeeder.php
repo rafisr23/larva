@@ -14,19 +14,19 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // call RoleSeeder
-        // $this->call(RoleSeeder::class);
+        $this->call(RoleSeeder::class);
 
-        // User::create([
-        //     'name' => 'Admin',
-        //     'email' => 'larva@gmail.com',
-        //     'username' => 'admin',
-        //     'password' => bcrypt('password'),
-        // ])->assignRole(['admin']);
+        User::create([
+            'name' => 'Admin',
+            'email' => 'larva@gmail.com',
+            'username' => 'admin',
+            'password' => bcrypt('password'),
+        ])->assignRole(['admin']);
 
         $this->call([
-            // ServiceSeeder::class,
-            // PartnerSeeder::class,
-            // ProjectSeeder::class,
+            ServiceSeeder::class,
+            PartnerSeeder::class,
+            ProjectSeeder::class,
             TestimoniSeeder::class,
         ]);
     }
