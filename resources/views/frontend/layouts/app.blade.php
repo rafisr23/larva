@@ -57,6 +57,8 @@
     <link rel="stylesheet" href="{{ asset('css/mibooz-responsive.css') }}" />
     <!-- css assets end-->
 
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
     <!-- crisp -->
     <script type="text/javascript">
         window.$crisp=[];
@@ -74,9 +76,9 @@
 </head>
 
 <body>
-    <div class="preloader">
+    {{-- <div class="preloader">
         <img class="preloader__image" width="60" src="{{ asset('images/loader.png') }}" alt="" />
-    </div>
+    </div> --}}
     <!-- /.preloader -->
     <div class="page-wrapper">
         {{-- Navbar --}}
@@ -150,11 +152,55 @@
     <script src="{{ asset('vendors-mibooz/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('vendors-mibooz/jquery-ui/jquery-ui.js') }}"></script>
     <script src="{{ asset('vendors-mibooz/jquery-tilt/tilt.jquery.min.js') }}"></script>
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@18.0.0/dist/lazyload.min.js"></script>
     <!-- template js -->
     <script src="{{ asset('js/mibooz.js') }}"></script>
 
-    <!-- crisp config-->
     <script src="{{ asset('js/crisp-config.js') }}"></script>
+
+    <script>
+        const swiperOptions = {
+        loop: true,
+        slidesPerView: "auto",
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+        },
+            on: {
+            // LazyLoad swiper images after swiper initialization
+            afterInit: (swiper) => {
+                new LazyLoad({
+                container: swiper.el,
+                cancel_on_exit: false
+                });
+            }
+            }
+        };
+
+        const eagerSwiper = new Swiper(".swiper--eager", swiperOptions);
+
+        var swiperLazyLoadInstance = new LazyLoad({
+            elements_selector: ".swiper--lazy",
+            unobserve_entered: true,
+            callback_enter: function (swiperElement) {
+                new Swiper("#" + swiperElement.id, swiperOptions);
+            },
+            data_src: "src",
+        });
+        
+        var LazyLoadInstance = new LazyLoad({
+            elements_selector: ".lazy",
+            data_src: "src",
+        });
+    </script>
+
+    {{-- <script>
+        window.storagePath = '{{ asset('storage/') }}';
+    </script>
+    <script src="{{ asset('js/service-images.js') }}"></script> --}}
+
+    @stack('scripts')
 </body>
 
 </html>

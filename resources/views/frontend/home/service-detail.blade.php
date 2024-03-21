@@ -58,20 +58,41 @@
 				<div class="col-xl-8 col-lg-7">
 					<div class="service-details__right">
 						<div class="service-details__img">
-							<img src="{{ isset($service->serviceImage[0]) ? asset('storage/' . $service->serviceImage[0]->file_path) : ''}}" alt="">
+							<img class="lazy " data-src="{{ isset($service->serviceImage[0]) ? asset('storage/' . $service->serviceImage[0]->file_path) : ''}}" alt="">
 						</div>
 						<div class="service-details__content">
 							<h3 class="service-details__title">{{ $service->service_name }}</h3>
 							<p class="service-details__text">{!! $service->description !!}</p>
 						</div>
 						<div class="row">
-							@foreach ($service->serviceImage as $item)
-								<div class="col-xl-3">
+                            <div class="swiper swiper--eager">
+                                <div class="swiper-wrapper">
+                                    @foreach ($service->serviceImage as $item)
+                                    <div class="swiper-slide col-xl-4" style="width: 320px;">
+                                        {{-- <img
+                                            alt="Stivaletti"
+                                            src="https://via.placeholder.com/220x280?text=S01E01"
+                                            srcset="https://via.placeholder.com/440x560?text=S01E01 2x"
+                                            width="220"
+                                            height="280"
+                                        /> --}}
+                                        <img alt="loading image.." class="lazy" data-src="{{ asset('storage/' . $item->file_path) }}" width="300"/>
+                                    </div>
+                                    <div class="">
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <div class="swiper-button-prev " style="color: #dd0429"></div>
+                                <div class="swiper-button-next " style="color: #dd0429"></div>
+                            </div>
+							{{-- @foreach ($service->serviceImage as $item)
+								<div class="col-xl-3 mb-3">
 									<div class="project-detail-img">
-										<img src="{{ asset('storage/' . $item->file_path) }}" alt="">
+										<img src="{{ asset('storage/' . $item->file_path) }}" alt="" loading="lazy">
+                                        <img alt="A lazy image" class="lazy" data-src="{{ asset('storage/' . $item->file_path) }}" />
 									</div>
 								</div>
-							@endforeach
+							@endforeach --}}
 						</div>
                         <h4 class="service-details__benefits-title mt-5">Range Harga</h4>
 						<ul class="service-details__points list-unstyled mt-2">
