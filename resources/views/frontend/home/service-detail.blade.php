@@ -82,8 +82,8 @@
                                     </div>
                                     @endforeach
                                 </div>
-                                <div class="swiper-button-prev"></div>
-                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev " style="color: #dd0429"></div>
+                                <div class="swiper-button-next " style="color: #dd0429"></div>
                             </div>
 							{{-- @foreach ($service->serviceImage as $item)
 								<div class="col-xl-3 mb-3">
