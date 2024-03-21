@@ -86,6 +86,11 @@ class HomeUserController extends Controller
         return view('frontend.home.service-detail', compact('contact'));
     }
 
+    public function getServiceImages($service) {
+        $service = Service::where('slug', $service)->with('serviceImage')->first();
+        return $service->serviceImage;
+    }
+
     public function projects()
     {
         $contact = Contact::first();
