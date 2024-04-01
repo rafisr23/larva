@@ -166,30 +166,26 @@
             <div class="services-one__bottom">
                 <div class="row">
                     @foreach ($service as $item)
-                        @if ($loop->iteration <= 5)
-                            <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
-                                <!--Services One Single-->
-                                <div class="services-one__single">
-                                    <h3 class="services-one__title"><a href="{{ route('user-services', ['type' => $item->slug]) }}">{{ $item->service_name }}</a></h3>
-                                    <div class="services-one__icon">
-                                        <span class="icon-online-shopping"></span>
-                                    </div>
-                                    <div class="services-one__count"></div>
+                        <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
+                            <!--Services One Single-->
+                            <div class="services-one__single">
+                                <h3 class="services-one__title"><a href="{{ route('user-services', ['type' => $item->slug]) }}">{{ $item->service_name }}</a></h3>
+                                <div class="services-one__icon">
+                                    {{-- <span class="icon-online-shopping"></span> --}}
+                                    <span class="icon-service">
+                                        @if (isset($item->icon))
+                                            <img src="{{ asset('storage/' . $item->icon) }}" alt="{{ $item->service_name }}-icon" width="64" height="64">
+                                        @else
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24">
+                                                <path fill="currentColor" d="M12 13a5 5 0 0 1-5-5h2a3 3 0 0 0 3 3a3 3 0 0 0 3-3h2a5 5 0 0 1-5 5m0-10a3 3 0 0 1 3 3H9a3 3 0 0 1 3-3m7 3h-2a5 5 0 0 0-5-5a5 5 0 0 0-5 5H5c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"/>
+                                            </svg>
+                                        @endif
+                                    </span>
                                 </div>
-                            </div>
-                        @endif
-                    @endforeach
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="600ms">
-                        <!--Services One Single-->
-                        <div class="services-one__view-all">
-                            <div class="services-one__view-all-title-box">
-                                <h3 class="services-one__view-all-title"><a href="{{ route('user-services') }}">View our <br> all services</a></h3>
-                            </div>
-                            <div class="services-one__view-all-arrow">
-                                <a href="services.html"><span class="icon-arrow-right"></span></a>
+                                <div class="services-one__count"></div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
