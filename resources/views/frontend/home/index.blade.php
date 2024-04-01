@@ -568,8 +568,9 @@
                                     <div class="testimonial-one__client__img">
                                         <img src="{{ asset('images/resources/user.png') }}" alt="">
                                     </div>
-                                    <h4 class="testimonial-one__name">{{ $item->user->name }}</h4>
-                                    <p class="testimonial-one__title">Pelanggan</p>
+                                    {{-- <h4 class="testimonial-one__name">{{ $item->user->name }}</h4> --}}
+                                    <h4 class="testimonial-one__name">Customer {{ $loop->iteration }}</h4>
+                                    {{-- <p class="testimonial-one__title">Pelanggan</p> --}}
                                 </div>
                             </div>
                         @endforeach
