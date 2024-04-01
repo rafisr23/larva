@@ -196,7 +196,7 @@
                 <div class="design-studio__inner">
                     <h2 class="design-studio__title">Design <span>Studio</span> that gets <br> excited about</h2>
                     <div class="design-studio__video-link">
-                        <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
+                        <a href="{{ $contact->youtube ?? '#' }}" class="video-popup">
                             <div class="design-studio__video-icon">
                                 <span class="icon-play-button"></span>
                                 <i class="ripple"></i>

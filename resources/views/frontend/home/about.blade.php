@@ -40,7 +40,9 @@
                             <span class="section-title__tagline">Tentang Perusahaan</span>
                             <h2 class="section-title__title">Apa itu larva?</h2>
                         </div>
-                        <p class="about-page__right-text-1">Larva Creative Industry adalah sebuah agency creative yang berlokasi di Bandung, Indonesia. Larva menyediakan banyak layanan untuk mendukung proses bisnis creative Anda</p>
+                        <p class="about-page__right-text-1">
+                            Larva creative industry hadir memberikan beberapa kemudahan dan efisiensi untuk usaha kamu maupun event corporate/institute. seperti layanan pembuatan konsep design, screen printing/sablon, jahit (cmt/fob), pembuatan product merch & gift, kami juga siap menjadi clothing supplier untuk clothing brand kamu, khususnya umkm.
+                        </p>
                         <h4 class="about-page__right-text-2">The best agency for your business or needs</h4>
                         <a href="{{ route('user-services') }}" class="thm-btn abut-page__btn">Layanan Kami</a>
                     </div>

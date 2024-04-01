@@ -64,6 +64,20 @@
                                     <p class="text-danger mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
+                            <div class="@error('instagram') has-error @enderror">
+                                <label for="instagram">Instagram <sup class="text-danger">*</sup></label>
+                                <input id="instagram" name="instagram" type="instagram" placeholder="Enter instagram" class="form-input" value="{{ old('instagram', isset($contact->instagram) ? $contact->instagram : '') }}"/>
+                                @error('instagram')
+                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="@error('youtube') has-error @enderror">
+                                <label for="youtube">Youtube <sup class="text-danger">*</sup></label>
+                                <input id="youtube" name="youtube" type="youtube" placeholder="Enter youtube" class="form-input" value="{{ old('youtube', isset($contact->youtube) ? $contact->youtube : '') }}"/>
+                                @error('youtube')
+                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
                         
                         <div class="!mt-8 flex">
