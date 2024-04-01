@@ -372,14 +372,14 @@
                                 <div class="counter-one__icon">
                                     <span class="icon-customer"></span>
                                 </div>
-                                <h3 class="odometer" data-count="89">00</h3>
+                                <h3 class="odometer" data-count="100">00</h3>
                                 <p class="counter-one__text">Pelanggan</p>
                             </li>
                             <li class="counter-one__single wow fadeInUp" data-wow-delay="400ms">
                                 <div class="counter-one__icon">
                                     <span class="icon-graphic-designer"></span>
                                 </div>
-                                <h3 class="odometer" data-count="13">00</h3>
+                                <h3 class="odometer" data-count="{{ $service->count() }}">00</h3>
                                 <p class="counter-one__text">Team</p>
                             </li>
                         </ul>
