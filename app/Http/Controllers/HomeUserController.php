@@ -32,7 +32,7 @@ class HomeUserController extends Controller
         $service = Service::with('serviceImage')->where('is_active', '1')->get();
         $project = Project::with('service', 'projectImage')->orderBy('created_at', 'desc')->get();
         $testimoni = Testimoni::latest()->limit(3)->with('user')->get();
-        $partner = Partner::all();
+        $partner = Partner::where('is_active', '1')->get();
         
         return view('frontend.home.index', compact('contact', 'service', 'middleImage', 'project', 'testimoni', 'partner'));
     }

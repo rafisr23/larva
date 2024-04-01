@@ -279,44 +279,46 @@
     <!--Welcome One End-->
 
     <!--Brand One Start-->
-    <section class="brand-one">
-        <div class="container">
-            <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100, "slidesPerView": 5, "autoplay": { "delay": 5000 }, "breakpoints": {
-                "0": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 2
-                },
-                "375": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 2
-                },
-                "575": {
-                    "spaceBetween": 30,
-                    "slidesPerView": 3
-                },
-                "767": {
-                    "spaceBetween": 50,
-                    "slidesPerView": 4
-                },
-                "991": {
-                    "spaceBetween": 50,
-                    "slidesPerView": 5
-                },
-                "1199": {
-                    "spaceBetween": 100,
-                    "slidesPerView": 5
-                }
-                }}'>
-                <div class="swiper-wrapper">
-                    @foreach ($partner as $item)
-                        <div class="swiper-slide">
-                            <img src="{{ isset($item->icon) ? asset('storage/' . $item->icon) : asset('images/brand/brand-1-1.png') }}" alt="{{ $item->company_name }}">
-                        </div><!-- /.swiper-slide -->
-                    @endforeach
+    @if ($partner->count() > 0)
+        <section class="brand-one">
+            <div class="container">
+                <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100, "slidesPerView": 5, "autoplay": { "delay": 5000 }, "breakpoints": {
+                    "0": {
+                        "spaceBetween": 30,
+                        "slidesPerView": 2
+                    },
+                    "375": {
+                        "spaceBetween": 30,
+                        "slidesPerView": 2
+                    },
+                    "575": {
+                        "spaceBetween": 30,
+                        "slidesPerView": 3
+                    },
+                    "767": {
+                        "spaceBetween": 50,
+                        "slidesPerView": 4
+                    },
+                    "991": {
+                        "spaceBetween": 50,
+                        "slidesPerView": 5
+                    },
+                    "1199": {
+                        "spaceBetween": 100,
+                        "slidesPerView": 5
+                    }
+                    }}'>
+                    <div class="swiper-wrapper">
+                        @foreach ($partner as $item)
+                            <div class="swiper-slide">
+                                <img src="{{ isset($item->icon) ? asset('storage/' . $item->icon) : asset('images/brand/brand-1-1.png') }}" alt="{{ $item->company_name }}" width="100" height="100">
+                            </div><!-- /.swiper-slide -->
+                        @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
     <!--Brand One End-->
 
     <!--Design Studio Start-->
@@ -566,8 +568,9 @@
                                     <div class="testimonial-one__client__img">
                                         <img src="{{ asset('images/resources/user.png') }}" alt="">
                                     </div>
-                                    <h4 class="testimonial-one__name">{{ $item->user->name }}</h4>
-                                    <p class="testimonial-one__title">Pelanggan</p>
+                                    {{-- <h4 class="testimonial-one__name">{{ $item->user->name }}</h4> --}}
+                                    <h4 class="testimonial-one__name">Customer {{ $loop->iteration }}</h4>
+                                    {{-- <p class="testimonial-one__title">Pelanggan</p> --}}
                                 </div>
                             </div>
                         @endforeach
