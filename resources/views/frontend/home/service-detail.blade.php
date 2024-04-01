@@ -105,6 +105,7 @@
 								{{-- <div class="service-details__points-count"></div> --}}
 							</li>
 						</ul>
+                        <p class="service-details__text mt-2">{!! $service->notes !!}</p>
 						{{-- <div class="service-details__benefits">
 							<div class="row">
 								<div class="col-xl-6">

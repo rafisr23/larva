@@ -119,7 +119,7 @@
                             <div class="two-boxes__single">
                                 <div class="two-boxes__bg" style="background-image: {{ isset($item->serviceImage[0  ]) ? url('storage/' . $item->serviceImage[0]->file_path) : 'url(images/backgrounds/two-boxes-bg-1.jpg)'}}"></div>
                                 <p class="two-boxes__tagline">{{ $item->service_name }}</p>
-                                <h4 class="two-boxes__title">{!! $item->description !!}</h4>
+                                <h4 class="two-boxes__title">{!! \Illuminate\Support\Str::limit($item->description, $limit = 100, $end = '...') !!}</h4>
                                 <div class="two-boxes__arrow">
                                     <a href="{{ route('user-services', ['type' => $item->slug]) }}"><span class="icon-arrow-right"></span></a>
                                 </div>
