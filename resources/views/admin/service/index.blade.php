@@ -42,11 +42,11 @@
 
                             this.datatable = new simpleDatatables.DataTable(this.$refs.serviceTable, {
                                 data: {
-                                    headings: ["<div class='text-center'>No</div>", "Name", "Description", "Range Price", "<div class='text-center'>Status</div>", "<div class='text-center'>Action</div>"],
+                                    headings: ["<div class='text-center'>No</div>", "Name", "Range Price", "<div class='text-center'>Status</div>", "<div class='text-center'>Action</div>"],
                                     data: data.map((element, index) => [
                                         index + 1,
                                         element.service_name,
-                                        element.description,
+                                        // element.description,
                                         formatCurrency(element.min_price) + ' - ' + formatCurrency(element.max_price),
                                         element.is_active == 1 ? 'Active' : 'Inactive',
                                         `<div class="flex items-center justify-center gap-2">
@@ -79,11 +79,7 @@
                                         sortable: true,
                                     },
                                     {
-                                        select: 3,
-                                        sortable: true,
-                                    },
-                                    {
-                                        select: 4,
+                                        select:3,
                                         render: (data, cell, row) => {
                                             const isChecked = (data == 'Active');
                                             return `
@@ -98,7 +94,7 @@
                                         sortable: false
                                     },
                                     {
-                                        select: 5,
+                                        select: 4,
                                         sortable: false,
                                     },
                                 ],
