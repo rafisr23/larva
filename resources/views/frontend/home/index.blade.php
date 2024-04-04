@@ -307,7 +307,7 @@
                     <div class="swiper-wrapper">
                         @foreach ($partner as $item)
                             <div class="swiper-slide">
-                                <img src="{{ isset($item->icon) ? asset('storage/' . $item->icon) : asset('images/brand/brand-1-1.png') }}" alt="{{ $item->company_name }}" width="100" height="100">
+                                <img src="{{ isset($item->icon) ? asset('storage/' . $item->icon) : asset('images/brand/brand-1-1.png') }}" alt="{{ $item->company_name }}" >
                             </div><!-- /.swiper-slide -->
                         @endforeach
                     </div>
