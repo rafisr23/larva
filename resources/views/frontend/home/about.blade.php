@@ -181,6 +181,52 @@
     </section>
     <!--Team One End--> --}}
 
+    <!--Brand One Start-->
+    @if ($partner->count() > 0)
+        <section class="brand-one">
+            <div class="container">
+                <div class="section-title text-center">
+                    <h5 class="section-title__title fs-3">Mereka yang percaya dengan kami</h5>
+                </div>
+                <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100, "slidesPerView": 5, "autoplay": { "delay": 5000 }, "breakpoints": {
+                    "0": {
+                        "spaceBetween": 30,
+                        "slidesPerView": 2
+                    },
+                    "375": {
+                        "spaceBetween": 30,
+                        "slidesPerView": 2
+                    },
+                    "575": {
+                        "spaceBetween": 30,
+                        "slidesPerView": 3
+                    },
+                    "767": {
+                        "spaceBetween": 50,
+                        "slidesPerView": 4
+                    },
+                    "991": {
+                        "spaceBetween": 50,
+                        "slidesPerView": 5
+                    },
+                    "1199": {
+                        "spaceBetween": 100,
+                        "slidesPerView": 5
+                    }
+                    }}'>
+                    <div class="swiper-wrapper">
+                        @foreach ($partner as $item)
+                            <div class="swiper-slide">
+                                <img src="{{ isset($item->icon) ? asset('storage/' . $item->icon) : asset('images/brand/brand-1-1.png') }}" alt="{{ $item->company_name }}" >
+                            </div><!-- /.swiper-slide -->
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+    <!--Brand One End-->
+
     <!--Best Agency Start-->
     <section class="best-agency about-page-best-agency">
         <div class="best-agency-shape">

@@ -48,11 +48,12 @@ class HomeUserController extends Controller
         }
 
         $testimoni = Testimoni::latest()->limit(3)->with('user')->get();
+        $partner = Partner::where('is_active', '1')->get();
 
         // return $testimoni;
         
         $contact = Contact::first();
-        return view('frontend.home.about', compact('contact', 'headerImage', 'testimoni'));
+        return view('frontend.home.about', compact('contact', 'headerImage', 'testimoni', 'partner'));
     }
 
     public function services(Request $request)
