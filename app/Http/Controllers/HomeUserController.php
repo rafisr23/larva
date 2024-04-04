@@ -29,7 +29,7 @@ class HomeUserController extends Controller
             $middleImage = null;
         }
 
-        $service = Service::with('serviceImage')->where('is_active', '1')->get();
+        $service = Service::with('serviceImage')->where('is_active', '1')->orderBy('order', 'asc')->get();
         $project = Project::with('service', 'projectImage')->orderBy('created_at', 'desc')->get();
         $testimoni = Testimoni::latest()->limit(3)->with('user')->get();
         $partner = Partner::where('is_active', '1')->get();
@@ -76,7 +76,7 @@ class HomeUserController extends Controller
         }
 
         if (!$type) {
-            $service = Service::with('serviceImage')->where('is_active', '1')->get();
+            $service = Service::with('serviceImage')->where('is_active', '1')->orderBy('order', 'asc')->get();
             $partner = Partner::all();
             
             return view('frontend.home.services', compact('contact', 'headerImage', 'middleImage', 'service', 'partner'));
@@ -97,7 +97,7 @@ class HomeUserController extends Controller
     {
         $contact = Contact::first();
         $project = Project::with('service', 'projectImage')->get();
-        $service = Service::all();
+        $service = Service::where('is_active', '1')->orderBy('order', 'asc')->get();
         
         $categoryImage = PageImageCategory::where('category_name', 'project-header')->first();
         $headerImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();
