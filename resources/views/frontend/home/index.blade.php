@@ -278,7 +278,7 @@
     @if ($partner->count() > 0)
         <section class="brand-one">
             <div class="container">
-                <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100, "slidesPerView": 5, "autoplay": { "delay": 5000 }, "breakpoints": {
+                <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100, "slidesPerView": 5, "autoplay": { "delay": 3000 }, "breakpoints": {
                     "0": {
                         "spaceBetween": 30,
                         "slidesPerView": 2

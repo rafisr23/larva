@@ -188,7 +188,7 @@
                 <div class="section-title text-center">
                     <h5 class="section-title__title fs-3">Mereka yang percaya dengan kami</h5>
                 </div>
-                <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100, "slidesPerView": 5, "autoplay": { "delay": 5000 }, "breakpoints": {
+                <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100, "slidesPerView": 5, "autoplay": { "delay": 3000 }, "breakpoints": {
                     "0": {
                         "spaceBetween": 30,
                         "slidesPerView": 2
