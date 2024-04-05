@@ -21,109 +21,42 @@
             }
         }'>
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="image-layer"
-                        style="background-image: url(images/backgrounds/bg1.jpg);">
-                    </div>
-                    <!-- /.image-layer -->
-                    <div class="main-slider__social">
-                        {{-- <a href="#">facebook</a> --}}
-                        {{-- <a href="#">twitter</a> --}}
-                        <a href="https://www.instagram.com/larvacreative.id/">instagram</a>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="main-slider__content">
-                                    <div class="main-slider__title-box-1">
-                                        <h2>Creative <br> Solution <br> Here</h2>
-                                        <div class="main-slider__title-box-2">
+                @for ($x = 1; $x <= 6; $x++)
+                    <div class="swiper-slide">
+                        <div class="image-layer"
+                            style="background-image: url(images/backgrounds/bg{{ $x }}.png);">
+                        </div>
+                        <!-- /.image-layer -->
+                        <div class="main-slider__social">
+                            {{-- <a href="#">facebook</a> --}}
+                            {{-- <a href="#">twitter</a> --}}
+                            <a href="https://www.instagram.com/larvacreative.id/">instagram</a>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="main-slider__content">
+                                        <div class="main-slider__title-box-1">
                                             <h2>Creative <br> Solution <br> Here</h2>
+                                            <div class="main-slider__title-box-2">
+                                                <h2>Creative <br> Solution <br> Here</h2>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="mb-2">
-                                        <a href="{{ route('user-about') }}" class="thm-btn">Tentang Kami</a>
-                                    </div>
-                                    <div class="">
-                                        <a href="https://wa.me/{{ $contact->phone }}" class="thm-btn">Mulai Konsultasi</a>
-                                    </div>
-                                    <div class="main-slider-badge">
-                                        <img data-tilt src="{{ asset('images/resources/main-slider-badge.png') }}" alt="">
+                                        <div class="mb-2">
+                                            <a href="{{ route('user-about') }}" class="thm-btn">Tentang Kami</a>
+                                        </div>
+                                        <div class="">
+                                            <a href="https://wa.me/{{ $contact->phone }}" class="thm-btn">Mulai Konsultasi</a>
+                                        </div>
+                                        <div class="main-slider-badge">
+                                            <img data-tilt src="{{ asset('images/resources/main-slider-badge.png') }}" alt="">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="image-layer"
-                        style="background-image: url(images/backgrounds/bg2.jpg);">
-                    </div>
-                    <!-- /.image-layer -->
-                    <div class="main-slider__social">
-                        {{-- <a href="#">facebook</a> --}}
-                        {{-- <a href="#">twitter</a> --}}
-                        <a href="https://www.instagram.com/larvacreative.id/">instagram</a>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="main-slider__content">
-                                    <div class="main-slider__title-box-1">
-                                        <h2>Creative <br> Solution <br> Here</h2>
-                                        <div class="main-slider__title-box-2">
-                                            <h2>Creative <br> Solution <br> Here</h2>
-                                        </div>
-                                    </div>
-                                    <div class="mb-2">
-                                        <a href="{{ route('user-about') }}" class="thm-btn">Tentang Kami</a>
-                                    </div>
-                                    <div class="">
-                                        <a href="https://wa.me/{{ $contact->phone }}" class="thm-btn">Mulai Konsultasi</a>
-                                    </div>
-                                    <div class="main-slider-badge">
-                                        <img data-tilt src="{{ asset('images/resources/main-slider-badge.png') }}" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="image-layer"
-                        style="background-image: url(images/backgrounds/bg3.jpg);">
-                    </div>
-                    <!-- /.image-layer -->
-                    <div class="main-slider__social">
-                        {{-- <a href="#">facebook</a> --}}
-                        {{-- <a href="#">twitter</a> --}}
-                        <a href="https://www.instagram.com/larvacreative.id/">instagram</a>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="main-slider__content">
-                                    <div class="main-slider__title-box-1">
-                                        <h2>Creative <br> Solution <br> Here</h2>
-                                        <div class="main-slider__title-box-2">
-                                            <h2>Creative <br> Solution <br> Here</h2>
-                                        </div>
-                                    </div>
-                                    <div class="mb-2">
-                                        <a href="{{ route('user-about') }}" class="thm-btn">Tentang Kami</a>
-                                    </div>
-                                    <div class="">
-                                        <a href="https://wa.me/{{ $contact->phone }}" class="thm-btn">Mulai Konsultasi</a>
-                                    </div>
-                                    <div class="main-slider-badge">
-                                        <img data-tilt src="{{ asset('images/resources/main-slider-badge.png') }}" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endfor
             </div>
             <!-- If we need navigation buttons -->
             <div class="slider-bottom-box clearfix">
