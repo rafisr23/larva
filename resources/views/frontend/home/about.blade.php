@@ -79,17 +79,16 @@
                         </div>
                         <div class="testimonial-two__carousel owl-theme owl-carousel">
                             @foreach ($testimoni as $item)
-                                <div class="testimonial-one__single">
-                                    <div class="testimonial-one__content">
-                                        <p class="testimonial-one__text">{{ $item->description }}</p>
-                                    </div>
-                                    <div class="testimonial-one__client-info">
-                                        <div class="testimonial-one__client__img">
+                                <div class="testimonial-two__single">
+                                    <p class="testimonial-two__text">{{ $item->description }}</p>
+                                    <div class="testimonial-two__client-info">
+                                        <div class="testimonial-two__client-img">
                                             <img src="{{ asset('images/resources/user.png') }}" alt="">
                                         </div>
-                                        {{-- <h4 class="testimonial-one__name">{{ $item->user->name }}</h4> --}}
-                                        <h4 class="testimonial-one__name">Customer {{ $loop->iteration }}</h4>
-                                        {{-- <p class="testimonial-one__title">Pelanggan</p> --}}
+                                        <div class="testimonial-two__client-details">
+                                            <h4 class="testimonial-two__client-name">Customer {{ $loop->iteration }}</h4>
+                                            {{-- <p class="testimonial-two__client-title">Customer</p> --}}
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
