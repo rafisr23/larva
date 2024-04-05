@@ -58,7 +58,8 @@
 				<div class="col-xl-8 col-lg-7">
 					<div class="service-details__right">
 						<div class="service-details__img">
-							<img class="lazy " data-src="{{ isset($service->serviceImage[0]) ? asset('storage/' . $service->serviceImage[0]->file_path) : ''}}" alt="">
+							{{-- <img class="lazy " data-src="{{ isset($service->cover) ? asset('storage/' . $service->cover) : ''}}" alt=""> --}}
+							<img src="{{ isset($service->cover) ? asset('storage/' . $service->cover) : ''}}" alt="">
 						</div>
 						<div class="service-details__content">
 							<h3 class="service-details__title">{{ $service->service_name }}</h3>

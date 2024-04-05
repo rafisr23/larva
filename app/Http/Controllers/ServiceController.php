@@ -92,6 +92,21 @@ class ServiceController extends Controller
             // $img->save(public_path('storage/' . $file_path));
 
         }
+        
+        if ($request->hasFile('service_cover')) {
+            $request->validate([
+                'service_cover' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            ]);
+
+            $image = $request->file('service_cover');
+            $imageName = $service->slug . '-cover' . time() . '.' . $image->extension();
+            $file_path = $image->storeAs('service', $imageName);
+            
+            $service->update([
+                'cover' => $file_path,
+            ]);
+
+        }
 
         return redirect()->route('admin.service.index')->with('success', 'Service created successfully!');
     }
@@ -204,6 +219,26 @@ class ServiceController extends Controller
             // $img = Image::make(public_path('storage/' . $file_path));
             // $img->fit(96, 96);
             // $img->save(public_path('storage/' . $file_path));
+
+        }
+
+        if ($request->hasFile('service_cover')) {
+            // delete old cover
+            if (isset($service->cover)) {
+                unlink(public_path('storage/' . $service->cover));
+            }
+
+            $request->validate([
+                'service_cover' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            ]);
+
+            $image = $request->file('service_cover');
+            $imageName = $service->slug . '-cover' . time() . '.' . $image->extension();
+            $file_path = $image->storeAs('service', $imageName);
+            
+            $service->update([
+                'cover' => $file_path,
+            ]);
 
         }
 

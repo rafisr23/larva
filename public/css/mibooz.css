@@ -7694,12 +7694,12 @@ ul {
 .service-details__img {
     position: relative;
     display: block;
-    background-color: var(--mibooz-black);
+    /* background-color: var(--mibooz-black); */
 }
 
 .service-details__img img {
     width: 100%;
-    mix-blend-mode: luminosity;
+    /* mix-blend-mode: luminosity; */
 }
 
 .service-details__content {
