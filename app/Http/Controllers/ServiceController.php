@@ -121,6 +121,10 @@ class ServiceController extends Controller
         if (isset($service->icon)) {
             unlink(public_path('storage/' . $service->icon));
         }
+
+        if (isset($service->cover)) {
+            unlink(public_path('storage/' . $service->cover));
+        }
         
         $service->delete();
         
