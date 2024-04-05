@@ -10,7 +10,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/larva-logo.png') }}" />
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/larva-logo.png') }}" />
     <link rel="manifest" href="{{ asset('images/favicons/site.webmanifest') }}" />
-    <meta name="description" content="Mibooz HTML Template For Business" />
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,7 +52,7 @@
     <link rel="stylesheet" href="{{ asset('vendors-mibooz/jquery-ui/jquery-ui.css') }}" />
 
     <!-- css assets styles -->
-    <link rel="stylesheet" href="{{ asset('css/mibooz.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/mibooz-2.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/mibooz-responsive.css') }}" />
     <!-- css assets end-->
 
