@@ -26,12 +26,12 @@
                         <ul class="list-unstyled about-page__images">
                             <li>
                                 <div class="about-page__img-1">
-                                    <img src="{{ asset('images/larva-logo.png') }}" alt="">
+                                    <img src="{{ asset('images/about.jpg') }}" alt="Larva Logo">
                                 </div>
                             </li>
                         </ul>
-                        <div class="about-page__badge"><img data-tilt
-                                src="{{ asset('images/resources/about-page-badge.png') }}" alt=""></div>
+                        {{-- <div class="about-page__badge"><img data-tilt
+                                src="{{ asset('images/resources/about-page-badge.png') }}" alt=""></div> --}}
                     </div>
                 </div>
                 <div class="col-xl-6">
