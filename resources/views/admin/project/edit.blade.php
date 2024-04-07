@@ -51,7 +51,7 @@
                             @enderror
                         </div>
                         <div class="mt-4 @error('project_image') has-error @enderror">
-                            <label for="project_image">Service Image</label>
+                            <label for="project_image">Project Image</label>
                             <div class="table-responsive">
                                 <table>
                                     <thead>
@@ -67,7 +67,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    <div id="imagePreview" class="mt-2 flex flex-wrap gap-2">
+                                                    <div id="imagePreview2" class="mt-2 flex flex-wrap gap-2">
                                                         <img src="{{ asset('storage/' . $image->file_path) }}" class="w-20 h-20 object-cover border rounded" />
                                                     </div>
                                                 </td>

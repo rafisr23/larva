@@ -52,7 +52,7 @@
                         </div>
                         <div class="mt-4 @error('project_image') has-error @enderror">
                             {{-- <div class="custom-file-container" data-upload-id="serviceImage"></div> --}}
-                            <label for="project_image">Service Image <sup class="text-danger">*</sup></label>
+                            <label for="project_image">Project Image <sup class="text-danger">*</sup></label>
                             <input id="project_image" name="project_image[]" type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" multiple onchange="displayImage(this)" />
                             <div id="imagePreview" class="mt-2 flex flex-wrap gap-2"></div>
                             @error('project_image')
