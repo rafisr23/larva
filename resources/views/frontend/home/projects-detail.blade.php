@@ -36,7 +36,7 @@
                             <p class="project-details__content-text-1 mb-3">{!! $project->description !!}</p>
                             <div class="row">
                                 @foreach ($project->projectImage as $item)
-                                    <div class="col-xl-3">
+                                    <div class="col-xl-3 mb-3">
                                         <div class="project-detail-img">
                                             <img src="{{ asset('storage/' . $item->file_path) }}" alt="">
                                         </div>
