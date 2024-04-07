@@ -30,7 +30,7 @@
                         <div class="main-slider__social">
                             {{-- <a href="#">facebook</a> --}}
                             {{-- <a href="#">twitter</a> --}}
-                            <a href="https://www.instagram.com/larvacreative.id/">instagram</a>
+                            <a href="{{ $contact->instagram }}">instagram</a>
                         </div>
                         <div class="container">
                             <div class="row">

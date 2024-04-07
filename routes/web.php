@@ -134,5 +134,8 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
     });
 });
 
+Route::middleware(['web', 'auth'])->group(function () {
+    Route::post('/send-email', [ContactController::class, 'store'])->name('send-email');
+});
 
 require __DIR__.'/auth.php';
