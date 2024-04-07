@@ -31,7 +31,7 @@ class HomeUserController extends Controller
 
         $service = Service::with('serviceImage')->where('is_active', '1')->orderBy('order', 'asc')->get();
         $project = Project::with('service', 'projectImage')->orderBy('created_at', 'desc')->get();
-        $testimoni = Testimoni::latest()->limit(3)->with('user')->get();
+        $testimoni = Testimoni::latest()->limit(10)->orderBy('created_at', 'desc')->with('user')->get();
         $partner = Partner::where('is_active', '1')->get();
         $contact = Contact::first();
         
@@ -47,7 +47,7 @@ class HomeUserController extends Controller
             $headerImage = null;
         }
 
-        $testimoni = Testimoni::latest()->limit(3)->with('user')->get();
+        $testimoni = Testimoni::latest()->limit(10)->orderBy('created_at', 'desc')->with('user')->get();
         $partner = Partner::where('is_active', '1')->get();
 
         // return $testimoni;
