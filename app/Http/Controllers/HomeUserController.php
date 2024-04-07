@@ -96,7 +96,7 @@ class HomeUserController extends Controller
     public function projects()
     {
         $contact = Contact::first();
-        $project = Project::with('service', 'projectImage')->get();
+        $project = Project::with('service', 'projectImage')->orderBy('created_at', 'desc')->get();
         $service = Service::where('is_active', '1')->orderBy('order', 'asc')->get();
         
         $categoryImage = PageImageCategory::where('category_name', 'project-header')->first();
