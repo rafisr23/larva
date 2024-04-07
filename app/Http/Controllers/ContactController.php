@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactEmail;
 
 class ContactController extends Controller
 {
@@ -31,9 +33,28 @@ class ContactController extends Controller
                 'telephone'     => $request->telephone,
                 'phone'         => $request->phone,
                 'email'         => $request->email,
+                'instagram'     => $request->instagram,
+                'youtube'       => $request->youtube,
             ]
         );
 
         return redirect()->route('admin.contact.index')->with('success', 'Contact has been updated');
+    }
+
+    // send email with smtp and use Email class laravel
+    public function sendEmail(Request $request) 
+    {
+        $contact = Contact::first();
+        $body = [
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'phone'     => $request->phone,
+            'subject'   => $request->subject,
+            'message'   => $request->message,
+        ];
+
+        Mail::to($contact->email)->send(new ContactEmail($body));
+
+        return redirect()->route('user-contact')->with('success', 'Thanks for contacting us. We will contact you ASAP!');
     }
 }

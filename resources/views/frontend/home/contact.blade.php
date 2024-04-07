@@ -37,12 +37,12 @@
                             <a href="https://wa.me/{{ $contact->phone }}" class="location__phone">{{ $contact->phone }}</a>
                             <a href="mailto:{{ $contact->email }}" class="location__email">{{ $contact->email }}</a>
                         </h5>
-                        {{-- <div class="location__social">
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-facebook"></i></a>
-                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                        </div> --}}
+                        <div class="location__social">
+                            {{-- <a href="#"><i class="fab fa-twitter"></i></a> --}}
+                            {{-- <a href="#"><i class="fab fa-facebook"></i></a> --}}
+                            {{-- <a href="#"><i class="fab fa-pinterest-p"></i></a> --}}
+                            <a href="{{ $contact->instagram }}"><i class="fab fa-instagram"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="contact-page__form">
-                        <form action="#" class="comment-one__form contact-form-validated" novalidate="novalidate">
+                        <form action="" class="comment-one__form contact-form-validated" novalidate="novalidate">
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="comment-form__input-box">
