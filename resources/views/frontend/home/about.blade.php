@@ -86,7 +86,7 @@
                                             <img src="{{ asset('images/resources/user.png') }}" alt="">
                                         </div>
                                         <div class="testimonial-two__client-details">
-                                            <h4 class="testimonial-two__client-name">Customer {{ $loop->iteration }}</h4>
+                                            <h4 class="testimonial-two__client-name">{{ $item->user ? $item->user->name : $item->name  }}</h4>
                                             {{-- <p class="testimonial-two__client-title">Customer</p> --}}
                                         </div>
                                     </div>
