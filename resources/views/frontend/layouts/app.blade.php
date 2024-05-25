@@ -84,7 +84,7 @@
             gtag('config', '{{ config('services.ga4.measurementId') }}');
         </script> --}}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV1TMCPCJ2"></script>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16581780539"></script>
+        {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16581780539"></script> --}}
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
