@@ -2,7 +2,7 @@
     <nav class="main-menu clearfix">
         <div class="main-menu-wrapper">
             <div class="main-menu-wrapper__logo align-self-center">
-                <a href="index.html" class="align-self-center"><img src="{{ asset('images/larva-logo.png') }}" alt="" height="50"></a>
+                <a href="{{ route('user-index') }}" class="align-self-center"><img src="{{ asset('images/larva-logo.png') }}" alt="" height="50"></a>
             </div>
             <div class="main-menu-wrapper__main-menu">
                 <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
