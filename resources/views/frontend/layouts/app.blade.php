@@ -71,6 +71,19 @@
             $crisp.push(["set", "user:nickname", ["{{ Auth::user()->name }}"]]);
         @endif
     </script>
+
+    <!-- Google tag (gtag.js) -->
+    {{-- if env is production --}}
+    @if (config('app.env') == 'production')
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.ga4.measurementId') }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '{{ config('services.ga4.measurementId') }}');
+        </script>
+    @endif
     
 </head>
 
