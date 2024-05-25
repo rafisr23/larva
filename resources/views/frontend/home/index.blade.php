@@ -45,9 +45,9 @@
                                         <div class="mb-2">
                                             <a href="{{ route('user-about') }}" class="thm-btn">Tentang Kami</a>
                                         </div>
-                                        <div class="">
+                                        {{-- <div class="">
                                             <a href="https://wa.me/{{ $contact->phone }}" class="thm-btn">Mulai Konsultasi</a>
-                                        </div>
+                                        </div> --}}
                                         <div class="main-slider-badge">
                                             <img data-tilt src="{{ asset('images/resources/main-slider-badge.png') }}" alt="">
                                         </div>
