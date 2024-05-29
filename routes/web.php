@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProfileController;
@@ -33,6 +34,11 @@ Route::middleware(['web'])->group(function () {
     Route::get('/projects', [HomeUserController::class, 'projects'])->name('user-projects');
     Route::get('/project/{project}', [HomeUserController::class, 'projectDetail'])->name('user-project-detail');
     Route::get('/contact', [HomeUserController::class, 'contact'])->name('user-contact');
+    
+    Route::controller(BlogController::class)->prefix('blog')->name('blog')->group(function () {
+        Route::get('/', 'index')->name('.index');
+        Route::get('/show', 'show')->name('.show');
+    });
 });
 
 // Route::get('/dashboard', function () {
