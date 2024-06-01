@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Tag;
+use App\Models\BlogImage;
+use App\Models\BlogCategories;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Blog extends Model
 {
@@ -13,7 +16,7 @@ class Blog extends Model
 
     public function category()
     {
-        return $this->belongsTo(BlogCategory::class);
+        return $this->belongsTo(BlogCategories::class);
     }
 
     public function tags()

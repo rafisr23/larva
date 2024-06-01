@@ -162,6 +162,10 @@
     <script src="/js/swiper-bundle.min.js"></script>
     <script src="/js/jquery.min.js"></script>
 
+    <script>
+        const CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    </script>
+
 
     @stack('scripts')
 

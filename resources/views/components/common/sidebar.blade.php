@@ -136,6 +136,17 @@
                                 </div>
                             </a>
                         </li>
+                        <li class="nav-item mt-2">
+                            <a href="{{ route('admin.blog.list') }}" class="group @if (request()->routeIs('admin.blog.*')) active @endif">
+                                <div class="flex items-center">
+                                    <svg class="group-hover:!text-red shrink-0 @if (request()->routeIs('admin.blog.*')) !text-red @endif" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20">
+                                        <path fill="currentColor" d="M13 0a2 2 0 0 1 2 2H6a2 2 0 0 0-2 2v12a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
+                                        <path fill="currentColor" d="M18 5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2zm-7 5H7V5h4zm5-4h-4V5h4zm0 2h-4V7h4zm0 2h-4V9h4zm0 2H7v-1h9zm0 2H7v-1h9zm0 2H7v-1h9z"/>
+                                    </svg>
+                                    <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Blog</span>
+                                </div>
+                            </a>
+                        </li>
                         {{-- <li class="nav-item mt-2">
                             <a href="{{ route('admin.testimoni.index') }}" class="group @if (request()->routeIs('admin.testimoni.*')) active @endif">
                                 <div class="flex items-center">

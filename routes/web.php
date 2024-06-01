@@ -136,6 +136,16 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
             Route::put('/{testimoni}', 'update')->name('.update');
             Route::delete('/{testimoni}', 'destroy')->name('.destroy');
         });
+        
+        Route::controller(BlogController::class)->prefix('blog')->name('blog')->group(function () {
+            Route::get('/', 'list')->name('.list');
+            Route::get('/get-blogs', 'getBlogs')->name('.get-blogs');
+            Route::get('/create', 'create')->name('.create');
+            Route::post('/store', 'store')->name('.store');
+            Route::get('/{testimoni}/edit', 'edit')->name('.edit');
+            Route::put('/{testimoni}', 'update')->name('.update');
+            Route::delete('/{testimoni}', 'destroy')->name('.destroy');
+        });
 
     });
 });
