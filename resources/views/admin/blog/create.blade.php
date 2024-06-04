@@ -36,8 +36,8 @@
                                     @enderror
                                 </div>
                                 <div class="@error('tag_id') has-error @enderror">
-                                    <label for="tag_id">Tag <sup class="text-danger">*</sup></label>
-                                    <select id="multiple-select" class="border-primary" name="tag_id" required>
+                                    <label for="tag_id">Tag</label>
+                                    <select id="multiple-select" class="border-primary" name="tag_id[]" multiple="multiple">
                                         @foreach ($tags as $tag)
                                             <option value="{{ encrypt($tag->id) }}">{{ $tag->name }}</option> 
                                         @endforeach
@@ -88,6 +88,15 @@
                                     @enderror
                                 </div> --}}
                             </div>
+                            <div class="grid grid-cols-1 mt-4 gap-4">
+                                <div class="mt-4 flex items-center">
+                                    <label for="status" class="me-4">Publish</label>
+                                    <label class="w-12 h-6 relative">
+                                        <input type="checkbox" class="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer" id="status" name="status" />
+                                        <span for="status" class="bg-danger dark:bg-danger block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-success before:transition-all before:duration-300"></span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,7 +116,7 @@
                             <div class="grid grid-cols-1 gap-4">
                                 <div class="@error('meta_title') has-error @enderror">
                                     <label for="meta_title">Meta Title</label>
-                                    <input id="meta_title" name="meta_title" type="text" placeholder="Enter Meta Title" class="form-input" required value="{{ old('meta_title') }}"/>
+                                    <input id="meta_title" name="meta_title" type="text" placeholder="Enter Meta Title" class="form-input" value="{{ old('meta_title') }}"/>
                                     <label class="inline-flex mt-2">
                                         <input type="checkbox" class="form-checkbox" id="get_meta_title" />
                                         <span>Same as title</span>
@@ -120,14 +129,14 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                                 <div class="@error('slug') has-error @enderror">
                                     <label for="slug">Slug</label>
-                                    <input id="slug" name="slug" type="text" placeholder="Enter Slug or Keyword" class="form-input" required value="{{ old('slug') }}"/>
+                                    <input id="slug" name="slug" type="text" placeholder="Enter Slug or Keyword" class="form-input" value="{{ old('slug') }}"/>
                                     @error('slug')
                                         <p class="text-danger mt-1">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="@error('meta_author') has-error @enderror">
                                     <label for="meta_author">Meta Author</label>
-                                    <input id="meta_author" name="meta_author" type="text" placeholder="Enter Meta Author" class="form-input" required value="{{ old('meta_author') }}"/>
+                                    <input id="meta_author" name="meta_author" type="text" placeholder="Enter Meta Author" class="form-input" value="{{ old('meta_author') }}"/>
                                     @error('meta_author')
                                         <p class="text-danger mt-1">{{ $message }}</p>
                                     @enderror
@@ -136,7 +145,7 @@
                             <div class="grid grid-cols-1 gap-4 mt-4">
                                 <div class="@error('meta_description') has-error @enderror">
                                     <label for="meta_description">Meta Description</label>
-                                    <textarea id="meta_description" name="meta_description" type="text" placeholder="Enter Meta Description" class="form-input" required rows="4">{{ old('meta_description') }}</textarea>
+                                    <textarea id="meta_description" name="meta_description" type="text" placeholder="Enter Meta Description" class="form-input" rows="4">{{ old('meta_description') }}</textarea>
                                     @error('meta_description')
                                         <p class="text-danger mt-1">{{ $message }}</p>
                                     @enderror
@@ -145,7 +154,7 @@
                         </div>
                     </div>
                     <div class="!mt-8 flex">
-                        <a href="{{ route('admin.service.index') }}" class="btn btn-info me-1">Analyze SEO</a>
+                        <a href="{{ route('admin.service.index') }}" type="button" class="btn btn-info me-1">Analyze SEO</a>
                     </div>
                 </div>
                 <div class="!mt-8 flex">

@@ -28,7 +28,7 @@ class BlogController extends Controller
     }
 
     public function getBlogs() {
-        $blogs = Blog::with(['category', 'tags', 'user', 'images'])->get();
+        $blogs = Blog::with(['category', 'tags', 'user', 'images'])->orderBy('created_at', 'desc')->get();
         return response()->json($blogs);
     }
 
@@ -47,6 +47,75 @@ class BlogController extends Controller
     }
 
     public function store(Request $request) {
-        return $request->all();
+        
+        $request->validate([
+            'title' => 'required|max:255',
+            'category_id' => 'required',
+            // 'tag_id' => 'required',
+            'content' => 'required',
+            // 'status' => 'required',
+            // 'meta_title' => 'required',
+            // 'slug' => 'required',
+            // 'meta_author' => 'required',
+            // 'meta_keyword' => 'required',
+            // 'meta_description' => 'required',
+        ]);
+        
+        // return $request->all();
+
+        $decCategoryId = decrypt($request->category_id);
+
+        $blog = Blog::create([
+            'title' => $request->title,
+            'category_id' => $decCategoryId,
+            'content' => $request->content,
+            'thumbnail_image' => 'default-thumbnail.jpg',
+            'header_image' => 'default-header.jpg',
+            'status' => $request->status == 'on' ? 'published' : 'draft',
+            'meta_title' => $request->meta_title,
+            'slug' => $request->slug,
+            'meta_author' => $request->meta_author,
+            'meta_keyword' => $request->meta_keyword,
+            'meta_description' => $request->meta_description,
+            'user_id' => auth()->id(),
+            'published_at' => $request->published_at ?? now(),
+        ]);
+
+        if ($request->hasFile('blog_thumbnail')) {
+            $request->validate([
+                'blog_thumbnail' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            ]);
+
+            $image = $request->file('blog_thumbnail');
+            $imageName = $blog->slug . '-thumbnail' . time() . '.' . $image->extension();
+            $file_path = $image->storeAs('blog/thumbnail', $imageName);
+            
+            $blog->update([
+                'blog_thumbnail' => $file_path,
+            ]);
+        }
+
+        if ($request->hasFile('blog_header')) {
+            $request->validate([
+                'blog_header' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            ]);
+
+            $image = $request->file('blog_header');
+            $imageName = $blog->slug . '-header' . time() . '.' . $image->extension();
+            $file_path = $image->storeAs('blog/header', $imageName);
+            
+            $blog->update([
+                'blog_header' => $file_path,
+            ]);
+        }
+
+        $decTagId = [];
+        foreach ($request->tag_id as $tag) {
+            $decTagId[] = decrypt($tag);
+        }
+
+        $blog->tags()->attach($decTagId);
+
+        return redirect()->route('admin.blog.list')->with('success', 'Blog created successfully');
     }
 }
