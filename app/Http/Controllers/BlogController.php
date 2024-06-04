@@ -81,31 +81,31 @@ class BlogController extends Controller
             'published_at' => $request->published_at ?? now(),
         ]);
 
-        if ($request->hasFile('blog_thumbnail')) {
+        if ($request->hasFile('thumbnail_image')) {
             $request->validate([
-                'blog_thumbnail' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+                'thumbnail_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             ]);
 
-            $image = $request->file('blog_thumbnail');
+            $image = $request->file('thumbnail_image');
             $imageName = $blog->slug . '-thumbnail' . time() . '.' . $image->extension();
             $file_path = $image->storeAs('blog/thumbnail', $imageName);
             
             $blog->update([
-                'blog_thumbnail' => $file_path,
+                'thumbnail_image' => $file_path,
             ]);
         }
 
-        if ($request->hasFile('blog_header')) {
+        if ($request->hasFile('header_image')) {
             $request->validate([
-                'blog_header' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+                'header_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             ]);
 
-            $image = $request->file('blog_header');
+            $image = $request->file('header_image');
             $imageName = $blog->slug . '-header' . time() . '.' . $image->extension();
             $file_path = $image->storeAs('blog/header', $imageName);
             
             $blog->update([
-                'blog_header' => $file_path,
+                'header_image' => $file_path,
             ]);
         }
 
@@ -118,4 +118,120 @@ class BlogController extends Controller
 
         return redirect()->route('admin.blog.list')->with('success', 'Blog created successfully');
     }
+
+    public function edit(Blog $blog) {
+        $title = 'LARVA | Edit Blog';
+
+        $categories = BlogCategories::all();
+        $tags = Tag::all();
+
+        return view('admin.blog.edit', compact('title', 'categories', 'tags', 'blog'));
+    }
+
+    public function update(Request $request, Blog $blog) {
+        $request->validate([
+            'title' => 'required|max:255',
+            'category_id' => 'required',
+            // 'tag_id' => 'required',
+            'content' => 'required',
+            // 'status' => 'required',
+            // 'meta_title' => 'required',
+            // 'slug' => 'required',
+            // 'meta_author' => 'required',
+            // 'meta_keyword' => 'required',
+            // 'meta_description' => 'required',
+        ]);
+
+        $decCategoryId = decrypt($request->category_id);
+
+        $blog->update([
+            'title' => $request->title,
+            'category_id' => $decCategoryId,
+            'content' => $request->content,
+            'status' => $request->status == 'on' ? 'published' : 'archived',
+            'meta_title' => $request->meta_title,
+            'slug' => $request->slug,
+            'meta_author' => $request->meta_author,
+            'meta_keyword' => $request->meta_keyword,
+            'meta_description' => $request->meta_description,
+            'user_id' => auth()->id(),
+            'published_at' => $request->published_at ?? now(),
+        ]);
+
+        if ($request->hasFile('thumbnail_image')) {
+            $request->validate([
+                'thumbnail_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            ]);
+
+            if ($blog->thumbnail_image) {
+                if (public_path('storage/' . $blog->thumbnail_image) == '') {
+                    unlink(public_path('storage/' . $blog->thumbnail_image));
+                }
+            }
+
+            $image = $request->file('thumbnail_image');
+            $imageName = $blog->slug . '-thumbnail' . time() . '.' . $image->extension();
+            $file_path = $image->storeAs('blog/thumbnail', $imageName);
+            
+            $blog->update([
+                'thumbnail_image' => $file_path,
+            ]);
+        }
+
+        if ($request->hasFile('header_image')) {
+            $request->validate([
+                'header_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            ]);
+
+            if ($blog->header_image) {
+                if (public_path('storage/' . $blog->header_image) == '') {
+                    unlink(public_path('storage/' . $blog->header_image));
+                }
+            }
+
+            $image = $request->file('header_image');
+            $imageName = $blog->slug . '-header' . time() . '.' . $image->extension();
+            $file_path = $image->storeAs('blog/header', $imageName);
+            
+            $blog->update([
+                'header_image' => $file_path,
+            ]);
+        }
+
+        $decTagId = [];
+        foreach ($request->tag_id as $tag) {
+            $decTagId[] = decrypt($tag);
+        }
+
+        $blog->tags()->sync($decTagId);
+
+        return redirect()->route('admin.blog.list')->with('success', 'Blog updated successfully');
+    }
+
+    public function destroy(Blog $blog) {
+        $blog->tags()->detach();
+
+        // delete image from storage
+        if ($blog->thumbnail_image) {
+            // check if image in exist in storage
+            if (public_path('storage/' . $blog->header_image) == '') {
+                unlink(public_path('storage/' . $blog->thumbnail_image));
+            }
+        }
+
+        if ($blog->header_image) {
+            // check if image in exist in storage
+            if (public_path('storage/' . $blog->header_image) == '') {
+                unlink(public_path('storage/' . $blog->header_image));
+            }
+        }
+        
+        $blog->delete();
+
+        return response()->json([
+            'success' => TRUE,
+            'message' => 'Service deleted successfully.',
+        ]);
+    }
+        
 }

@@ -142,9 +142,9 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
             Route::get('/get-blogs', 'getBlogs')->name('.get-blogs');
             Route::get('/create', 'create')->name('.create');
             Route::post('/store', 'store')->name('.store');
-            Route::get('/{testimoni}/edit', 'edit')->name('.edit');
-            Route::put('/{testimoni}', 'update')->name('.update');
-            Route::delete('/{testimoni}', 'destroy')->name('.destroy');
+            Route::get('/{blog}/edit', 'edit')->name('.edit');
+            Route::put('/{blog}', 'update')->name('.update');
+            Route::delete('/{blog}', 'destroy')->name('.destroy');
             Route::get('/check-slug', [BlogController::class, 'checkSlug']);
         });
 

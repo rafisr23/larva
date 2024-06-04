@@ -3,11 +3,12 @@
 
     <div>
         <div class="grid gap-6 mb-6">
-            <form action="{{ route('admin.blog.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.blog.update', $blog->slug) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="panel">
                     <div class="flex items-center justify-between">
-                        <h5 class="font-semibold text-xl">Create Blog</h5>
+                        <h5 class="font-semibold text-xl">Edit Blog</h5>
                     </div>
                 </div>
                 <div class="panel mt-5">
@@ -16,7 +17,7 @@
                             <div class="grid grid-cols-1 gap-4">
                                 <div class="@error('title') has-error @enderror">
                                     <label for="title">Title <sup class="text-danger">*</sup></label>
-                                    <input id="title" name="title" type="text" placeholder="Enter Title" class="form-input" required value="{{ old('title') }}"/>
+                                    <input id="title" name="title" type="text" placeholder="Enter Title" class="form-input" required value="{{ old('title', $blog->title) }}"/>
                                     @error('title')
                                         <p class="text-danger mt-1">{{ $message }}</p>
                                     @enderror
@@ -27,7 +28,7 @@
                                     <label>Category <sup class="text-danger">*</sup></label>
                                     <select id="searchable-select" class="border-primary" name="category_id" required>
                                         @foreach ($categories as $category)
-                                            <option value="{{ encrypt($category->id) }}">{{ $category->name }}</option> 
+                                            <option value="{{ encrypt($category->id) }}" {{ $blog->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option> 
                                         @endforeach
                                     </select>
                                     {{-- <input id="category_id" name="category_id" type="text" placeholder="Enter Company Name" class="form-input" value="{{ old('category_id') }}"/> --}}
@@ -39,10 +40,13 @@
                                     <label for="tag_id">Tag</label>
                                     <select id="multiple-select" class="border-primary" name="tag_id[]" multiple="multiple">
                                         @foreach ($tags as $tag)
-                                            <option value="{{ encrypt($tag->id) }}">{{ $tag->name }}</option> 
+                                            {{-- <option value="{{ encrypt($tag->id) }}">{{ $tag->name }}</option>  --}}
+                                            <option value="{{ encrypt($tag->id) }}" 
+                                                @if (in_array($tag->id, $blog->tags->pluck('id')->toArray())) selected @endif>
+                                                {{ $tag->name }}
+                                            </option> 
                                         @endforeach
                                     </select>
-                                    {{-- <input id="tag_id" name="tag_id" type="text" placeholder="Enter Company Name" class="form-input" value="{{ old('tag_id') }}"/> --}}
                                     @error('tag_id')
                                         <p class="text-danger mt-1">{{ $message }}</p>
                                     @enderror
@@ -51,9 +55,9 @@
                             <div class="grid grid-cols-1 mt-4 gap-4">
                                 <div class="@error('content') has-error @enderror">
                                     <label for="content">Content <sup class="text-danger">*</sup></label>
-                                    <input id="content" type="hidden" name="content" value="{!! old('content') !!}">
+                                    <input id="content" type="hidden" name="content" value="{!! old('content', $blog->content) !!}">
                                     {{-- <div class="quill-editor" id="content"></div> --}}
-                                    <trix-editor input="content" class="form-input trix-editor" placeholder="Enter Content" id="content">{!! old('content') !!}</trix-editor>
+                                    <trix-editor input="content" class="form-input trix-editor" placeholder="Enter Content" id="content">{!! old('content', $blog->content) !!}</trix-editor>
                                     {{-- <textarea id="content" name="content" class="form-textarea" placeholder="Enter content" required>{{ old('content') }}</textarea> --}}
                                     @error('content')
                                         <p class="text-danger mt-1">{{ $message }}</p>
@@ -65,7 +69,9 @@
                                     {{-- <div class="custom-file-container" data-upload-id="serviceImage"></div> --}}
                                     <label for="thumbnail_image">Blog Thumbnail <span class="text-sm block italic">thumbnail size: 370px * 336px or 1:1</span></label>
                                     <input id="thumbnail_image" name="thumbnail_image" type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" onchange="displayThumbnail(this)" />
-                                    <div id="iconPreview" class="mt-2 flex flex-wrap gap-2"></div>
+                                    <div id="thumbnailPreview" class="mt-2 flex flex-wrap gap-2">
+                                        <img src="{{ asset('storage/' . $blog->thumbnail_image) }}" class="w-32 h-32 object-cover border rounded" alt="thumbnail image" />
+                                    </div>
                                     @error('thumbnail_image')
                                         <p class="text-danger mt-1">{{ $message }}</p>
                                     @enderror
@@ -74,7 +80,9 @@
                                     {{-- <div class="custom-file-container" data-upload-id="serviceImage"></div> --}}
                                     <label for="header_image">Blog Header <span class="text-sm block italic">header size: 770px * 428px or 16:9</span></label>
                                     <input id="header_image" name="header_image" type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" onchange="displayHeader(this)" />
-                                    <div id="coverPreview" class="mt-2 flex flex-wrap gap-2"></div>
+                                    <div id="headerPreview" class="mt-2 flex flex-wrap gap-2">
+                                        <img src="{{ asset('storage/' . $blog->header_image) }}" class="w-32 h-32 object-cover border rounded" alt="header image" />
+                                    </div>
                                     @error('header_image')
                                         <p class="text-danger mt-1">{{ $message }}</p>
                                     @enderror
@@ -90,11 +98,24 @@
                             </div>
                             <div class="grid grid-cols-1 mt-4 gap-4">
                                 <div class="mt-4 flex items-center">
-                                    <label for="status" class="me-4">Publish</label>
-                                    <label class="w-12 h-6 relative">
-                                        <input type="checkbox" class="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer" id="status" name="status" />
-                                        <span for="status" class="bg-danger dark:bg-danger block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-success before:transition-all before:duration-300"></span>
-                                    </label>
+                                    <div class="flex items-center">
+                                        <label for="status" class="me-4">Publish</label>
+                                        <label class="w-12 h-6 relative">
+                                            <input type="checkbox" class="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer" id="status" name="status" {{ $blog->status == 'published' ? 'checked' : '' }} />
+                                            <span for="status" class="bg-danger dark:bg-danger block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-success before:transition-all before:duration-300"></span>
+                                        </label>
+                                    </div>
+                                    <div class="ms-2 items-start">
+                                        @if ($blog->status === 'draft')
+                                            <span class="badge bg-warning">Draft</span>
+                                        @elseif ($blog->status === 'published')
+                                            <span class="badge bg-success">Published</span>
+                                        @elseif ($blog->status === 'archived')
+                                            <span class="badge bg-secondary">Archived</span>
+                                        @else
+                                            <span class="badge bg-light">Unknown</span>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -116,9 +137,9 @@
                             <div class="grid grid-cols-1 gap-4">
                                 <div class="@error('meta_title') has-error @enderror">
                                     <label for="meta_title">Meta Title</label>
-                                    <input id="meta_title" name="meta_title" type="text" placeholder="Enter Meta Title" class="form-input" value="{{ old('meta_title') }}"/>
+                                    <input id="meta_title" name="meta_title" type="text" placeholder="Enter Meta Title" class="form-input" value="{{ old('meta_title', $blog->meta_title) }}"/>
                                     <label class="inline-flex mt-2">
-                                        <input type="checkbox" class="form-checkbox" id="get_meta_title" />
+                                        <input type="checkbox" class="form-checkbox" id="get_meta_title" {{ $blog->meta_title == $blog->title ? 'checked' : '' }} />
                                         <span>Same as title</span>
                                     </label>
                                     @error('meta_title')
@@ -129,14 +150,14 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                                 <div class="@error('slug') has-error @enderror">
                                     <label for="slug">Slug</label>
-                                    <input id="slug" name="slug" type="text" placeholder="Enter Slug or Keyword" class="form-input" value="{{ old('slug') }}"/>
+                                    <input id="slug" name="slug" type="text" placeholder="Enter Slug or Keyword" class="form-input" value="{{ old('slug', $blog->slug) }}"/>
                                     @error('slug')
                                         <p class="text-danger mt-1">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="@error('meta_author') has-error @enderror">
                                     <label for="meta_author">Meta Author</label>
-                                    <input id="meta_author" name="meta_author" type="text" placeholder="Enter Meta Author" class="form-input" value="{{ old('meta_author') }}"/>
+                                    <input id="meta_author" name="meta_author" type="text" placeholder="Enter Meta Author" class="form-input" value="{{ old('meta_author', $blog->meta_author) }}"/>
                                     @error('meta_author')
                                         <p class="text-danger mt-1">{{ $message }}</p>
                                     @enderror
@@ -145,7 +166,7 @@
                             <div class="grid grid-cols-1 gap-4 mt-4">
                                 <div class="@error('meta_description') has-error @enderror">
                                     <label for="meta_description">Meta Description</label>
-                                    <textarea id="meta_description" name="meta_description" type="text" placeholder="Enter Meta Description" class="form-input" rows="4">{{ old('meta_description') }}</textarea>
+                                    <textarea id="meta_description" name="meta_description" type="text" placeholder="Enter Meta Description" class="form-input" rows="4">{{ old('meta_description', $blog->meta_description) }}</textarea>
                                     @error('meta_description')
                                         <p class="text-danger mt-1">{{ $message }}</p>
                                     @enderror
@@ -154,11 +175,11 @@
                         </div>
                     </div>
                     <div class="!mt-8 flex">
-                        <a href="{{ route('admin.service.index') }}" type="button" class="btn btn-info me-1">Analyze SEO</a>
+                        <a href="#" type="button" class="btn btn-info me-1">Analyze SEO</a>
                     </div>
                 </div>
                 <div class="!mt-8 flex">
-                    <a href="{{ route('admin.service.index') }}" class="btn btn-warning me-1">Back</a>
+                    <a href="{{ route('admin.blog.list') }}" class="btn btn-warning me-1">Back</a>
                     <button type="submit" class="btn btn-primary ">Save</button>
                 </div>
             </form>
@@ -167,29 +188,9 @@
 
     <script>
         document.addEventListener("alpine:init", () => {});
-
-        function displayImage(input) {
-            var preview = document.getElementById('imagePreview');
-            preview.innerHTML = '';
-
-            if (input.files && input.files.length > 0) {
-                for (var i = 0; i < input.files.length; i++) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        var image = document.createElement('img');
-                        image.src = e.target.result;
-                        image.className = 'w-32 h-32 object-cover border rounded';
-                        preview.appendChild(image);
-                    };
-
-                    reader.readAsDataURL(input.files[i]);
-                }
-            }
-        }
         
         function displayThumbnail(input) {
-            var preview = document.getElementById('iconPreview');
+            var preview = document.getElementById('thumbnailPreview');
             preview.innerHTML = '';
 
             if (input.files && input.files.length > 0) {
@@ -209,7 +210,7 @@
         }
         
         function displayHeader(input) {
-            var preview = document.getElementById('coverPreview');
+            var preview = document.getElementById('headerPreview');
             preview.innerHTML = '';
 
             if (input.files && input.files.length > 0) {

@@ -93,6 +93,11 @@
                                             <path fill="currentColor" d="M3 17.46v3.04c0 .28.22.5.5.5h3.04c.13 0 .26-.05.35-.15L17.81 9.94l-3.75-3.75L3.15 17.1c-.1.1-.15.22-.15.36M20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83l3.75 3.75z"/>
                                         </svg>
                                     </a>
+                                    <button class="text-info btn-archive" data-slug="${item.slug}" type="button" title="Archive Data">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                            <path fill="currentColor" d="m12 18l4-4l-1.4-1.4l-1.6 1.6V10h-2v4.2l-1.6-1.6L8 14zm-7 3q-.825 0-1.412-.587T3 19V6.525q0-.35.113-.675t.337-.6L4.7 3.725q.275-.35.687-.538T6.25 3h11.5q.45 0 .863.188t.687.537l1.25 1.525q.225.275.338.6t.112.675V19q0 .825-.587 1.413T19 21zm.4-15h13.2l-.85-1H6.25z"/>
+                                        </svg>
+                                    </button>
                                     <button class="text-danger btn-delete" data-slug="${item.slug}" type="button" title="Delete Data">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                             <path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2zM18 4h-2.5l-.71-.71c-.18-.18-.44-.29-.7-.29H9.91c-.26 0-.52.11-.7.29L8.5 4H6c-.55 0-1 .45-1 1s.45 1 1 1h12c.55 0 1-.45 1-1s-.45-1-1-1"/>
@@ -110,7 +115,7 @@
                 },
             }));
 
-            $('#blog-table').on('click', '.btn-delete', function() {
+            $('#blogTable').on('click', '.btn-delete', function() {
                 let slug = $(this).data('slug');
 
                 new window.Swal({
@@ -122,7 +127,7 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        let url = "{{ route('admin.service.destroy', ':slug') }}".replace(':slug', slug);
+                        let url = "{{ route('admin.blog.destroy', ':slug') }}".replace(':slug', slug);
                         $.ajax({
                             url: url,
                             type: "DELETE",
@@ -134,18 +139,18 @@
                                 if (response.success) {
                                     new window.Swal({
                                         title: 'Success!',
-                                        text: 'Service has been deleted!',
+                                        text: 'Blog has been deleted!',
                                         icon: 'success',
                                         customClass: 'sweet-alerts',
                                     }).then((result) => {
-                                            if (result.isConfirmed) {
-                                                window.location.reload();
-                                            }
-                                        });
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    });
                                 } else {
                                     new window.Swal({
                                         title: 'Failed!',
-                                        text: 'Failed to delete service!',
+                                        text: 'Failed to delete blog!',
                                         icon: 'error',
                                         customClass: 'sweet-alerts',
                                     });
@@ -159,7 +164,7 @@
                 });
             });
 
-            $('#blog-table').on('change', '.is_active', function() {
+            $('#blogTable').on('change', '.is_active', function() {
                 let slug = $(this).closest('tr').find('.btn-delete').data('slug');
                 let status = $(this).prop('checked') ? 1 : 0;
 
