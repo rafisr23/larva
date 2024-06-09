@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Larva Creative Industry</title>
     <!-- favicons Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/larva-logo.png') }}" />
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/larva-logo.png') }}" />
@@ -17,20 +16,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Federo&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    {{-- meta tag for SEO --}}
-    <meta name="application-name" content="Larva Creative Industry" />
-    <meta name="description" content="Larva Creative Industry adalah perusahaan jasa yang berlokasi di Bandung, Indonesia. Kami spesialis dalam pembuatan merchandise and gift, konveksi sablon, design studio, screen printing, clothing supplier, dan layanan web development. Keunggulan kami meliputi pelayanan murah, cepat, terpercaya, terjamin, dengan kualitas terbaik. Dapatkan harga bersaing dari kami yang ramah dan berkomitmen memberikan solusi terbaik untuk kebutuhan kreatif Anda." />
-    <meta name="keywords" content="Larva Creative Industry, Perusahaan Jasa, Bandung, Indonesia, Pembuatan merchandise, gift, konveksi sablon, design studio, screen printing, clothing supplier, web development, murah, cepat, terpercaya, terjamin, kualitas terbaik, harga bersaing, ramah" />
-    <meta name="author" content="Larva Creative Industry" />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="Indonesia" />
-    <meta name="web_author" content="Larva Creative Industry" />
-    <meta name="distribution" content="global" />
-    <meta name="apple-mobile-web-app-title" content="Larva Creative Industry" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="HandheldFriendly" content="True" />
+    <!-- Meta Tag for SEO -->
+    @if (request()->routeIs('blog.show'))
+        {!! seo()->for($blog) !!}
+        {{-- meta keyword --}}
+        <meta name="keywords" content="{{ $blog->meta_keyword }}" />
+        {{-- meta published_time --}}
+        <meta property="article:published_time" content="{{ \Carbon\Carbon::parse($blog->published_at) }}" />
+        {{-- meta modified_time --}}
+        <meta property="article:modified_time" content="{{ \Carbon\Carbon::parse($blog->modified_at) }}" />
+        {{-- meta author --}}
+    @else
+        <title>Larva Creative Industry</title>
+        <meta name="application-name" content="Larva Creative Industry" />
+        <meta name="description" content="Larva Creative Industry adalah perusahaan jasa yang berlokasi di Bandung, Indonesia. Kami spesialis dalam pembuatan merchandise and gift, konveksi sablon, design studio, screen printing, clothing supplier, dan layanan web development. Keunggulan kami meliputi pelayanan murah, cepat, terpercaya, terjamin, dengan kualitas terbaik. Dapatkan harga bersaing dari kami yang ramah dan berkomitmen memberikan solusi terbaik untuk kebutuhan kreatif Anda." />
+        <meta name="keywords" content="Larva Creative Industry, Perusahaan Jasa, Bandung, Indonesia, Pembuatan merchandise, gift, konveksi sablon, design studio, screen printing, clothing supplier, web development, murah, cepat, terpercaya, terjamin, kualitas terbaik, harga bersaing, ramah" />
+        <meta name="author" content="Larva Creative Industry" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="Indonesia" />
+        <meta name="web_author" content="Larva Creative Industry" />
+        <meta name="distribution" content="global" />
+        <meta name="apple-mobile-web-app-title" content="Larva Creative Industry" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="HandheldFriendly" content="True" />
+    @endif
+
 
     <link rel="stylesheet" href="{{ asset('vendors-mibooz/bootstrap/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('vendors-mibooz/animate/animate.min.css') }}" />
@@ -72,17 +84,17 @@
         @endif
     </script> --}}
 
-    <!-- Google tag (gtag.js) -->
     {{-- if env is production --}}
-    @if (config('app.env') == 'production')
+    @production
         {{-- <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.ga4.measurementId') }}"></script>
         <script>
-            window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
             gtag('config', '{{ config('services.ga4.measurementId') }}');
         </script> --}}
+        <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV1TMCPCJ2"></script>
         {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16581780539"></script> --}}
         <script>
@@ -105,7 +117,7 @@
                 return false;
             }
         </script>
-    @endif
+    @endproduction
     
 </head>
 

@@ -2,16 +2,21 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\BlogImage;
 use App\Models\BlogCategories;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Cviebrock\EloquentSluggable\Sluggable;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
+use RalphJSmit\Laravel\SEO\SchemaCollection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use RalphJSmit\Laravel\SEO\Schema\BreadcrumbListSchema;
 
 class Blog extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable, HasSEO;
 
     protected $guarded = ['id'];
     protected $with = ['category', 'tags', 'user', 'images'];
@@ -78,6 +83,34 @@ class Blog extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function getDynamicSEOData(): SEOData
+    {
+        // $pathToFeaturedImageRelativeToPublicPath = // ..;
+        $tags = explode(', ', $this->meta_keyword);
+
+        // Override only the properties you want:
+        return new SEOData(
+            title: $this->meta_title,
+            description: $this->meta_description,
+            author: $this->meta_author,
+            tags: $tags,
+            published_time: Carbon::parse($this->published_at),
+            modified_time: Carbon::parse($this->modified_at),
+            schema: SchemaCollection::initialize()
+            ->addBreadcrumbs(function (BreadcrumbListSchema $breadcrumbs): BreadcrumbListSchema {
+                return $breadcrumbs
+                    ->prependBreadcrumbs([
+                    'Homepage' => route('blog.index'),
+                    'Category' => route('blog.index', ['category' => $this->category->slug]),
+                    ])
+                    ->appendBreadcrumbs([
+                        'Subarticle' => route('blog.show', $this->slug),
+                    ]);
+            })
+            ->addArticle()
+        );
     }
 
 }

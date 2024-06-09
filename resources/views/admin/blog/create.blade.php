@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="@error('tag_id') has-error @enderror">
                                     <label for="tag_id">Tag</label>
-                                    <select id="multiple-select" class="border-primary" name="tag_id[]" multiple="multiple">
+                                    <select id="tag_id" class="border-primary multiple-select" name="tag_id[]" multiple="multiple">
                                         @foreach ($tags as $tag)
                                             <option value="{{ encrypt($tag->id) }}">{{ $tag->name }}</option> 
                                         @endforeach
@@ -126,7 +126,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                                 <div class="@error('slug') has-error @enderror">
                                     <label for="slug">Slug</label>
                                     <input id="slug" name="slug" type="text" placeholder="Enter Slug or Keyword" class="form-input" value="{{ old('slug') }}"/>
@@ -138,6 +138,17 @@
                                     <label for="meta_author">Meta Author</label>
                                     <input id="meta_author" name="meta_author" type="text" placeholder="Enter Meta Author" class="form-input" value="{{ old('meta_author') }}"/>
                                     @error('meta_author')
+                                        <p class="text-danger mt-1">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="@error('meta_keyword') has-error @enderror">
+                                    <label for="meta_keyword">Meta Keyword</label>
+                                    <input id="meta_keyword" name="meta_keyword" type="text" placeholder="Enter Meta Author" class="form-input" value="{{ old('meta_keyword') }}"/>
+                                    <label class="inline-flex mt-2">
+                                        <input type="checkbox" class="form-checkbox" id="get_meta_keyword" />
+                                        <span>Same as Tag</span>
+                                    </label>
+                                    @error('meta_keyword')
                                         <p class="text-danger mt-1">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -166,7 +177,9 @@
     </div>
 
     <script>
-        document.addEventListener("alpine:init", () => {});
+        document.addEventListener("alpine:init", () => {
+
+        });
 
         function displayImage(input) {
             var preview = document.getElementById('imagePreview');
@@ -236,7 +249,7 @@
             };
             NiceSelect.bind(document.getElementById("searchable-select"), options);
 
-            var els = document.querySelectorAll("#multiple-select");
+            var els = document.querySelectorAll(".multiple-select");
             els.forEach(function(select) {
                 NiceSelect.bind(select);
             });
@@ -245,6 +258,9 @@
             const slug = document.querySelector('#slug');
             const get_meta_title = document.querySelector('#get_meta_title');
             const meta_title = document.querySelector('#meta_title');
+            const tag = document.querySelector('#tag_id')
+            const get_meta_keyword = document.querySelector('#get_meta_keyword');
+            const meta_keyword = document.querySelector('#meta_keyword')
 
             title.addEventListener('keyup', function() {
                 fetch('/admin/blog/check-slug?title=' + title.value, {
@@ -270,6 +286,17 @@
                     meta_title.value = '';
                 }
             });
+
+            get_meta_keyword.addEventListener('change', function() {
+                if (get_meta_keyword.checked) {
+                    // Get selected options
+                    const selectedOptions = Array.from(tag.selectedOptions).map(option => option.text);
+                    // Join the selected options into a single string
+                    meta_keyword.value = selectedOptions.join(', ');
+                } else {
+                    meta_keyword.value = '';
+                }
+            })
         });
     </script>
 </x-layout.default>

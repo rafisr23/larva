@@ -41,6 +41,17 @@ class BlogController extends Controller
             $headerImage = null;
         }
 
+        // SEO
+        // $blog->seo->update([
+        //     'title' => $blog->meta_title,
+        //     'description' => $blog->meta_description,
+        //     'author' => $blog->meta_author,
+        // ]);
+        
+        // $seo = ;
+
+        // return explode(', ', $blog->meta_keyword);
+
         return view('frontend.blog.show', compact('contact', 'blog', 'latestBlogs', 'categories', 'tags', 'headerImage'));
     }
 
@@ -178,7 +189,7 @@ class BlogController extends Controller
             'meta_keyword' => $request->meta_keyword,
             'meta_description' => $request->meta_description,
             'user_id' => auth()->id(),
-            'published_at' => $request->published_at ?? now(),
+            // 'published_at' => $request->published_at ?? now(),
         ]);
 
         if ($request->hasFile('thumbnail_image')) {
