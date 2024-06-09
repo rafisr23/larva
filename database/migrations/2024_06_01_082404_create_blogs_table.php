@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('content');
-            $table->string('header_image');
-            $table->string('thumbnail_image');
+            $table->string('header_image')->nullable();
+            $table->string('thumbnail_image')->nullable();
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');

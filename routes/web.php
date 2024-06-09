@@ -37,7 +37,7 @@ Route::middleware(['web'])->group(function () {
     
     Route::controller(BlogController::class)->prefix('blog')->name('blog')->group(function () {
         Route::get('/', 'index')->name('.index');
-        Route::get('/show', 'show')->name('.show');
+        Route::get('/{blog}', 'show')->name('.show');
     });
 });
 

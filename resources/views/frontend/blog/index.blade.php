@@ -3,7 +3,7 @@
 @section('content')
     <!--Page Header Start-->
     <section class="page-header">
-        <div class="page-header-bg" style="background-image: {{ 'asset(images/backgrounds/page-header-bg.jpg)' }}">
+        <div class="page-header-bg" style="background-image: {{ isset($headerImage) ? 'url(storage/' . $headerImage[0]->file_path . ')' : 'url(images/backgrounds/page-header-bg.jpg)' }}">
         </div>
         <div class="container">
             <div class="page-header__inner">
@@ -12,6 +12,15 @@
                     <li>Blog</li>
                 </ul>
                 <h2>Blog Posts</h2>
+                @if (request('category'))
+                    <h2>Kategori: {{ request('category') }}</h2>
+                @endif
+                @if (request('user'))
+                    <h2>Penulis: {{ request('user') }}</h2>
+                @endif
+                @if (request('tag'))
+                    <h2>Tag: {{ request('tag') }}</h2>
+                @endif
             </div>
         </div>
     </section>
@@ -19,179 +28,53 @@
 
     <section class="blog-page">
         <div class="container">
+            <div class="row mb-5">
+                <form action="{{ route('blog.index') }}" class="sidebar__search-form" method="GET">
+                    @if (request('category'))
+                        <input type="hidden" name="category" value="{{ request('category') }}">
+                    @endif
+                    @if (request('user'))
+                        <input type="hidden" name="user" value="{{ request('user') }}">
+                    @endif
+                    <input type="search" placeholder="Cari blog..." name="search" value="{{ request('search') }}">
+                    <button type="submit"><i class="icon-magnifying-glass"></i></button>
+                </form>
+            </div>
             <div class="row">
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
-                    <!--Blog One Single-->
-                    <div class="blog-one__single">
-                        <div class="blog-one__img">
-                            <img src="{{ asset('images/blog/blog-page-img-1.jpg') }}" alt="">
-                            <a href="blog-details.html">
-                                <span class="blog-one__plus"></span>
-                            </a>
-                            <div class="blog-one__date">
-                                <p>26 aug</p>
+                @foreach ($blogs as $blog)
+                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
+                        <!--Blog One Single-->
+                        <div class="blog-one__single">
+                            <div class="blog-one__img">
+                                <img src="{{ isset($blog->thumbnail_image) ? asset('storage/' . $blog->thumbnail_image) : asset('images/blog/blog-page-img-1.jpg') }}" alt="">
+                                <a href="{{ route('blog.show', $blog->slug) }}">
+                                    {{-- <span class="blog-one__plus"></span> --}}
+                                </a>
+                                <div class="blog-one__date">
+                                    <p>{{ \Carbon\Carbon::parse($blog->published_at)->locale('id')->isoFormat('D MMMM Y') }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="blog-content">
-                            <ul class="list-unstyled blog-one__meta">
-                                <li><a href="blog-details.html"><i class="far fa-user-circle"></i> By admin</a></li>
-                                <li><span>/</span></li>
-                                <li><a href="blog-details.html"><i class="far fa-comments"></i> 2 Comments</a>
-                                </li>
-                            </ul>
-                            <h3 class="blog-one__title">
-                                <a href="blog-details.html">How much does a website cost to build</a>
-                            </h3>
-                            <div class="blog-one__read-btn">
-                                <a href="{{ route('blog.show') }}">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="400ms">
-                    <!--Blog One Single-->
-                    <div class="blog-one__single">
-                        <div class="blog-one__img">
-                            <img src="{{ asset('images/blog/blog-page-img-1.jpg') }}" alt="">
-                            <a href="blog-details.html">
-                                <span class="blog-one__plus"></span>
-                            </a>
-                            <div class="blog-one__date">
-                                <p>26 aug</p>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <ul class="list-unstyled blog-one__meta">
-                                <li><a href="blog-details.html"><i class="far fa-user-circle"></i> By admin</a></li>
-                                <li><span>/</span></li>
-                                <li><a href="blog-details.html"><i class="far fa-comments"></i> 2 Comments</a>
-                                </li>
-                            </ul>
-                            <h3 class="blog-one__title">
-                                <a href="blog-details.html">Uniquely enable accurate supply chains</a>
-                            </h3>
-                            <div class="blog-one__read-btn">
-                                <a href="{{ route('blog.show') }}">Read More</a>
+                            <div class="blog-content h-100">
+                                <ul class="list-unstyled blog-one__meta">
+                                    <li><a href="{{ route('blog.index', ['user'=> $blog->user->username]) }}"><i class="far fa-user-circle"></i> By {{ $blog->user->name }}</a></li>
+                                    <li><span>/</span></li>
+                                    <li><a href="{{ route('blog.index', ['category'=> $blog->category->slug]) }}"><i class="far fa-folder"></i> {{ $blog->category->name }}</a></li>
+                                </ul>
+                                <h3 class="blog-one__title">
+                                    <a href="{{ route('blog.show', $blog->slug) }}">{{ $blog->title }}</a>
+                                </h3>
+                                <div class="blog-one__read-btn">
+                                    <a href="{{ route('blog.show', $blog->slug) }}">Read More</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="600ms">
-                    <!--Blog One Single-->
-                    <div class="blog-one__single">
-                        <div class="blog-one__img">
-                            <img src="{{ asset('images/blog/blog-page-img-1.jpg') }}" alt="">
-                            <a href="blog-details.html">
-                                <span class="blog-one__plus"></span>
-                            </a>
-                            <div class="blog-one__date">
-                                <p>26 aug</p>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <ul class="list-unstyled blog-one__meta">
-                                <li><a href="blog-details.html"><i class="far fa-user-circle"></i> By admin</a></li>
-                                <li><span>/</span></li>
-                                <li><a href="blog-details.html"><i class="far fa-comments"></i> 2 Comments</a>
-                                </li>
-                            </ul>
-                            <h3 class="blog-one__title">
-                                <a href="blog-details.html">task researched data enterprise process</a>
-                            </h3>
-                            <div class="blog-one__read-btn">
-                                <a href="{{ route('blog.show') }}">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="800ms">
-                    <!--Blog One Single-->
-                    <div class="blog-one__single">
-                        <div class="blog-one__img">
-                            <img src="{{ asset('images/blog/blog-page-img-1.jpg') }}" alt="">
-                            <a href="blog-details.html">
-                                <span class="blog-one__plus"></span>
-                            </a>
-                            <div class="blog-one__date">
-                                <p>26 aug</p>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <ul class="list-unstyled blog-one__meta">
-                                <li><a href="blog-details.html"><i class="far fa-user-circle"></i> By admin</a></li>
-                                <li><span>/</span></li>
-                                <li><a href="blog-details.html"><i class="far fa-comments"></i> 2 Comments</a>
-                                </li>
-                            </ul>
-                            <h3 class="blog-one__title">
-                                <a href="blog-details.html">utilize enterprise experiences via 24/7 markets.</a>
-                            </h3>
-                            <div class="blog-one__read-btn">
-                                <a href="{{ route('blog.show') }}">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="1000ms">
-                    <!--Blog One Single-->
-                    <div class="blog-one__single">
-                        <div class="blog-one__img">
-                            <img src="{{ asset('images/blog/blog-page-img-1.jpg') }}" alt="">
-                            <a href="blog-details.html">
-                                <span class="blog-one__plus"></span>
-                            </a>
-                            <div class="blog-one__date">
-                                <p>26 aug</p>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <ul class="list-unstyled blog-one__meta">
-                                <li><a href="blog-details.html"><i class="far fa-user-circle"></i> By admin</a></li>
-                                <li><span>/</span></li>
-                                <li><a href="blog-details.html"><i class="far fa-comments"></i> 2 Comments</a>
-                                </li>
-                            </ul>
-                            <h3 class="blog-one__title">
-                                <a href="blog-details.html">actualize front-end processes with effective</a>
-                            </h3>
-                            <div class="blog-one__read-btn">
-                                <a href="{{ route('blog.show') }}">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="1200ms">
-                    <!--Blog One Single-->
-                    <div class="blog-one__single">
-                        <div class="blog-one__img">
-                            <img src="{{ asset('images/blog/blog-page-img-1.jpg') }}" alt="">
-                            <a href="blog-details.html">
-                                <span class="blog-one__plus"></span>
-                            </a>
-                            <div class="blog-one__date">
-                                <p>26 aug</p>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <ul class="list-unstyled blog-one__meta">
-                                <li><a href="blog-details.html"><i class="far fa-user-circle"></i> By admin</a></li>
-                                <li><span>/</span></li>
-                                <li><a href="blog-details.html"><i class="far fa-comments"></i> 2 Comments</a>
-                                </li>
-                            </ul>
-                            <h3 class="blog-one__title">
-                                <a href="blog-details.html">array of niche markets through robust products</a>
-                            </h3>
-                            <div class="blog-one__read-btn">
-                                <a href="{{ route('blog.show') }}">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
-            <div class="blog-sidebar__load-more text-center">
+            {{ $blogs->links() }}
+            {{-- <div class="blog-sidebar__load-more text-center">
                 <a href="blog-details.html" class="thm-btn blog-sidebar__load-more-btn">Load more posts</a>
-            </div>
+            </div> --}}
         </div>
     </section>
 @endsection

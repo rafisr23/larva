@@ -7,18 +7,35 @@ use App\Models\Blog;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Models\BlogCategories;
+use App\Models\HeaderPageImage;
+use App\Models\PageImageCategory;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class BlogController extends Controller
 {
     public function index() {
         $contact = Contact::first();
-        return view('frontend.blog.index', compact('contact'));
+
+        $blogs = Blog::latest()->Filter(request(['search', 'category', 'user', 'tag']))->paginate(9)->withQueryString();
+
+        $categoryImage = PageImageCategory::where('category_name', 'blog-header')->first();
+        $headerImage = HeaderPageImage::where('page_image_category_id', $categoryImage->id)->get();
+
+        if ($headerImage->isEmpty()) {
+            $headerImage = null;
+        }
+
+        return view('frontend.blog.index', compact('contact', 'headerImage', 'blogs'));
     }
 
-    public function show() {
+    public function show(Blog $blog) {
+        $blog->load(['category', 'tags', 'user', 'images']);
         $contact = Contact::first();
-        return view('frontend.blog.show', compact('contact'));
+        $latestBlogs = Blog::with(['category', 'tags', 'user', 'images'])->orderBy('created_at', 'desc')->take(3)->get();
+        $categories = BlogCategories::all();
+        $tags = Tag::all();
+
+        return view('frontend.blog.show', compact('contact', 'blog', 'latestBlogs', 'categories', 'tags'));
     }
 
     public function list() {
@@ -69,8 +86,8 @@ class BlogController extends Controller
             'title' => $request->title,
             'category_id' => $decCategoryId,
             'content' => $request->content,
-            'thumbnail_image' => 'default-thumbnail.jpg',
-            'header_image' => 'default-header.jpg',
+            'thumbnail_image' => null,
+            'header_image' => null,
             'status' => $request->status == 'on' ? 'published' : 'draft',
             'meta_title' => $request->meta_title,
             'slug' => $request->slug,
