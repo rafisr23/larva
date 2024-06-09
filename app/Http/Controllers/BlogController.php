@@ -256,5 +256,23 @@ class BlogController extends Controller
             'message' => 'Service deleted successfully.',
         ]);
     }
-        
+
+    public function updateStatus(Blog $blog, Request $request)
+    {
+        if ($blog->status == 'draft' || $blog->status == 'archived') {
+            $blog->update([
+                'status' => 'published',
+            ]);
+        } else {
+            $blog->update([
+                'status' => 'archived',
+            ]);
+        }
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Blog status updated successfully.',
+        ]);
+    }
 }

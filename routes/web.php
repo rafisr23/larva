@@ -146,6 +146,7 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
             Route::put('/{blog}', 'update')->name('.update');
             Route::delete('/{blog}', 'destroy')->name('.destroy');
             Route::get('/check-slug', [BlogController::class, 'checkSlug']);
+            Route::put('/{blog}/update-status', 'updateStatus')->name('.update-status');
         });
 
     });
