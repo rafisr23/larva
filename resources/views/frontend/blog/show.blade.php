@@ -3,7 +3,7 @@
 @section('content')
     <!--Page Header Start-->
     <section class="page-header">
-        <div class="page-header-bg" style="background-image: {{ isset($headerImage) ? 'url(storage/' . $headerImage[0]->file_path . ')' : 'url(images/backgrounds/page-header-bg.jpg)' }}">
+        <div class="page-header-bg" style="background-image: {{ isset($headerImage) ? 'url(../storage/' . $headerImage[0]->file_path . ')' : 'url(../images/backgrounds/page-header-bg.jpg)' }}">
         </div>
         <div class="container">
             <div class="page-header__inner">
