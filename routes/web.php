@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BlogTagController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProfileController;
@@ -158,9 +159,15 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
             Route::put('/{category}', 'update')->name('.update');
             Route::delete('/{category}', 'destroy')->name('.destroy');
         });
-
-
-
+        
+        Route::controller(BlogTagController::class)->prefix('blog-tag')->name('blog-tag')->group(function () {
+            Route::get('/', 'index')->name('.index');
+            Route::get('/get-tags', 'getTags')->name('.get-tags');
+            Route::get('/get-tag/{tag}', 'getTag')->name('.get-tag');
+            Route::post('/store', 'store')->name('.store');
+            Route::put('/{tag}', 'update')->name('.update');
+            Route::delete('/{tag}', 'destroy')->name('.destroy');
+        });
     });
 });
 

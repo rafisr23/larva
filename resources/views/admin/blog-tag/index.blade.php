@@ -2,11 +2,11 @@
     <x-slot name="title">{{ $title }}</x-slot>
 
     <div x-data="modal" class="mb-5">
-        <div x-data="blogCategory">
+        <div x-data="blogTag">
             <div class="panel">
                 <div class="flex items-center mb-5">
-                    <h5 class="font-semibold text-xl me-5">Blog Category List</h5>
-                    {{-- <a href="{{ route('admin.blog-category.create') }}" class="btn btn-danger" @click="toggle">Add New</a> --}}
+                    <h5 class="font-semibold text-xl me-5">Blog Tag List</h5>
+                    {{-- <a href="{{ route('admin.blog-tag.create') }}" class="btn btn-danger" @click="toggle">Add New</a> --}}
                     <button type="button" class="btn btn-danger w-18 text-xs px-2 md:w-26 md:text-sm md:px-5 md:py-2" @click="toggle">Add New</button>
     
                     <!-- modal -->
@@ -18,7 +18,7 @@
                                     class="panel border-0 p-0 rounded-lg overflow-hidden my-8 w-full max-w-lg">
                                     <div
                                         class="flex bg-[#fbfbfb] dark:bg-[#121c2c] items-center justify-between px-5 py-3">
-                                        <div class="font-bold text-lg">Add New Blog Category</div>
+                                        <div class="font-bold text-lg">Add New Blog Tag</div>
                                         <button type="button" class="text-white-dark hover:text-dark" @click="toggle">
     
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
@@ -30,20 +30,13 @@
                                         </button>
                                     </div>
                                     <div class="p-5">
-                                        <form action="{{ route('admin.blog-category.store') }}" method="POST" id="categoryForm">
+                                        <form action="{{ route('admin.blog-tag.store') }}" method="POST" id="tagForm">
                                             @csrf
                                             <div class="grid gris-cols-1 gap-4">
                                                 <div class="@error("name") has-error @enderror">
-                                                    <label for="name">Category Name <sup class="text-danger">*</sup></label>
-                                                    <input id="name" name="name" type="text" placeholder="Enter Category Name" class="form-input" value="{{ old("name") }}" autofocus required/>
+                                                    <label for="name">Tag Name <sup class="text-danger">*</sup></label>
+                                                    <input id="name" name="name" type="text" placeholder="Enter Tag  Name" class="form-input" value="{{ old("name") }}" autofocus required/>
                                                     @error("name")
-                                                        <p class="text-danger mt-1">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                                <div class="@error('description') has-error @enderror">
-                                                    <label for="description">Category Description</label>
-                                                    <textarea id="description" name="description" type="text" placeholder="Enter Category Description" class="form-input" rows="4">{{ old('description') }}</textarea>
-                                                    @error('description')
                                                         <p class="text-danger mt-1">{{ $message }}</p>
                                                     @enderror
                                                 </div>
@@ -59,7 +52,7 @@
                         </div>
                     </div>
                 </div>
-                <table class="whitespace-nowrap table-hover" id="blogCategoryTable">
+                <table class="whitespace-nowrap table-hover" id="blogTagTable">
                     
                 </table>
             </div>
@@ -79,11 +72,11 @@
 
         document.addEventListener("alpine:init", () => {
             let datatable = null;
-            Alpine.data("blogCategory", () => ({
+            Alpine.data("blogTag", () => ({
                 init() {
-                    datatable = new simpleDatatables.DataTable('#blogCategoryTable', {
+                    datatable = new simpleDatatables.DataTable('#blogTagTable', {
                         data: {
-                            headings: ["<div class='text-center'>No</div>", "Category Name", "<div class='text-center'>Action</div>"],
+                            headings: ["<div class='text-center'>No</div>", "Tag Name", "<div class='text-center'>Action</div>"],
                             data: this.getData(),
                         },
                         searchable: true,
@@ -116,7 +109,7 @@
                 },
 
                 getData() {
-                    fetch("{{ route('admin.blog-category.get-categories') }}", {
+                    fetch("{{ route('admin.blog-tag.get-tags') }}", {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
@@ -126,7 +119,7 @@
                     .then(response => response.json())
                     .then(data => {
                         // console.log(data);
-                        let categoryData = data.map((category, index) => {
+                        let tagData = data.map((category, index) => {
                             return [
                                 "<div class=''>" + (index + 1) + "</div>",
                                 category.name,
@@ -145,7 +138,7 @@
                             ];
                         });
                         // console.log(projectData);
-                        datatable.insert({ data: categoryData });
+                        datatable.insert({ data: tagData });
                     })
                     .catch(error => {
                         console.error("Error:", error);
@@ -161,24 +154,23 @@
                 },
             }));
 
-            $('#blogCategoryTable').on('click', '.btn-edit', function() {
+            $('#blogTagTable').on('click', '.btn-edit', function() {
                 let slug = $(this).data('slug');
-                let url = "{{ route('admin.blog-category.get-category', ':slug') }}".replace(':slug', slug);
+                let url = "{{ route('admin.blog-tag.get-tag', ':slug') }}".replace(':slug', slug);
 
                 $.ajax({
                     url: url,
                     method: 'GET',
                     success: function(response) {
                         $('#name').val(response.name);
-                        $('#description').val(response.description);
 
-                        $('#categoryForm').attr('action', "{{ route('admin.blog-category.update', ':slug') }}".replace(':slug', slug));
-                        $('#categoryForm').append('<input type="hidden" name="_method" value="PUT">');
+                        $('#tagForm').attr('action', "{{ route('admin.blog-tag.update', ':slug') }}".replace(':slug', slug));
+                        $('#tagForm').append('<input type="hidden" name="_method" value="PUT">');
                     }
                 });
             })
 
-            $('#blogCategoryTable').on('click', '.btn-delete', function() {
+            $('#blogTagTable').on('click', '.btn-delete', function() {
                 let slug = $(this).data('slug');
 
                 new window.Swal({
@@ -190,7 +182,7 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        let url = "{{ route('admin.blog-category.destroy', ':slug') }}".replace(':slug', slug);
+                        let url = "{{ route('admin.blog-tag.destroy', ':slug') }}".replace(':slug', slug);
                         $.ajax({
                             url: url,
                             type: "DELETE",
@@ -226,45 +218,6 @@
                     }
                 });
             });
-
-            // $('#blogCategoryTable').on('change', '.is_active', function() {
-            //     let slug = $(this).closest('tr').find('.btn-delete').data('slug');
-            //     let status = $(this).prop('checked') ? 1 : 0;
-
-            //     let url = 
-            //     $.ajax({
-            //         url: url,
-            //         type: "PUT",
-            //         data: {
-            //             _token: CSRF_TOKEN,
-            //             status: status
-            //         },
-            //         success: (response) => {
-            //             if (response.success) {
-            //                 const toast = window.Swal.mixin({
-            //                     toast: true,
-            //                     position: 'top-right',
-            //                     animation: true,
-            //                     showConfirmButton: false,
-            //                     timer: 3000,
-            //                     customClass: {
-            //                         popup: 'color-success'
-            //                     },
-            //                     showCloseButton: true,
-            //                     target: document.getElementById('toast')
-            //                 });
-            //                 toast.fire({
-            //                     icon: 'success',
-            //                     title: response.message,
-            //                     padding: '10px 20px'
-            //                 });
-            //             }
-            //         },
-            //         error: function(error) {
-            //             console.log(error);
-            //         }
-            //     });
-            // });
 
             document.addEventListener('DOMContentLoaded', function() {
                 @if (session('success'))
