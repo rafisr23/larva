@@ -10,6 +10,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\HomeUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TestimoniController;
+use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\HeaderPageImageController;
 use App\Http\Controllers\PageImageCategoryController;
 
@@ -148,6 +149,17 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
             Route::get('/check-slug', [BlogController::class, 'checkSlug']);
             Route::put('/{blog}/update-status', 'updateStatus')->name('.update-status');
         });
+        
+        Route::controller(BlogCategoryController::class)->prefix('blog-category')->name('blog-category')->group(function () {
+            Route::get('/', 'index')->name('.index');
+            Route::get('/get-categories', 'getCategories')->name('.get-categories');
+            Route::get('/get-category/{category}', 'getCategory')->name('.get-category');
+            Route::post('/store', 'store')->name('.store');
+            Route::put('/{category}', 'update')->name('.update');
+            Route::delete('/{category}', 'destroy')->name('.destroy');
+        });
+
+
 
     });
 });

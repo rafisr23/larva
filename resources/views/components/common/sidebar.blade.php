@@ -136,7 +136,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item mt-2">
+                        {{-- <li class="nav-item mt-2">
                             <a href="{{ route('admin.blog.list') }}" class="group @if (request()->routeIs('admin.blog.*')) active @endif">
                                 <div class="flex items-center">
                                     <svg class="group-hover:!text-red shrink-0 @if (request()->routeIs('admin.blog.*')) !text-red @endif" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20">
@@ -146,7 +146,7 @@
                                     <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Blog</span>
                                 </div>
                             </a>
-                        </li>
+                        </li> --}}
                         {{-- <li class="nav-item mt-2">
                             <a href="{{ route('admin.testimoni.index') }}" class="group @if (request()->routeIs('admin.testimoni.*')) active @endif">
                                 <div class="flex items-center">
@@ -158,6 +158,42 @@
                             </a>
                         </li> --}}
                         
+                    </ul>
+                </li>
+
+                <h2
+                    class="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
+
+                    <svg class="w-4 h-5 flex-none hidden" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
+                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>Content</span>
+                </h2>
+
+                <li class="nav-item">
+                    <ul>
+                        <li class="nav-item mt-2">
+                            <a href="{{ route('admin.blog.list') }}" class="group @if (request()->routeIs('admin.blog.*')) active @endif">
+                                <div class="flex items-center">
+                                    <svg class="group-hover:!text-red shrink-0 @if (request()->routeIs('admin.blog.*')) !text-red @endif" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20">
+                                        <path fill="currentColor" d="M13 0a2 2 0 0 1 2 2H6a2 2 0 0 0-2 2v12a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
+                                        <path fill="currentColor" d="M18 5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2zm-7 5H7V5h4zm5-4h-4V5h4zm0 2h-4V7h4zm0 2h-4V9h4zm0 2H7v-1h9zm0 2H7v-1h9zm0 2H7v-1h9z"/>
+                                    </svg>
+                                    <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Blog</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item mt-2">
+                            <a href="{{ route('admin.blog-category.index') }}" class="group @if (request()->routeIs('admin.blog-category.*')) active @endif">
+                                <div class="flex items-center">
+                                    <svg class="group-hover:!text-red shrink-0 @if (request()->routeIs('admin.blog-category.*')) !text-red @endif" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path fill="currentColor" fill-rule="evenodd" d="M17 3a4 4 0 1 0 0 8a4 4 0 0 0 0-8M3 17a4 4 0 1 1 8 0a4 4 0 0 1-8 0m10-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v5a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2zM3 4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Blog Category</span>
+                                </div>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
