@@ -1,12 +1,12 @@
 {
+  "resources/css/nice-select.css": {
+    "file": "assets/nice-select.b1ccd362.css",
+    "src": "resources/css/nice-select.css",
+    "isEntry": true
+  },
   "resources/css/highlight.min.css": {
     "file": "assets/highlight.min.46cd66a0.css",
     "src": "resources/css/highlight.min.css",
-    "isEntry": true
-  },
-  "resources/css/tippy.css": {
-    "file": "assets/tippy.79ba074f.css",
-    "src": "resources/css/tippy.css",
     "isEntry": true
   },
   "resources/css/markdown-editor.css": {
@@ -14,9 +14,14 @@
     "src": "resources/css/markdown-editor.css",
     "isEntry": true
   },
-  "resources/css/nice-select.css": {
-    "file": "assets/nice-select.b1ccd362.css",
-    "src": "resources/css/nice-select.css",
+  "resources/css/tippy.css": {
+    "file": "assets/tippy.79ba074f.css",
+    "src": "resources/css/tippy.css",
+    "isEntry": true
+  },
+  "resources/css/nouislider.min.css": {
+    "file": "assets/nouislider.min.3771034d.css",
+    "src": "resources/css/nouislider.min.css",
     "isEntry": true
   },
   "resources/css/easymde.min.css": {
@@ -29,14 +34,14 @@
     "src": "resources/css/nice-select2.css",
     "isEntry": true
   },
-  "resources/css/swiper-bundle.min.css": {
-    "file": "assets/swiper-bundle.min.3f0abbd1.css",
-    "src": "resources/css/swiper-bundle.min.css",
-    "isEntry": true
-  },
   "resources/css/flatpickr.min.css": {
     "file": "assets/flatpickr.min.7b14c7ca.css",
     "src": "resources/css/flatpickr.min.css",
+    "isEntry": true
+  },
+  "resources/css/quill.snow.css": {
+    "file": "assets/quill.snow.ee0035a9.css",
+    "src": "resources/css/quill.snow.css",
     "isEntry": true
   },
   "resources/css/fullcalendar.min.css": {
@@ -44,14 +49,9 @@
     "src": "resources/css/fullcalendar.min.css",
     "isEntry": true
   },
-  "resources/css/nouislider.min.css": {
-    "file": "assets/nouislider.min.3771034d.css",
-    "src": "resources/css/nouislider.min.css",
-    "isEntry": true
-  },
-  "resources/css/quill.snow.css": {
-    "file": "assets/quill.snow.ee0035a9.css",
-    "src": "resources/css/quill.snow.css",
+  "resources/css/swiper-bundle.min.css": {
+    "file": "assets/swiper-bundle.min.3f0abbd1.css",
+    "src": "resources/css/swiper-bundle.min.css",
     "isEntry": true
   },
   "resources/css/fancybox.css": {
@@ -65,7 +65,7 @@
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app.485fb1fe.css",
+    "file": "assets/app.0b700a32.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }
