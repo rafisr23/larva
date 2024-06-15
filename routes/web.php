@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BlogTagController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProfileController;
@@ -9,6 +11,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\HomeUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TestimoniController;
+use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\HeaderPageImageController;
 use App\Http\Controllers\PageImageCategoryController;
 
@@ -33,6 +36,11 @@ Route::middleware(['web'])->group(function () {
     Route::get('/projects', [HomeUserController::class, 'projects'])->name('user-projects');
     Route::get('/project/{project}', [HomeUserController::class, 'projectDetail'])->name('user-project-detail');
     Route::get('/contact', [HomeUserController::class, 'contact'])->name('user-contact');
+    
+    Route::controller(BlogController::class)->prefix('blog')->name('blog')->group(function () {
+        Route::get('/', 'index')->name('.index');
+        Route::get('/{blog}', 'show')->name('.show');
+    });
 });
 
 // Route::get('/dashboard', function () {
@@ -130,7 +138,36 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
             Route::put('/{testimoni}', 'update')->name('.update');
             Route::delete('/{testimoni}', 'destroy')->name('.destroy');
         });
-
+        
+        Route::controller(BlogController::class)->prefix('blog')->name('blog')->group(function () {
+            Route::get('/', 'list')->name('.list');
+            Route::get('/get-blogs', 'getBlogs')->name('.get-blogs');
+            Route::get('/create', 'create')->name('.create');
+            Route::post('/store', 'store')->name('.store');
+            Route::get('/{blog}/edit', 'edit')->name('.edit');
+            Route::put('/{blog}', 'update')->name('.update');
+            Route::delete('/{blog}', 'destroy')->name('.destroy');
+            Route::get('/check-slug', [BlogController::class, 'checkSlug']);
+            Route::put('/{blog}/update-status', 'updateStatus')->name('.update-status');
+        });
+        
+        Route::controller(BlogCategoryController::class)->prefix('blog-category')->name('blog-category')->group(function () {
+            Route::get('/', 'index')->name('.index');
+            Route::get('/get-categories', 'getCategories')->name('.get-categories');
+            Route::get('/get-category/{category}', 'getCategory')->name('.get-category');
+            Route::post('/store', 'store')->name('.store');
+            Route::put('/{category}', 'update')->name('.update');
+            Route::delete('/{category}', 'destroy')->name('.destroy');
+        });
+        
+        Route::controller(BlogTagController::class)->prefix('blog-tag')->name('blog-tag')->group(function () {
+            Route::get('/', 'index')->name('.index');
+            Route::get('/get-tags', 'getTags')->name('.get-tags');
+            Route::get('/get-tag/{tag}', 'getTag')->name('.get-tag');
+            Route::post('/store', 'store')->name('.store');
+            Route::put('/{tag}', 'update')->name('.update');
+            Route::delete('/{tag}', 'destroy')->name('.destroy');
+        });
     });
 });
 

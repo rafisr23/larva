@@ -26,9 +26,9 @@
                     <li class=" @if (request()->routeIs('user-projects')) current @endif">
                         <a href="{{ route('user-projects') }}">Project</a>
                     </li>
-                    {{-- <li class="dropdown">
-                        <a href="blog.html">Blog</a>
-                    </li> --}}
+                    <li class="@if (request()->routeIs('blog.index')) current @endif">
+                        <a href="{{ route('blog.index') }}">Blog</a>
+                    </li>
                     <li class="@if (request()->routeIs('user-contact')) current @endif">
                         <a href="{{ route('user-contact') }}">Kontak</a>
                     </li>
