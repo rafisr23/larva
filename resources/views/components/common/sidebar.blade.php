@@ -168,7 +168,7 @@
                         fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
-                    <span>Content</span>
+                    <span>Blog</span>
                 </h2>
 
                 <li class="nav-item">
