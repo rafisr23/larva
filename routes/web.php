@@ -149,6 +149,7 @@ Route::group(['middleware' => ['web', 'auth', 'role:superadmin|admin']], functio
             Route::delete('/{blog}', 'destroy')->name('.destroy');
             Route::get('/check-slug', [BlogController::class, 'checkSlug']);
             Route::put('/{blog}/update-status', 'updateStatus')->name('.update-status');
+            Route::post('/store/image-content', 'storeImageContent')->name('.store-image-content');
         });
         
         Route::controller(BlogCategoryController::class)->prefix('blog-category')->name('blog-category')->group(function () {
