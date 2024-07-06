@@ -52,9 +52,7 @@
                                 <div class="@error('content') has-error @enderror">
                                     <label for="content">Content <sup class="text-danger">*</sup></label>
                                     <input id="content" type="hidden" name="content" value="{!! old('content') !!}">
-                                    {{-- <div class="quill-editor" id="content"></div> --}}
                                     <trix-editor input="content" class="form-input trix-editor" placeholder="Enter Content" id="content">{!! old('content') !!}</trix-editor>
-                                    {{-- <textarea id="content" name="content" class="form-textarea" placeholder="Enter content" required>{{ old('content') }}</textarea> --}}
                                     @error('content')
                                         <p class="text-danger mt-1">{{ $message }}</p>
                                     @enderror
@@ -298,5 +296,68 @@
                 }
             })
         });
+
+        (function() {
+            addEventListener("trix-attachment-add", function(event) {
+                if (event.attachment.file) {
+                    uploadFileAttachment(event.attachment)
+                }
+            })
+
+            function uploadFileAttachment(attachment) {
+                uploadFile(attachment.file, setProgress, setAttributes)
+
+                function setProgress(progress) {
+                    attachment.setUploadProgress(progress)
+                }
+
+                function setAttributes(attributes) {
+                    attachment.setAttributes(attributes)
+                }
+            }
+
+            function uploadFile(file, progressCallback, successCallback) {
+                var key = createStorageKey(file)
+                var formData = createFormData(key, file)
+                var xhr = new XMLHttpRequest()
+
+                xhr.open("POST", "{{ route('admin.blog.store-image-content') }}", true)
+                xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}')
+
+                xhr.upload.addEventListener("progress", function(event) {
+                    var progress = event.loaded / event.total * 100
+                    progressCallback(progress)
+                })
+
+                xhr.addEventListener("load", function(event) {
+                    if (xhr.status == 200) {
+                        var response = JSON.parse(xhr.responseText)
+                        // console.log(response.url);
+                        var attributes = {
+                            url: response.url,
+                            href: response.url + "?content-disposition=attachment"
+                        }
+                        successCallback(attributes)
+                    }
+                })
+
+                xhr.send(formData)
+            }
+
+            function createStorageKey(file) {
+                var date = new Date()
+                var day = date.toISOString().slice(0,10)
+                var name = date.getTime() + "-" + file.name
+                return [ "tmp", day, name ].join("/")
+            }
+
+            function createFormData(key, file) {
+                var data = new FormData()
+                data.append("key", key)
+                data.append("Content-Type", file.type)
+                data.append("file", file)
+                return data
+            }
+        })();
     </script>
 </x-layout.default>

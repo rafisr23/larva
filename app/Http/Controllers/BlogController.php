@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\BlogCategories;
 use App\Models\HeaderPageImage;
 use App\Models\PageImageCategory;
+use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class BlogController extends Controller
@@ -159,6 +160,8 @@ class BlogController extends Controller
         $categories = BlogCategories::all();
         $tags = Tag::all();
 
+        $blog->content = htmlspecialchars_decode($blog->content);
+
         return view('admin.blog.edit', compact('title', 'categories', 'tags', 'blog'));
     }
 
@@ -285,5 +288,20 @@ class BlogController extends Controller
             'success' => true,
             'message' => 'Blog status updated successfully.',
         ]);
+    }
+
+    public function storeImageContent(Request $request) {
+        if ($request->hasFile('file')) {
+            $image = $request->file('file');
+            $originalName = $image->getClientOriginalName();
+            $fileName = pathinfo($originalName, PATHINFO_FILENAME);
+            
+            $imageName = $fileName . time() . '.' . $image->extension();
+            $file_path = $image->storeAs('blog/content', $imageName);
+
+            return response()->json(['url' => asset('storage/' . $file_path)]);
+        }
+
+        return response()->json(['error' => 'No file uploaded'], 400);
     }
 }

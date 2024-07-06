@@ -733,3 +733,8 @@ hover:text-primary hover:before:!bg-primary ltr:before:mr-2 rtl:before:ml-2 dark
     margin-left: 0.3em;
     padding-left: 0.6em;
 }
+
+.attachment__metadata-container {
+    display: none;
+    visibility: hidden;
+}
