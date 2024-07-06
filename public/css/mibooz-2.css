@@ -8606,3 +8606,16 @@ ul {
     width: 100%;
     object-fit: cover;
 }
+
+.attachment--jpg img {
+    /* width depand on parent */
+    /* set to no strach */
+    width: 100%;
+    object-fit: cover;
+}
+
+.attachment--preview img {
+    width: 100%;
+    object-fit: cover;
+}
+
