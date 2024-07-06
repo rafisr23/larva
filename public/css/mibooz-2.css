@@ -8599,3 +8599,10 @@ ul {
     /* rotate */
     transform: rotate(-5deg);
 }
+
+.attachment--png img {
+    /* width depand on parent */
+    /* set to no strach */
+    width: 100%;
+    object-fit: cover;
+}
