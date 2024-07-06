@@ -183,9 +183,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="!mt-8 flex">
+                    {{-- <div class="!mt-8 flex">
                         <a href="#" type="button" class="btn btn-info me-1">Analyze SEO</a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="!mt-8 flex">
                     <a href="{{ route('admin.blog.list') }}" class="btn btn-warning me-1">Back</a>
